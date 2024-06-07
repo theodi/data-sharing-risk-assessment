@@ -11,7 +11,6 @@ export default function CheckpointActions() {
   const activeCheckpoint = useSelector((state) => state.checkpoints.activeCheckpoint);
   const activeCheckpointAnswer = useSelector((state) => state.checkpoints.activeCheckpointAnswer);
 
-
   if ( !activeCheckpointAnswer || activeCheckpointAnswer.length === 0) return <div className="loading"></div>;;
   // const checkpointAnswers = useSelector((state) => state.checkpoints.checkpointAnswers);
 

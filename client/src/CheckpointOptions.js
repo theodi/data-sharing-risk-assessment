@@ -15,6 +15,17 @@ export default function CheckpointOptions() {
 
   if ( !activeCheckpoint || activeCheckpoint.length === 0) return <div className="loading"></div>;
 
+  const handleOptionClick = (option) => {
+    try {
+      const answer = {
+        id: checkpointID,
+        option
+      };
+      dispatch(updateCheckpointAnswers(answer));
+    } catch (error) {
+      console.error('Error updating checkpoint answers:', error);
+    }
+  };
   return (
     <div className="options">
       {activeCheckpoint.options.map((option, i) => {
@@ -30,14 +41,8 @@ export default function CheckpointOptions() {
         return (
           <div
             key={i}
-            className={"button button-white option " + (option.risk_level) + " " +  (isActive ? "active" : "")}
-            onClick={() => {
-              const answer = {
-                id: checkpointID,
-                option
-              };
-              dispatch(updateCheckpointAnswers(answer))}
-            }
+            className={"button button-white option " + option.risk_level + " " + (isActive ? "active" : "")}
+            onClick={() => handleOptionClick(option)}
           >
             {option.option}
           </div>

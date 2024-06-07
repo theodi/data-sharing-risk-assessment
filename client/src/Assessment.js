@@ -38,13 +38,10 @@ export default function Assessment() {
     }
   }, [id, activeAssessment.id, assessmentsList, dispatch, navigate]);
 
-  useEffect(() => {
-    if (!id || !assessmentsList.find(a => a._id === id)) {
-      setAssessmentLoaded(false);
-    }
-  }, [id, assessmentsList]);
 
-  if (loading || assessments_loading || !assessmentLoaded) return <div className="loading"></div>;
+  if (loading || assessments_loading || !assessmentLoaded) {
+    return <div className="loading"></div>;
+  }
 
   if (activeAssessment.status === "") {
     navigate('/assessments');
