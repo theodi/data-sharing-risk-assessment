@@ -1,0 +1,182 @@
+.checkpoint-ctas {
+  margin-left: auto;
+  @media (min-width: 768px){
+    padding-top: 50px;
+    padding-bottom: 80px;
+    padding-right: vw(100px);
+    max-width: 500px;
+    overflow: hidden;
+  }
+  @media (min-width: 1440px){
+    padding-right: 100px;
+  }
+
+  .checkpoint-ctas-inner {
+    border-bottom: 1px solid #fff;
+    padding-bottom: 20px;
+  }
+  .checkpoint-cta-title {
+    font-family: $font-bold;
+    font-size: 1.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    @media (min-width: 768px){
+      font-size: 1.7rem;
+      margin-bottom: vh(25px);
+
+    }
+    @media (min-width: 768px) and (min-height: 900px){
+      font-size: 1.7rem;
+      margin-bottom: vw(25px);
+    }
+    @media (min-width: 1440px) and (min-height: 900px){
+      font-size: 18px;
+      margin-bottom: 25px;
+
+    }
+  }
+
+  .checkpoint-cta {
+
+    cursor: pointer;
+    font-family: $font-bold;
+    font-size: 1.6rem;
+    line-height: 1;
+    display: flex;
+    width: 100%;
+    padding: 0;
+    align-items: center;
+    justify-content: space-between;
+    border: none;
+    text-decoration: none;
+    background: none;
+    text-align: left;
+    color: #fff;
+    margin-bottom: 20px;
+    @media (min-width: 768px){
+      font-size: 1.5rem;
+      margin-bottom: vh(20px);
+
+    }
+    @media (min-width: 768px) and (min-height: 900px){
+      font-size: 1.5rem;
+      margin-bottom: vw(20px);
+    }
+    @media (min-width: 1440px) and (min-height: 900px){
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+
+    }
+    svg {
+      width: 27px;
+      flex-shrink: 0;
+      margin-left: 10px;
+    }
+  }
+
+}
+
+
+.view-report-cta {
+  position: relative;
+  background: none;
+  border: none;
+  width: calc(100% + 7vw);
+  margin-top: 50px;
+  @media (min-width: 1440px){
+    width: calc(100% + 100px);
+  }
+  &:before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #2254F4;
+    box-shadow: -10px 10px 0px #178CFF;
+
+    transform: rotate(-2deg);
+  }
+
+  .cta-inner {
+    position: relative;
+    z-index: 2;
+    padding: 30px 20px;
+    justify-content: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cta-title {
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    font-family: $font-bold;
+    font-size: 1.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #fff;
+    background: $light-blue;
+    padding: 0.3em 0.5em;
+    @media (min-width: 768px){
+      font-size: vh(18px);
+    }
+    @media (min-width: 768px) and (min-height: 900px){
+      font-size: vw(18px);
+    }
+    @media (min-width: 1440px) and (min-height: 900px){
+      font-size: 18px;
+    }
+  }
+
+  .cta-content {
+    display: flex;
+
+    padding-right: 60px;
+
+    .cta-text {
+      text-align: left;
+      color: #fff;
+      display: flex;
+      font-size: 1.6rem;
+      @media (min-width: 768px){
+        font-size: 1.4rem;
+      }
+      @media (min-width: 1024px){
+        font-size: 1.5rem;
+      }
+      @media (min-width: 1440px) and (min-height: 900px){
+        font-size: 1.6rem;
+      }
+      &:before {
+        content: "";
+        display: inline-block;
+        width: 75px;
+        height: 98px;
+        background-image: url('../../img/report-a.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        flex-shrink: 0;
+        margin-right: 15px;
+        @media (min-width: 768px){
+          width: vw(75px);
+          height: vw(98px);
+        }
+        @media (min-width: 1440px) {
+          width: 75px;
+          height: 98px;
+        }
+      }
+    }
+  }
+
+  .button {
+    position: absolute;
+    left: 20px;
+    bottom: -20px;
+  }
+}

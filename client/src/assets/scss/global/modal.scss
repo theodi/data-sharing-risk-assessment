@@ -1,0 +1,235 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+  .modal__close {
+    cursor: pointer;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(#fff, 0.7);
+  }
+
+  .modal__inner {
+    width: 95%;
+    height: 95%;
+    position: fixed;
+    top: 2.5%;
+    left: 2.5%;
+    background: $dark_blue;
+    padding: vw(50px);
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    @media (min-width: 1440px){
+      padding: 50px;
+    }
+
+  }
+
+  .modal__close-btn {
+    cursor: pointer;
+    background: none;
+    box-shadow: none;
+    border: none;
+    position: absolute;
+    right: 25px;
+    top: 25px;
+  }
+
+
+  .modal-title {
+    font-family: $font-bold;
+    font-size: 4.5rem;
+    margin-bottom: 1em;
+  }
+}
+
+
+
+.modal-content {
+  .te {
+    max-width: 768px;
+  }
+
+  &.report {
+
+    .assessment-data {
+      margin-bottom: 60px;
+      padding-bottom: 20px;
+      max-width: 768px;
+      border-bottom: 1px solid #fff;
+    }
+    .assessments-data-item {
+      display: flex;
+      margin-bottom: 15px;
+      .assessments-data-item-label {
+        font-family: $font-bold;
+        width: 200px;
+      }
+      .assessments-data-item-value {
+
+      }
+    }
+
+
+    .checkpoint-answers {
+      margin-top: 30px;
+      max-width: 768px;
+      .chekpoint-answer {
+        background: #fff;
+        box-shadow: -10px 10px 0px #178CFF;
+        padding: 30px 20px 20px;
+        position: relative;
+        margin-bottom: 60px;
+        .checkpoint-answers-inner {
+
+        }
+
+        .checkpoint-answer-id {
+          display: inline-block;
+          width: auto;
+          padding: 0.2em 0.5em;
+          color: #fff;
+          background: $light_blue;
+          font-size: 1.8rem;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          font-family: $font-bold;
+          position: absolute;
+          top: -20px;
+          left: 20px;
+        }
+
+        .checkpoint-answer-title {
+          font-size: 2rem;
+          font-family: $font-bold;
+          color: #2254F4;
+          margin-bottom: 1em;
+        }
+        .checkpoint-answer-option {
+          display: flex;
+          align-items: center;
+          .checkpoint-answer-option-label {
+            color: #2254F4;
+            font-size: 1.6rem;
+            margin-right: 25px;
+          }
+          .checkpoint-answer-option-value {
+            color: #fff;
+            border-radius: 0;
+            cursor: auto;
+            &.red {
+              background: $red;
+            }
+            &.amber {
+              background: $amber;
+
+            }
+            &.green {
+              background: $green;
+            }
+          }
+        }
+        .checkpoint-answer-mitigate-label {
+          font-size: 2rem;
+          font-family: $font-bold;
+          color: #2254F4;
+          margin-bottom: 1em;
+          margin-top: 2em;
+        }
+        .checkpoint-answer-mitigate-value {
+          color: #2254F4;
+
+        }
+      }
+    }
+
+  }
+  &.explain {
+    padding: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .modal-top {
+      width: 100%;
+      margin-bottom: 30px;
+      @media (min-width: 768px){
+        margin-bottom: vh(60px);
+      }
+      @media (min-width: 1440px) and (min-height: 900px){
+        margin-bottom: 60px;
+      }
+      .modal-top-inner {
+        @media (min-width: 900px){
+          width: 45%;
+        }
+      }
+    }
+    .modal-left, .modal-right {
+      margin-bottom: 30px;
+      @media (min-width: 900px){
+        width: 45%;
+        margin: 0;
+      }
+    }
+
+    .modal-title {
+      width: 100%;
+    }
+    .form-element {
+      label {
+        display: inline-block;
+        width: 100%;
+        font-size: 1.7rem;
+        color: #fff;
+        font-family: $font-bold;
+        margin-bottom: 0.5em;
+      }
+
+      textarea {
+        resize: none;
+        display: inline-block;
+        width: 100%;
+        min-height: 200px;
+        padding: 1em;
+        box-shadow: -10px 10px 0px #178CFF;
+        margin-bottom: 30px;
+      }
+    }
+
+    .checkpoint-question {
+      width: 100%;
+      padding: 0;
+
+      .options-label {
+        margin-bottom: 1em;
+      }
+
+      .button {
+        border-radius: 0 !important;
+        cursor: none;
+        &.red {
+          background: $red;
+          color: #fff;
+        }
+        &.green {
+          background: $green;
+          color: #fff;
+        }
+        &.amber {
+          background: $amber;
+          color: #fff;
+        }
+      }
+    }
+
+
+
+  }
+}

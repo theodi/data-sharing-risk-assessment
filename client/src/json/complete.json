@@ -1,0 +1,42 @@
+{
+  "title": "How to Use Your Report",
+  "text": "<p>Sharing data can generate benefits for companies, the economy, society and the environment. You can use the assessment process and the report it generates to prompt conversations within your organisation and provide assurance to senior leaders that sharing a particular set of data will not generate negative impacts on reputation; compromise legal compliance or negatively affect their place in the market; or cause harm to society, the economy or the environment.</p><p>There is opportunity to save time and money by using the tool to identify any potential data-sharing issues early on, or indeed to identify where data is suitable for wider sharing; and to provide the assurance needed to share that data with confidence and provide the opportunities to create value from it.</p><p>Equally, sharing the results of a ‘Data Sharing Risk Assessment’ and being explicit about why data is not suitable for sharing could help to create insight and improve our understanding of data ecosystems and the barriers to effective data reuse.</p>",
+  "ctas": [
+    {
+      "title": "Further help",
+      "text": "Access and download the full guide on assessing risks when sharing data from the ODI.org",
+      "link_title": "Assessing Risks Guide",
+      "link_type": "modal",
+      "link_icon": "arrow",
+      "theme": "cta",
+      "link_url": "../json/how-to-use-tool.json"
+    },
+    {
+      "title": "",
+      "text": "",
+      "link_title": "View your Data Sharing Risk Report",
+      "link_type": "report",
+      "link_icon": "arrow",
+      "theme": "view_report",
+      "link_url": "../json/report.json"
+    },
+    {
+      "title": "More Resources",
+      "text": "At the ODI, our mission is to work with companies and governments to build an open, trustworthy data ecosystem.",
+      "link_title": "Explore resources (opens in a new tab)",
+      "link_type": "external",
+      "link_icon": "search",
+      "theme": "cta",
+      "link_url": "https://theodi.org/"
+    },
+    {
+      "title": "",
+      "text": "",
+      "link_title": "Start a new Data Sharing Risk Assessment",
+      "link_type": "internal",
+      "link_icon": "arrow",
+      "theme": "start_assessment",
+      "link_url": "/assessments"
+    }
+  ]
+}

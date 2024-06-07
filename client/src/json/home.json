@@ -1,0 +1,42 @@
+{
+  "title": "Welcome to the ODI Data Sharing Risk Assessment Tool",
+  "text": "<p class='intro'>This tool aims to help organisations to identify, assess and manage risks related to sharing data they hold. It is designed to help data controllers provide direction to senior leaders about if and when specific data can be shared.</p><p>This tool seeks to provide early steps to consider real and perceived risks in sharing data and to identify suitable mitigating actions. We include typical risk categories, key questions to consider and suggestions on how to minimise harm.The risks in this guide are generic, and applicable to all types of data, regardless of domain, sector or geography.</p><p>DISCLAIMER: The information contained within this tool is for guidance only and does not constitute explicit permission to share or not to share. Each business should assess and determine their own data sharing risks.</p>",
+  "ctas": [
+    {
+      "title": "Assessment Dashboard",
+      "text": "The dashboard allows access to multiple saved data sharing risk assessments, then revisit and complete them when you need to.",
+      "link_title": "Access your assessments",
+      "link_type": "interanl",
+      "link_icon": "clipboard",
+      "theme": "cta",
+      "link_url": "assessments"
+    },
+    {
+      "title": "How to use this tool",
+      "text": "Instructions and advice on making the best use of this tool as part of your organisation’s data management procedures.",
+      "link_title": "Read the instructions",
+      "link_type": "modal",
+      "link_icon": "arrow",
+      "theme": "cta",
+      "link_url": "../json/how-to-use-tool.json"
+    },
+    {
+      "title": "More Resources",
+      "text": "At the ODI, our mission is to work with companies and governments to build an open, trustworthy data ecosystem.",
+      "link_title": "Explore resources (opens in a new tab)",
+      "link_type": "external",
+      "link_icon": "search",
+      "theme": "cta",
+      "link_url": "https://theodi.org/"
+    },
+    {
+      "title": "Get Started",
+      "text": "Ready to dive in?",
+      "link_title": "Start a new Data Sharing Risk Assessment",
+      "link_type": "internal",
+      "link_icon": "arrow",
+      "theme": "start_assessment",
+      "link_url": "assessment"
+    }
+  ]
+}

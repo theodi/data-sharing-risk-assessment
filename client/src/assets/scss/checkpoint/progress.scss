@@ -1,0 +1,127 @@
+.checkpoint-progress{
+  position: relative;
+  left: 0px;
+  transform: rotate(-2.13deg);
+  transform-origin: left;
+  @media (min-width: 768px){
+    width: 15%;
+  }
+
+  @media (min-width: 768px) and (min-height: 900px){
+
+  }
+
+  .checkpoint-progress-title {
+    font-size: 1.8rem;
+    line-height: 1;
+    font-family: $font-bold;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 10px 10px 10px 40px;
+    color: $light_blue;
+    background: #fff;
+    display: inline-block;
+    width: auto;
+    // transform: rotate(-2.13deg);
+    margin-bottom: 5px;
+    @media (min-width: 768px) {
+      font-size: vh(18px);
+      padding: vh(10px) vh(10px) vh(10px) 40px;
+    }
+    @media (min-width: 768px) and (min-height: 900px){
+      font-size: 1.8rem;
+      padding: 10px 10px 10px 40px;
+
+
+    }
+  }
+
+  .checkpoint-progress-item {
+
+    .progress-label {
+      display: inline-block;
+      width: auto;
+      font-size: 1.2rem;
+      letter-spacing: 0.1em;
+      line-height: 1;
+      font-family: $font-bold;
+      background: $light_blue;
+      text-transform: uppercase;
+      padding: 10px 10px 10px 40px;
+      margin-bottom: 5px;
+      // transform: rotate(-2.13deg);
+      margin-top: 7px;
+      @media (min-width: 768px) {
+        padding: vh(10px) vh(10px) vh(10px) 40px;
+        font-size: vh(12px);
+        margin-top: vh(7px);
+
+      }
+      @media (min-width: 768px) and (min-height: 900px){
+        padding: 10px 10px 10px 40px;
+        font-size: 1.2rem;
+        margin-top: 7px;
+
+      }
+
+
+      &.legal-regulatory {
+        margin-top: 0;
+      }
+
+    }
+
+    .checkpoint {
+      cursor: pointer;
+      display: flex;
+      justify-content: flex-end;
+      width: 70px;
+      background: #fff;
+      font-size: 1.8rem;
+      font-family: $font-bold;
+      color: $dark-blue;
+      margin-bottom: 3px;
+      padding: 4px;
+      opacity: 0.5;
+      @media (min-width: 768px) {
+       font-size: vh(18px);
+       padding: vh(4px);
+       margin-bottom: vh(3px);
+
+      }
+      @media (min-width: 768px) and (min-height: 900px){
+        padding: 4px;
+        font-size: 1.8rem;
+        margin-bottom: 3px;
+
+
+      }
+
+      &.active {
+        width: 100px;
+        opacity: 1;
+      }
+
+      &.red {
+        background: $red;
+        color: #fff;
+        opacity: 1;
+
+      }
+
+      &.amber {
+        background: $amber;
+        color: #fff;
+        opacity: 1;
+
+      }
+
+      &.green {
+        background: $green;
+        color: #fff;
+        opacity: 1;
+
+      }
+    }
+  }
+}

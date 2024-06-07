@@ -1,0 +1,179 @@
+.assessments-filter {
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 4;
+  .filter-nav {
+    position: relative;
+    z-index: 11;
+    display: inline-flex;
+    width: auto;
+    align-items: center;
+    background: #fff;
+  }
+
+  .filter-button {
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.6rem;
+    color: #000;
+    text-align: left;
+    span {
+      display: block;
+      font-size: 1.8rem;
+      font-family: $font-bold;
+    }
+    &.active {
+      background: linear-gradient(51.09deg, #2254F4 -15.66%, #08DEF9 122.1%);
+      color: #fff;
+    }
+  }
+
+  .layout-mode {
+    cursor: pointer;
+    background: none;
+    width: 50px;
+    height: 50px;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-position: center;
+    box-shadow: none;
+    border: none;
+    display: inline-block;
+    margin-left: 20px;
+    &.active {
+      background-size: 40px;
+    }
+    &.grid {
+      background-image: url('../../img/grid.svg');
+      &.active {
+        background-image: url('../../img/grid-active.svg');
+      }
+    }
+    &.list {
+      margin-right: 20px;
+      background-image: url('../../img/list.svg');
+      &.active {
+        background-image: url('../../img/list-active.svg');
+      }
+    }
+  }
+
+  .filter-dropdown {
+    width: auto;
+    min-width: 500px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: linear-gradient(213deg, #2254F4 43.66%, #08DEF9 122.1%);
+    display: none;
+    padding: 83px 10px 10px 10px;
+    &.active {
+      display: inline-block;
+    }
+
+    .rdrDateRangePickerWrapper {
+      width: 100%;
+      max-width: 700px;
+      font-family: $font-bold;
+
+
+      .rdrDefinedRangesWrapper {
+        display: none;
+      }
+      .rdrCalendarWrapper {
+        width: 100%;
+        .rdrDateDisplayWrapper {
+
+        }
+        .rdrDateDisplayWrapper {
+
+        }
+        .rdrMonths {
+          .rdrMonth {
+            width: 100%;
+            .rdrWeekDays {
+              .rdrWeekDay {
+                font-family: $font-bold;
+                color: #4F4F4F;
+              }
+            }
+            .rdrDays {
+              .rdrDay {
+                background: #178CFF;
+                font-size: 1.6rem;
+                color: #fff;
+                span {
+                  font-size: 1.6rem;
+                  color: #fff;
+                }
+                .rdrDayNumber {
+                  // background: #178CFF;
+
+                }
+
+                .rdrDayStartPreview, .rdrDayEndPreview {
+                  border-radius: 0;
+                  top: 0;
+                  bottom: 0;
+                }
+                .rdrStartEdge, .rdrEndEdge {
+                  border-radius: 0;
+                  background: $dark_blue;
+                  top: 0;
+                  bottom: 0;
+
+                }
+                .rdrSelected {
+                  background: $dark_blue;
+                  border-radius: 0;
+                  top: 0;
+                  bottom: 0;
+
+                }
+                .rdrInRange {
+                  background: $dark_blue;
+                  border-radius: 0;
+                  top: 0;
+                  bottom: 0;
+
+
+                }
+
+
+                &.rdrDayPassive, &.rdrDayDisabled {
+                  background: #6083f3;
+
+                  .rdrDayNumber, .rdrInRange {
+                    background: #6083f3;
+
+                  }
+                }
+
+                &.rdrDayToday {
+
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .clear-dates {
+      cursor: pointer;
+      border: none;
+      background: none;
+      background: none;
+      box-shadow: none;
+      font-size: 1.6rem;
+      letter-spacing: 0.1em;
+      font-family: $font-bold;
+      text-transform: uppercase;
+      color: #fff;
+      padding: 10px 0 0 0;
+    }
+
+  }
+}

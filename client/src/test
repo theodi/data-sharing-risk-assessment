@@ -1,0 +1,236 @@
+import React, { useState } from 'react';
+import { useEffect } from "react";
+import { useSelector, useDispatch } from 'react-redux'
+
+import {
+    updateAssessmentStatus,
+    updateAssessmentData,
+} from "./checkpointsSlice";
+
+
+export default function DataCapture() {
+  const { activeAssessment } = useSelector((state) => state.checkpoints)
+  const dispatch = useDispatch();
+
+  const form_state = 0;
+
+  const form_data = {
+    forms: [
+      {
+        legend: "",
+        fields: {
+          dataset_name: {
+            type: "text",
+            label: "Name of the dataset",
+            required: true,
+            value: ""
+          },
+          purpose: {
+            type: "radios",
+            label: "",
+            required: true,
+            radios: [
+              {
+                label: "Option 1",
+                value: "1"
+              },
+              {
+                label: "Option 2",
+                value: "1"
+              },
+              {
+                label: "Option 3",
+                value: "1"
+              },
+            ]
+          }
+        }
+      },
+      {
+        legend: "",
+        fields: {
+          person_role: {
+            type: "text",
+            label: "Name of the dataset",
+            required: true,
+            value: ""
+          }
+        }
+      }
+    ]
+
+    }
+
+    // dataset_name: "",
+    // dataset_id: "",
+    // purpose: "",
+    // data_location: "",
+    // sharing_reason: "",
+    // sharing_reason_details: "",
+    // person_role: "",
+    // person_name: "",
+    // date: ""
+  // }
+
+  const form_errors = {};
+  const saved_form_data = activeAssessment.data_capture;
+
+
+  // for (const key in form_data) {
+  //   if (typeof(saved_form_data[key]) !== "undefined") {
+  //     form_data[key] = saved_form_data[key];
+  //   }
+  // }
+
+
+
+  const [formErrors, setFormErrors] = useState(form_errors);
+  const [formState, setFormState] = useState(0);
+
+  for (const key in form_data.forms[formState].fields) {
+    if (typeof(saved_form_data[key]) !== "undefined") {
+      form_data.forms[formState].fields[key].value = saved_form_data[key];
+    }
+  }
+
+  const [formData, setFormData] = useState(form_data);
+
+
+  const handleChange= (event) => {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.value : target.value;
+    const name = target.name;
+
+    const new_form_data = {...formData};
+
+    new_form_data.forms[formState].fields[name].value = value;
+    console.log(new_form_data)
+    dispatch(updateAssessmentData(new_form_data));
+
+    setFormData(new_form_data);
+  }
+
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const errors = {};
+    for (const key in form_data) {
+      if (form_data[key].length < 1){
+        errors[key] = true;
+      }
+    }
+    if (errors && Object.keys(errors).length === 0 && Object.getPrototypeOf(errors) === Object.prototype){
+      setFormState(2)
+    } else {
+      setFormErrors(errors);
+    }
+
+  };
+
+  if (formState == 0){
+    return (
+      <div className="template template-healthcheck">
+      <button
+        className=""
+        onClick={() => dispatch(updateAssessmentStatus("started"))}
+      >Back to checkpoints</button>
+        <form className="form">
+          <fieldset className="form-column">
+            <div className={("form-element form-element-text ") + (formErrors["dataset_name"] ? "error" : " ")}>
+              <label>Name of the dataset</label>
+              <input type="text" name="dataset_name" value={formData.forms[formState].fields["dataset_name"].value} onChange={(e) => handleChange(e)} required/>
+              <div>{formErrors["dataset_name"] ? "This field is required" : " "}</div>
+            </div>
+            <div className={("form-element form-element-text ") + (formErrors["dataset_name"] ? "error" : " ")}>
+              <label>Unique data ID</label>
+              <input type="text" name="dataset_id" value={formData["dataset_id"]} onChange={(e) => handleChange(e)} required/>
+              <div>{formErrors["dataset_id"] ? "This field is required" : " "}</div>
+
+            </div>
+            <div className={("form-element form-element-text ") + (formErrors["purpose"] ? "error" : " ")}>
+              <label>Original purpose of the collection</label>
+              <input type="text" name="purpose" value={formData["purpose"]}  onChange={(e) => handleChange(e)} required/>
+              <div>{formErrors["purpose"] ? "This field is required" : " "}</div>
+
+            </div>
+            <div className={("form-element form-element-text ") + (formErrors["data_location"] ? "error" : " ")}>
+              <label>Location of data</label>
+              <input type="text" name="data_location" value={formData["data_location"]} onChange={(e) => handleChange(e)} required/>
+              <div>{formErrors["data_location"] ? "This field is required" : " "}</div>
+
+            </div>
+          </fieldset>
+          <fieldset className="form-column">
+            <legend>why are you sharing the data</legend>
+            <div className={("radios ") + (formErrors["sharing_reason"] ? "error" : " ")}>
+              <div className="form-element form-element-checkbox">
+                <input type="radio" name="sharing_reason" value="1" checked={formData["sharing_reason"] === "1"} onChange={(e) => handleChange(e)}/>
+                <label>Option 1</label>
+              </div>
+              <div className="form-element form-element-checkbox">
+                <input type="radio" name="sharing_reason" value="2" checked={formData["sharing_reason"] === "2"}  onChange={(e) => handleChange(e)}/>
+                <label>Option 2</label>
+              </div>
+              <div className="form-element form-element-checkbox">
+                <input type="radio" name="sharing_reason" value="3" checked={formData["sharing_reason"] === "3"}  onChange={(e) => handleChange(e)}/>
+                <label>Option 3</label>
+              </div>
+              <div className="form-element form-element-checkbox">
+                <input type="radio" name="sharing_reason" value="4" checked={formData["sharing_reason"] === "4"}  onChange={(e) => handleChange(e)}/>
+                <label>Option 4</label>
+              </div>
+              <div>{formErrors["sharing_reason"] ? "This field is required" : " "}</div>
+
+            </div>
+            <div className={("form-element form-element-text ") + (formErrors["sharing_reason_details"] ? "error" : " ")}>
+              <label>please give us more detail</label>
+              <textarea name="sharing_reason_details" value={formData["sharing_reason_details"]}  onChange={(e) => handleChange(e)}></textarea>
+              <div>{formErrors["sharing_reason_details"] ? "This field is required" : " "}</div>
+
+            </div>
+          </fieldset>
+
+
+
+
+        <button
+          type="submit"
+          className=""
+          onClick={(e) => handleSubmit(e)}
+        >Next</button>
+        </form>
+
+
+
+      </div>
+    )
+  } else {
+    return (
+      <div>
+      <button className=""
+              onClick={() => setFormState(1)}>Back</button>
+      <fieldset className="form-column">
+        <div className="form-element">
+          <label>Role</label>
+          <input type="text" name="person_role" value={formData["person_role"]}  onChange={(e) => handleChange(e)}/>
+        </div>
+        <div className="form-element">
+          <label>Name</label>
+          <input type="text" name="person_name" value={formData["person_name"]}  onChange={(e) => handleChange(e)}/>
+        </div>
+        <div className="form-element">
+          <label>Date</label>
+          <input type="text" name="date" value={formData["date"]}  onChange={(e) => handleChange(e)}/>
+        </div>
+      </fieldset>
+
+      <button
+        className=""
+        onClick={() => dispatch(updateAssessmentStatus("complete"))}
+      >Complete your data sharing checklist</button>
+      </div>
+    );
+  }
+
+
+}

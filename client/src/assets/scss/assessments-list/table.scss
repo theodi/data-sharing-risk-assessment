@@ -1,0 +1,63 @@
+.assessments-list {
+  width: 100%;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    tbody {
+      width: 100%;
+    }
+    th {
+      font-family: $font-bold;
+      font-size: 1.5rem;
+      text-align: left;
+      border-bottom: 1px solid #fff;
+      padding: vw(10px) vw(5px) vw(10px) 0;
+
+      @media (min-width: 1024px){
+        font-size: 1.6rem;
+      }
+
+      @media (min-width: 1440px) and (min-height: 900px){
+        font-size: 1.7rem;
+      }
+    }
+
+
+    td {
+      padding: 10px 5px 10px 0;
+      border-bottom: 0.5px solid rgba(#fff, 0.8);
+      font-size: 1.5rem;
+
+      @media (min-width: 1024px){
+        font-size: 1.6rem;
+        padding: vw(10px) vw(5px) vw(10px) 0;
+
+      }
+
+      @media (min-width: 1440px) and (min-height: 900px){
+        font-size: 1.7rem;
+        padding: 10px 5px 10px 0;
+
+      }
+      &:first-of-type {
+      }
+      &:nth-of-type(3), &:nth-of-type(4){
+        min-width: 100px;
+      }
+      a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 1.5rem;
+
+        @media (min-width: 1024px){
+          font-size: 1.6rem;
+        }
+
+        @media (min-width: 1440px) and (min-height: 900px){
+          font-size: 1.7rem;
+        }
+      }
+    }
+  }
+}

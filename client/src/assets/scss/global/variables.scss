@@ -1,0 +1,21 @@
+@font-face{
+    font-family: 'Helvetica Neue';
+    src:url("../../fonts/HelveticaNeue.ttf");
+    font-display: swap;
+}
+
+@font-face{
+  font-family: 'Helvetica Neue Bold';
+  src:url("../../fonts/bold.ttf");
+  font-display: swap;
+}
+
+$font-regular: 'Helvetica Neue';
+$font-bold: 'Helvetica Neue Bold';
+
+$light_blue: #00B6FF;
+$dark_blue: #2254F4;
+
+$green: #0dbb37;
+$amber: #f8bb26;
+$red: #d73058;

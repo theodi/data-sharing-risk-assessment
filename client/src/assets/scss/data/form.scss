@@ -1,0 +1,141 @@
+.back-button {
+  cursor: pointer;
+  font-size: 1.8rem;
+  font-family: $font-bold;
+  text-transform: uppercase;
+  color: #fff;
+  letter-spacing: 0.1em;
+  display: inline-flex;
+  align-items: center;
+  background: none;
+  border: none;
+  box-shadow: none;
+  position: relative;
+  left: -5px;
+  margin-bottom: 30px;
+  svg {
+    flex-shrink: 0;
+    margin-right: 8px;
+  }
+}
+
+
+.form-title {
+  font-family: $font-bold;
+  font-size: 3rem;
+  line-height: 1.1;
+  margin-bottom: 0.9em;
+  @media (min-width: 768px){
+    font-size: vw(48px);
+  }
+  @media (min-width: 1440px){
+    font-size: 4.8rem;
+  }
+}
+
+.form {
+  @media (min-width: 1024px){
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+  @media (min-width: 1024px){
+    width: 50%;
+    padding-right: 5%;
+  }
+
+  label, legend {
+    font-family: $font-bold;
+    font-size: 1.6rem;
+    letter-spacing: 0.1em;
+    display: inline-block;
+    margin-bottom: 5px;
+    @media (min-width: 768px){
+      font-size: vh(18px);
+    }
+    @media (min-width: 768px) and (min-height: 900px){
+      font-size: vw(18px);
+    }
+    @media (min-width: 1440px) and (min-height: 900px){
+      font-size: 18px;
+    }
+  }
+}
+
+
+.form-element-text {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding-bottom: 20px;
+  position: relative;
+  &.error {
+
+    input, textarea {
+      border-color: red;
+    }
+    .error {
+      color: red;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }
+  }
+
+
+
+  input, textarea {
+    box-shadow: none;
+    display: inline-block;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #fff;
+    padding: 1em;
+    border-radius: 0;
+    box-shadow: none;
+    color: $dark_blue;
+    &:focus {
+      border-radius: 0;
+    }
+  }
+}
+
+
+.form-element-radio, .form-element-checkbox {
+  margin-bottom: 20px;
+
+  input {
+    position: absolute;
+    left: -99999px;
+    opacity: 0;
+  }
+
+  input + label {
+    display: flex;
+    align-items: center;
+    &:before {
+      content: "";
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      background-color: #fff;
+      margin-right: 10px;
+    }
+  }
+
+  input:checked + label {
+    &:before {
+      background-image: url('../../img/check.svg');
+      background-size: 20px;
+      background-position: center;
+    }
+  }
+
+
+}
