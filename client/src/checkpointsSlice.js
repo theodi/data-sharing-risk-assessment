@@ -32,29 +32,33 @@ export const createAssessment = createAsyncThunk(
 );
 
 // Thunk to start an assessment
+// Thunk to start an assessment
 export const startAssessmentThunk = createAsyncThunk(
   'assessments/startAssessmentThunk',
-  async (id, { dispatch, getState }) => {
+  async ({ id, navigate }, { dispatch, getState }) => {
     const state = getState().checkpoints;
-    let assessment = state.assessmentsList.find(assessment => assessment._id === id);
     const date = new Date().toString();
-    const navigate = useNavigate();
+    let found = false;
+    let assessment = {
+      id: null,
+      date_created: date,
+      date_modified: date,
+      answers: [],
+      data_capture: {},
+      status: "started"
+    };
 
-    if (id && assessment) {
+    if (id) {
+      assessment = state.assessmentsList.find(assessment => assessment._id === id);
+      found = true;
+    }
+
+    if (id && found) {
       dispatch(startAssessment(id));
-      navigate(`/assessment/${id}`);
+      navigate(id);
     } else {
-      assessment = {
-        id: null,
-        date_created: date,
-        date_modified: date,
-        answers: [],
-        data_capture: {},
-        status: "started"
-      };
       const response = await dispatch(createAssessment(assessment)).unwrap();
-      dispatch(startAssessment(response._id));
-      navigate(`/assessment/${response._id}`);
+      navigate(response._id);
     }
   }
 );
@@ -119,6 +123,7 @@ export const checkpointsSlice = createSlice({
       state.activeCheckpointAnswer = state.checkpointAnswers.find(a => a.id === action.payload);
     },
     updateCheckpointAnswers: (state, action) => {
+      console.log('in here');
       const answer = action.payload;
       const index = state.checkpointAnswers.findIndex(x => x.id === answer.id);
       const checkpointAnswers = state.checkpointAnswers;

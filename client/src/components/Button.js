@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useModal } from '../context/modal-context'
 import {
@@ -9,22 +10,26 @@ import {
 const Button = (props) => {
   const { setModal } = useModal();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    dispatch(startAssessmentThunk({ id: null, navigate: (id) => window.location.href = `/assessment/${id}` }));
+  };
+
 
   function ExternalLink(props) {
     return <a className={"button button-white " + (props.link_icon) } href={props.link_url} target="_blank" rel="noreferrer">{props.link_title}</a>;
   }
 
   function InternalLink(props) {
-    return <Link
-              to={props.link_url}
-              className={"button button-white " + (props.link_icon) }
-              onClick={() => {
-                dispatch(startAssessmentThunk(null));
-              }
-            }
-            >
-            {props.link_title}
-          </Link>
+    return <a
+      href={props.link_url}
+      className={"button button-white " + (props.link_icon)}
+      onClick={handleClick}
+    >
+      {props.link_title}
+    </a>
   }
 
   function ModalLink(props) {
