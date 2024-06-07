@@ -21,6 +21,40 @@ export const getAssessmentsList = createAsyncThunk(
   }
 );
 
+// Thunk to create a new assessment
+export const createAssessment = createAsyncThunk(
+  'assessments/createAssessment',
+  async (assessment, thunkAPI) => {
+    const response = await axios.post('http://localhost:3080/api/assessments', assessment, { withCredentials: true });
+    return response.data;
+  }
+);
+
+// Thunk to start an assessment
+export const startAssessmentThunk = createAsyncThunk(
+  'assessments/startAssessmentThunk',
+  async (id, { dispatch, getState }) => {
+    const state = getState().checkpoints;
+    let assessment = state.assessmentsList.find(assessment => assessment._id === id);
+    const date = new Date().toString();
+
+    if (id && assessment) {
+      dispatch(startAssessment(id));
+    } else {
+      assessment = {
+        id: null,
+        date_created: date,
+        date_modified: date,
+        answers: [],
+        data_capture: {},
+        status: "started"
+      };
+      const response = await dispatch(createAssessment(assessment)).unwrap();
+      dispatch(startAssessment(response._id));
+    }
+  }
+);
+
 const initialState = {
   checkpoints: [],
   totalCheckpoints: 0,
@@ -75,77 +109,82 @@ export const checkpointsSlice = createSlice({
       state.activeCheckpointAnswer = answer;
       state.activeAssessment.answers = state.checkpointAnswers;
 
-      state.assessmentsList[state.activeAssessment.id] = state.activeAssessment;
+      const assessmentIndex = state.assessmentsList.findIndex(assessment => assessment._id === state.activeAssessment.id);
+      if (assessmentIndex !== -1) {
+        state.assessmentsList[assessmentIndex] = state.activeAssessment;
 
-      // Update assessment on the server
-      axios.put(`http://localhost:3080/api/assessments/${state.activeAssessment.id}`, state.activeAssessment, { withCredentials: true });
+        // Update assessment on the server
+        axios.put(`http://localhost:3080/api/assessments/${state.activeAssessment.id}`, state.activeAssessment, { withCredentials: true });
+      }
     },
     startAssessment: (state, action) => {
-      let id = action.payload,
-          date = new Date().toString();
-
+      const id = action.payload;
+      const date = new Date().toString();
       state.assessmentStatus = "started";
 
-      if (id != null) {
+      const assessment = state.assessmentsList.find(assessment => assessment._id === id);
+      if (assessment) {
         state.activeAssessment.id = id;
-        state.checkpointAnswers = state.assessmentsList[id].answers;
+        state.checkpointAnswers = assessment.answers;
 
-        if (state.assessmentsList[id].answers.length >= state.totalCheckpoints) {
+        if (assessment.answers.length === 0) {
+          state.activeCheckpointIndex = state.checkpointAnswers[0]?.id || 1;
+          state.activeCheckpointAnswer = state.checkpointAnswers.find(a => a.id === state.activeCheckpointIndex);
+        } else if (assessment.answers.length >= state.totalCheckpoints) {
           state.activeCheckpointIndex = state.totalCheckpoints;
-          state.activeCheckpointAnswer = state.assessmentsList[id].answers[state.totalCheckpoints - 1];
+          state.activeCheckpointAnswer = assessment.answers[state.totalCheckpoints - 1];
         } else {
           state.activeCheckpointIndex = state.checkpointAnswers[state.checkpointAnswers.length - 1].id;
           state.activeCheckpointAnswer = state.checkpointAnswers.find(a => a.id === state.activeCheckpointIndex);
         }
-        state.activeAssessment.status = state.assessmentsList[id].status;
+        state.activeAssessment.status = assessment.status;
         state.activeAssessment.answers = state.checkpointAnswers;
-        state.activeAssessment.date_created = state.assessmentsList[id].date_created;
-        state.activeAssessment.data_capture = state.assessmentsList[id].data_capture;
+        state.activeAssessment.date_created = assessment.date_created;
+        state.activeAssessment.data_capture = assessment.data_capture;
       } else {
-        id = getAssessmentId(state.assessmentsList);
-
-        state.activeAssessment.id = id;
-
-        state.assessmentStatus = "started";
-        state.activeAssessment.date_created = date;
-        state.activeCheckpointIndex = 1;
-        state.activeCheckpointAnswer = [];
-        state.checkpointAnswers = [];
-        state.activeAssessment.status = "started";
-        state.activeAssessment.answers = [];
-        state.activeAssessment.data_capture = {};
-        state.activeAssessment.answers = [];
-
-        // Create new assessment on the server
-        axios.post('http://localhost:3080/api/assessments', state.activeAssessment, { withCredentials: true })
-          .then(response => {
-            state.activeAssessment.id = response.data.id;
-            state.assessmentsList[state.activeAssessment.id] = state.activeAssessment;
-          });
+        state.activeAssessment = {
+          id: null,
+          date_created: date,
+          date_modified: date,
+          answers: [],
+          data_capture: {},
+          status: "started"
+        };
       }
       state.activeAssessment.date_modified = date;
     },
     deleteAssessment: (state, action) => {
       let id = action.payload;
 
-      state.assessmentsList.splice(id, 1);
+      const index = state.assessmentsList.findIndex(assessment => assessment._id === id);
+      if (index !== -1) {
+        state.assessmentsList.splice(index, 1);
 
-      // Delete assessment from the server
-      axios.delete(`http://localhost:3080/api/assessments/${id}`, { withCredentials: true });
+        // Delete assessment from the server
+        axios.delete(`http://localhost:3080/api/assessments/${id}`, { withCredentials: true });
+      }
     },
     updateAssessmentStatus: (state, action) => {
       state.activeAssessment.status = action.payload;
-      state.assessmentsList[state.activeAssessment.id] = state.activeAssessment;
 
-      // Update assessment status on the server
-      axios.put(`http://localhost:3080/api/assessments/${state.activeAssessment.id}`, state.activeAssessment, { withCredentials: true });
+      const assessmentIndex = state.assessmentsList.findIndex(assessment => assessment._id === state.activeAssessment.id);
+      if (assessmentIndex !== -1) {
+        state.assessmentsList[assessmentIndex] = state.activeAssessment;
+
+        // Update assessment status on the server
+        axios.put(`http://localhost:3080/api/assessments/${state.activeAssessment.id}`, state.activeAssessment, { withCredentials: true });
+      }
     },
     updateAssessmentData: (state, action) => {
       state.activeAssessment.data_capture = action.payload;
-      state.assessmentsList[state.activeAssessment.id] = state.activeAssessment;
 
-      // Update assessment data on the server
-      axios.put(`http://localhost:3080/api/assessments/${state.activeAssessment.id}`, state.activeAssessment, { withCredentials: true });
+      const assessmentIndex = state.assessmentsList.findIndex(assessment => assessment._id === state.activeAssessment.id);
+      if (assessmentIndex !== -1) {
+        state.assessmentsList[assessmentIndex] = state.activeAssessment;
+
+        // Update assessment data on the server
+        axios.put(`http://localhost:3080/api/assessments/${state.activeAssessment.id}`, state.activeAssessment, { withCredentials: true });
+      }
     },
   },
   extraReducers: {
@@ -172,15 +211,20 @@ export const checkpointsSlice = createSlice({
     [getAssessmentsList.rejected]: (state) => {
       state.assessments_loading = false;
     },
+
+    [createAssessment.pending]: (state) => {
+      state.assessments_loading = true;
+    },
+    [createAssessment.fulfilled]: (state, { payload }) => {
+      state.assessments_loading = false;
+      state.assessmentsList.push(payload);
+      state.activeAssessment.id = payload._id;
+    },
+    [createAssessment.rejected]: (state) => {
+      state.assessments_loading = false;
+    }
   },
 });
-
-const getAssessmentId = (assessmentsList) => {
-  if (assessmentsList != null) {
-    return assessmentsList.length;
-  }
-  return 0;
-};
 
 export const { getActiveCheckpoint, updateActiveCheckpointIndex, updateActiveCheckpoint, updateCheckpointAnswers, startAssessment, deleteAssessment, updateAssessmentStatus, updateAssessmentData, updateExtraInfoState } = checkpointsSlice.actions;
 

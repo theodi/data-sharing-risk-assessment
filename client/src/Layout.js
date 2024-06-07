@@ -22,7 +22,7 @@ function Layout({ user, onLogout }) {
                     onClick={() => {
                       axios.get('../json/privacy-policy.json').then(res => {
                         const modalData = {
-                          type: "default",
+                          type: 'default',
                           content: res.data[0]
                         };
                         setModal(modalData);
@@ -36,13 +36,12 @@ function Layout({ user, onLogout }) {
                     onClick={() => {
                       axios.get('../json/how-to-use-tool.json').then(res => {
                         const modalData = {
-                          type: "default",
+                          type: 'default',
                           content: res.data[0]
                         };
                         setModal(modalData);
                       });
-                    }}
-                  >How to use this tool
+                    }}>How to use this tool
                     <img src={arrowIcon} alt="Arrow Icon" width="21" height="23" />
                   </button>
                 </li>
@@ -55,7 +54,9 @@ function Layout({ user, onLogout }) {
                 )}
                 <li>
                   {user ? (
-                    <span>{user.name} (<button class="logout" onClick={onLogout}>Logout</button>)</span>
+                    <>
+                      <span>{user.name} (<button class="logout" onClick={onLogout}>Logout</button>)</span>
+                    </>
                   ) : (
                     <a href="http://localhost:3080/auth/django">Login</a>
                   )}

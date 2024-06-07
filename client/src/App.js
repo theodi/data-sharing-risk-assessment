@@ -1,33 +1,51 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Layout from "./Layout";
-import Home from "./Home";
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import Layout from './Layout';
+import Home from './Home';
 import Assessments from './Assessments';
 import Assessment from './Assessment';
 import Login from './Login';
 import axios from 'axios';
+import { jwtDecode } from "jwt-decode";
+
+// Set axios defaults
+axios.defaults.withCredentials = true;
 
 function App() {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('http://localhost:3080/auth/check', { withCredentials: true })
+    const token = document.cookie.split('; ').find(row => row.startsWith('token='));
+    if (token) {
+      const decoded = jwtDecode(token.split('=')[1]);
+      setUser(decoded);
+      console.log(decoded);
+    }
+    axios.get('http://localhost:3080/auth/check')
       .then(response => {
-        console.log(response.data);
         if (response.data) {
           setUser(response.data);
         }
       })
-      .catch(error => console.error('Error:', error));
+      .catch(error => {
+        console.error('Error:', error);
+        setUser(null); // Invalidate user state on error
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   const handleLogout = () => {
-    axios.get('http://localhost:3080/auth/logout', {}, { withCredentials: true })
+    axios.get('http://localhost:3080/auth/logout')
       .then(() => {
         setUser(null);
       })
       .catch(error => console.error('Error:', error));
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="body">
@@ -35,7 +53,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout user={user} onLogout={handleLogout} />}>
             <Route index element={<Home />} />
-            <Route path="login" element={<Login />} />
             <Route
               path="assessments"
               element={user ? <Assessments /> : <Navigate to="/login" />}
@@ -44,6 +61,7 @@ function App() {
               path="assessment"
               element={user ? <Assessment /> : <Navigate to="/login" />}
             />
+            <Route path="login" element={<Login />} />
           </Route>
         </Routes>
       </BrowserRouter>

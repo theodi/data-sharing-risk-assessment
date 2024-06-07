@@ -52,10 +52,10 @@ router.put('/:id', ensureAuthenticated, async (req, res) => {
 // Delete an assessment by ID
 router.delete('/:id', ensureAuthenticated, async (req, res) => {
   try {
-    const assessment = await Assessment.findById(req.params.id);
+    const id = req.params.id;
+    const assessment = await Assessment.findById(id);
     if (!assessment) return res.status(404).json({ message: 'Assessment not found' });
-
-    await assessment.remove();
+    const deletedAssessment = await Assessment.findByIdAndDelete(id);
     res.json({ message: 'Assessment deleted' });
   } catch (err) {
     res.status(500).json({ message: err.message });

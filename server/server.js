@@ -24,6 +24,7 @@ db.once('open', function() {
 
 const express = require('express');
 const session = require('express-session');
+const cookieParser = require('cookie-parser'); // Import cookie-parser
 const passport = require('./passport'); // Require the passport module
 const authRoutes = require('./routes/auth'); // Require the authentication routes module
 const assessmentRoutes = require('./routes/assessments'); // Require the assessments routes module
@@ -33,6 +34,9 @@ const port = process.env.PORT || 3080;
 
 const cors = require('cors');
 app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+
+// Use cookie-parser middleware
+app.use(cookieParser());
 
 // Session configuration
 app.use(session({

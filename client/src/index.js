@@ -7,6 +7,10 @@ import App from './App'
 import store from './store'
 import { Provider } from 'react-redux'
 import { ModalProvider } from './context/modal-context'
+import axios from 'axios';
+
+// Set axios defaults
+axios.defaults.withCredentials = true;
 
 
 ReactDOM.render(

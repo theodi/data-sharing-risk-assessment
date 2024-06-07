@@ -11,8 +11,7 @@ import Datepicker from './Datepicker';
 import {
     getCheckpoints,
     getAssessmentsList,
-    startAssessment,
-    deleteAssessment
+    startAssessmentThunk
       } from "./checkpointsSlice";
 
 
@@ -187,7 +186,10 @@ export default function Assessments() {
         <div className="start_assessment">
           <Link to="/assessment"
             className="button button-white"
-            onClick={() => dispatch(startAssessment())}
+            onClick={() => {
+                dispatch(startAssessmentThunk(null));
+              }
+            }
           >
               Start a new Data Sharing Risk Assessment
           </Link>
