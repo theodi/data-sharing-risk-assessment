@@ -18,7 +18,10 @@ const Button = (props) => {
     return <Link
               to={props.link_url}
               className={"button button-white " + (props.link_icon) }
-              onClick={() => dispatch(startAssessment())}
+              onClick={() => {
+                dispatch(startAssessmentThunk(null));
+              }
+            }
             >
             {props.link_title}
           </Link>

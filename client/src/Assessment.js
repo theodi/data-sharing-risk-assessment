@@ -25,8 +25,6 @@ export default function Assessment() {
 
   const { checkpoints, activeCheckpoint, loading, activeAssessment, assessmentsList } = useSelector((state) => state.checkpoints)
 
-
-
   useEffect(() => {
     dispatch(getCheckpoints())
   }, [])
