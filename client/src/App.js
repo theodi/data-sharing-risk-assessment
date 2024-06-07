@@ -20,7 +20,6 @@ function App() {
     if (token) {
       const decoded = jwtDecode(token.split('=')[1]);
       setUser(decoded);
-      console.log(decoded);
     }
     axios.get('http://localhost:3080/auth/check')
       .then(response => {

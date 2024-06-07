@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import axios from 'axios';
 import { useModal } from '../context/modal-context'
 import {
-    startAssessment,
+  startAssessmentThunk,
   } from "./../checkpointsSlice";
 
 const Button = (props) => {
