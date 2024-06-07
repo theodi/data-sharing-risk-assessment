@@ -50,12 +50,12 @@ export default function AssessmentsGrid(props) {
               <path d="M4.92866 14.547L9.90693 14.7208C10.2533 14.7328 10.592 14.6201 10.8586 14.4042C11.1253 14.1882 11.3014 13.8841 11.3535 13.5494L12.6552 5.18317L2.85156 4.84082L3.56725 13.2792C3.59615 13.6165 3.75073 13.9319 4.00167 14.1656C4.25261 14.3992 4.58247 14.535 4.92866 14.547ZM11.5497 6.07413L10.4088 13.404C10.392 13.5126 10.335 13.6114 10.2485 13.6815C10.162 13.7515 10.052 13.788 9.93964 13.784L4.96138 13.6101C4.84904 13.6061 4.74203 13.562 4.66066 13.4861C4.57928 13.4102 4.52919 13.3078 4.51988 13.1984L3.89307 5.80675L11.5497 6.07413Z" fill="white"/>
               </svg>
             </button>
-            <div className="slot-title"><Link to="/assessment" onClick={() => dispatch(startAssessment(id))}>{name}</Link></div>
-            <div className="slot-info"><Link to="/assessment" onClick={() => dispatch(startAssessment(id))}>Dataset ID: {id}</Link></div>
-            <div className="slot-info"><Link to="/assessment" onClick={() => dispatch(startAssessment(id))} className="">Date Created: {dateCreated} </Link></div>
-            <div className="slot-info"><Link to="/assessment" onClick={() => dispatch(startAssessment(id))} className="">Date Modified: {dateModified} </Link></div>
-            <div className="slot-info"><Link to="/assessment" onClick={() => dispatch(startAssessment(id))} className="">Owner: {owner}</Link></div>
-            <div class="percentage"><Link to="/assessment"  onClick={() => dispatch(startAssessment(id))} className=""><span>{percentComplete}%</span><span>Complete</span></Link></div>
+            <div className="slot-title"><a href={`/assessment/${id}`}>{name}</a></div>
+            <div className="slot-info"><a href={`/assessment/${id}`}>Dataset ID: {id}</a></div>
+            <div className="slot-info"><a href={`/assessment/${id}`}>Date Created: {dateCreated} </a></div>
+            <div className="slot-info"><a href={`/assessment/${id}`}>Date Modified: {dateModified} </a></div>
+            <div className="slot-info"><a href={`/assessment/${id}`}>Owner: {owner}</a></div>
+            <div class="percentage"><a href={`/assessment/${id}`}><span>{percentComplete}%</span><span>Complete</span></a></div>
           </div>
         </div>
       );

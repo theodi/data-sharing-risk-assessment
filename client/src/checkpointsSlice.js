@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 // Thunk to get checkpoints
 export const getCheckpoints = createAsyncThunk(
   'posts/getCheckpoints',
   async (thunkAPI) => {
-    const res = await fetch("./json/checkpoints.json").then(
+    const res = await fetch("/json/checkpoints.json").then(
       (data) => data.json()
     );
     return res;
@@ -37,9 +38,11 @@ export const startAssessmentThunk = createAsyncThunk(
     const state = getState().checkpoints;
     let assessment = state.assessmentsList.find(assessment => assessment._id === id);
     const date = new Date().toString();
+    const navigate = useNavigate();
 
     if (id && assessment) {
       dispatch(startAssessment(id));
+      navigate(`/assessment/${id}`);
     } else {
       assessment = {
         id: null,
@@ -51,6 +54,25 @@ export const startAssessmentThunk = createAsyncThunk(
       };
       const response = await dispatch(createAssessment(assessment)).unwrap();
       dispatch(startAssessment(response._id));
+      navigate(`/assessment/${response._id}`);
+    }
+  }
+);
+
+// Thunk to resume an assessment
+export const resumeAssessmentThunk = createAsyncThunk(
+  'assessments/resumeAssessmentThunk',
+  async (id, { dispatch, getState }) => {
+    const state = getState().checkpoints;
+    const assessment = state.assessmentsList.find(assessment => assessment._id === id);
+
+    if (assessment) {
+      dispatch(startAssessment(id));
+      const activeCheckpointIndex = assessment.answers.length > 0 ? assessment.answers.length : 1;
+      dispatch(updateActiveCheckpointIndex(activeCheckpointIndex));
+      dispatch(updateActiveCheckpoint(activeCheckpointIndex));
+    } else {
+      throw new Error('Assessment not found');
     }
   }
 );
@@ -130,12 +152,15 @@ export const checkpointsSlice = createSlice({
         if (assessment.answers.length === 0) {
           state.activeCheckpointIndex = state.checkpointAnswers[0]?.id || 1;
           state.activeCheckpointAnswer = state.checkpointAnswers.find(a => a.id === state.activeCheckpointIndex);
+          state.activeCheckpoint = state.checkpoints[0];
         } else if (assessment.answers.length >= state.totalCheckpoints) {
           state.activeCheckpointIndex = state.totalCheckpoints;
           state.activeCheckpointAnswer = assessment.answers[state.totalCheckpoints - 1];
+          state.activeCheckpoint = state.checkpoints[state.totalCheckpoints - 1];
         } else {
           state.activeCheckpointIndex = state.checkpointAnswers[state.checkpointAnswers.length - 1].id;
           state.activeCheckpointAnswer = state.checkpointAnswers.find(a => a.id === state.activeCheckpointIndex);
+          state.activeCheckpoint = state.checkpoints[state.activeCheckpointIndex - 1];
         }
         state.activeAssessment.status = assessment.status;
         state.activeAssessment.answers = state.checkpointAnswers;
