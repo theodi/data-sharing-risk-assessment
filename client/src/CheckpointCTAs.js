@@ -72,7 +72,7 @@ export default function CheckpointCTAs() {
 
       </div>
       <button className="view-report-cta" onClick={() => {
-          axios.get('./json/report.json').then(res => {
+          axios.get('/json/report.json').then(res => {
             const modalData = {
               type: "report",
               content: res.data[0]

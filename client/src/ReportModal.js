@@ -6,10 +6,7 @@ import { useSelector } from 'react-redux'
 export default function ReportModal(props) {
   const {data} = props;
   const { activeAssessment, checkpoints } = useSelector((state) => state.checkpoints);
-  const form_data = activeAssessment.data_capture;
-
-
-
+  let form_data = activeAssessment.data_capture || {};
 
   return (
     <div className="modal-content report">
@@ -30,8 +27,6 @@ export default function ReportModal(props) {
       {
         (activeAssessment.answers.length ? <AnswersList answers={activeAssessment.answers}/> : "")
       }
-
-
 
     </div>
   );

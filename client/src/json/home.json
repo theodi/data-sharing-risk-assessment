@@ -6,10 +6,10 @@
       "title": "Assessment Dashboard",
       "text": "The dashboard allows access to multiple saved data sharing risk assessments, then revisit and complete them when you need to.",
       "link_title": "Access your assessments",
-      "link_type": "interanl",
+      "link_type": "internal",
       "link_icon": "clipboard",
       "theme": "cta",
-      "link_url": "assessments"
+      "link_url": "/assessments"
     },
     {
       "title": "How to use this tool",
