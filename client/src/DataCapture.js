@@ -54,8 +54,7 @@ export default function DataCapture() {
   }
 
   const form_errors = {};
-  const saved_form_data = activeAssessment.data_capture;
-
+  const saved_form_data = activeAssessment.data_capture || {};
 
   for (const key in form_data) {
     if (typeof(saved_form_data[key]) !== "undefined") {
@@ -63,11 +62,9 @@ export default function DataCapture() {
     }
   }
 
-
   const [formData, setFormData] = useState(form_data);
   const [formErrors, setFormErrors] = useState(form_errors);
   const [formState, setFormState] = useState(1);
-
 
   const handleChange= (event) => {
     const target = event.target;
@@ -79,7 +76,6 @@ export default function DataCapture() {
 
     form_el.value = value;
     new_form_data[name] = form_el
-
 
     dispatch(updateAssessmentData(new_form_data));
 
@@ -190,9 +186,6 @@ export default function DataCapture() {
             </div>
           </fieldset>
 
-
-
-
         <button
           type="submit"
           className="button button-white"
@@ -206,9 +199,6 @@ export default function DataCapture() {
         </form>
 
       </div>
-
-
-
 
       </div>
     )
@@ -258,6 +248,5 @@ export default function DataCapture() {
       </div>
     );
   }
-
 
 }

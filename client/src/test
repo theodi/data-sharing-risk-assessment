@@ -73,7 +73,7 @@ export default function DataCapture() {
   // }
 
   const form_errors = {};
-  const saved_form_data = activeAssessment.data_capture;
+  const saved_form_data = activeAssessment.data_capture || {};
 
 
   // for (const key in form_data) {
