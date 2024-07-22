@@ -14,7 +14,7 @@ const Button = (props) => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    dispatch(startAssessmentThunk({ id: null, navigate: (id) => window.location.href = `/assessment/${id}` }));
+    navigate(`/assessments/`);
   };
 
 
