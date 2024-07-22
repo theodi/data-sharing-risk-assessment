@@ -11,7 +11,6 @@ import CheckpointCTAs from './CheckpointCTAs';
 export default function Checkpoint() {
   const {activeCheckpoint, activeCheckpointIndex, totalCheckpoints} = useSelector((state) => state.checkpoints);
 
-
   if ( !activeCheckpoint || activeCheckpoint.length === 0) return <div className="loading"></div>;
   return (
 

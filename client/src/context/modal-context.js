@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from 'react'
 
 import DefaultModal from '../DefaultModal';
 import ExplainModal from '../ExplainModal';
-import ReportModal from '../ReportModal';
 
 const ModalContext = React.createContext();
 
@@ -34,7 +33,7 @@ const Modal = ({ modal, unSetModal }) => {
       <div className="modal__inner">
         <button className="modal__close-btn" onClick={unSetModal}>
           <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M3 3L33 33M33 3L3 33" stroke="white" strokeWidth="5" strokeLinecap="round" strokeLinecap="round"/>
+          <path d="M3 3L33 33M33 3L3 33" stroke="white" strokeWidth="5" strokeLinecap="round"/>
           </svg>
         </button>
         {(() => {
@@ -42,9 +41,6 @@ const Modal = ({ modal, unSetModal }) => {
             switch (modal.type) {
               case 'explain':
                 return <ExplainModal data={modal}/>;
-                break;
-              case 'report':
-                return <ReportModal data={modal}/>;
                 break;
               default:
                 return <DefaultModal data={modal}/>;

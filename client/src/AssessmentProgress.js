@@ -18,13 +18,21 @@ export default function AssessmentProgress() {
     navigate(`/assessment/${id}/metadata`); // Navigate to the metadata capture form with id
   };
 
+  const handleReportClick = () => {
+    dispatch(updateActiveCheckpointIndex(0)); // Set metadata as active checkpoint (index 0)
+    navigate(`/assessment/${id}/report`); // Navigate to the report capture form with id
+  };
+
   const handleCheckpointClick = (checkpointId) => {
     dispatch(updateActiveCheckpointIndex(checkpointId)); // Set the clicked checkpoint as active
     navigate(`/assessment/${id}/checkpoint/${checkpointId}`);
   };
 
   const isActive = (index) => {
-    if (location.pathname.endsWith('/metadata') && index === 0) {
+    if (location.pathname.endsWith('/metadata') && index === 'metadata') {
+      return true;
+    }
+    if (location.pathname.endsWith('/report') && index === 'report') {
       return true;
     }
     return activeCheckpointIndex === index;
@@ -38,7 +46,7 @@ export default function AssessmentProgress() {
           className="checkpoint-progress-item"
           onClick={handleMetadataClick}
         >
-          <div className={`checkpoint metadata ${isActive(0) ? 'active' : ''}`}>
+          <div className={`checkpoint metadata ${isActive('metadata') ? 'active' : ''}`}>
             Metadata
           </div>
         </div>
@@ -61,6 +69,15 @@ export default function AssessmentProgress() {
           </div>
         );
       })}
+      <div className="checkpoint-progress-item-wrapper">
+
+        <div className="checkpoint-progress-item">
+          <div class="progress-label commercial">Finalise</div>
+          <div onClick={handleReportClick} className={`checkpoint report ${isActive('report') ? 'active' : ''}`}>
+            Report
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

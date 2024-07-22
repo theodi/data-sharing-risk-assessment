@@ -5,6 +5,7 @@ import { useNavigate, useParams, Route, Routes } from 'react-router-dom';
 import AssessmentProgress from './AssessmentProgress';
 import Checkpoint from './Checkpoint';
 import DataCapture from './DataCapture';
+import Report from './Report';
 import AssessmentComplete from './AssessmentComplete';
 import CheckpointCTAs from './CheckpointCTAs';
 
@@ -30,13 +31,13 @@ export default function Assessment() {
 
   useEffect(() => {
     if (id && assessmentsList.length > 0 && (!activeAssessment.id || activeAssessment.id !== id)) {
-      if (checkpointId) {
-        dispatch(updateActiveCheckpointIndex(parseInt(checkpointId)));
-      } else {
-        dispatch(updateActiveCheckpointIndex(0));
-      }
       dispatch(resumeAssessmentThunk(id)).unwrap().then(() => {
         setAssessmentLoaded(true);
+        if (checkpointId) {
+          dispatch(updateActiveCheckpointIndex(parseInt(checkpointId)));
+        } else {
+          dispatch(updateActiveCheckpointIndex(0));
+        }
       }).catch((error) => {
         console.error('Failed to load assessment:', error);
         navigate('/error', { state: { message: 'Assessment not found' } });
@@ -70,6 +71,12 @@ export default function Assessment() {
             <>
               <AssessmentProgress />
               <DataCapture />
+            </>
+          } />
+          <Route path="report" element={
+            <>
+              <AssessmentProgress />
+              <Report />
             </>
           } />
           <Route path="checkpoint/:checkpointId" element={

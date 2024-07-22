@@ -1,0 +1,91 @@
+.report {
+    .assessment-data {
+      margin-bottom: 60px;
+      padding-bottom: 20px;
+      max-width: 768px;
+      border-bottom: 1px solid #fff;
+    }
+    .assessments-data-item {
+      display: flex;
+      margin-bottom: 15px;
+      .assessments-data-item-label {
+        font-family: $font-bold;
+        width: 200px;
+      }
+      .assessments-data-item-value {
+
+      }
+    }
+    .checkpoint-answers {
+      margin-top: 30px;
+      max-width: 768px;
+
+      .checkpoint-answer {
+        background: #fff;
+        box-shadow: -10px 10px 0px #178CFF;
+        padding: 30px 20px 20px;
+        position: relative;
+        margin-bottom: 60px;
+
+        .checkpoint-answers-inner {
+        }
+
+        .checkpoint-answer-id {
+            background: #00b6ff;
+            color: #fff;
+            display: inline-block;
+            font-family: Helvetica Neue Bold;
+            font-size: 1.8rem;
+            left: 20px;
+            letter-spacing: .1em;
+            padding: .2em .5em;
+            position: absolute;
+            text-transform: uppercase;
+            top: -20px;
+            width: auto;
+        }
+
+        .checkpoint-answer-title {
+          font-size: 2rem;
+          font-family: $font-bold;
+          color: #2254F4;
+          margin-bottom: 1em;
+        }
+        .checkpoint-answer-option {
+          display: flex;
+          align-items: center;
+          .checkpoint-answer-option-label {
+            color: #2254F4;
+            font-size: 1.6rem;
+            margin-right: 25px;
+          }
+          .checkpoint-answer-option-value {
+            color: #fff;
+            border-radius: 0;
+            cursor: auto;
+            &.red {
+              background: $red;
+            }
+            &.amber {
+              background: $amber;
+
+            }
+            &.green {
+              background: $green;
+            }
+          }
+        }
+        .checkpoint-answer-mitigate-label {
+          font-size: 2rem;
+          font-family: $font-bold;
+          color: #2254F4;
+          margin-bottom: 1em;
+          margin-top: 2em;
+        }
+        .checkpoint-answer-mitigate-value {
+          color: #2254F4;
+
+        }
+      }
+    }
+  }

@@ -79,16 +79,7 @@ export default function DataCapture() {
   return (
     <div className="template template-data-capture">
       <div className="container">
-        <button
-          className="back-button"
-          onClick={() => dispatch(updateAssessmentStatus("started"))}
-        >
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M11.6953 18L3.00558 9.72422L11.2814 1.03449" stroke="white" strokeWidth="3"/>
-          </svg>
-          Back to checkpoints
-        </button>
-        <div className="form-title">About the Data (required)</div>
+        <div className="form-title">About the Data</div>
         <form className="form" onSubmit={handleSubmit}>
           <fieldset className="form-column">
             <div className={("form-element form-element-text ") + (formErrors["dataset_name"] ? "error" : " ")}>
