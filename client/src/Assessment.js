@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate, useParams, Route, Routes } from 'react-router-dom';
+import { useNavigate, useParams, Route, Routes, useLocation } from 'react-router-dom';
 
 import AssessmentProgress from './AssessmentProgress';
 import Checkpoint from './Checkpoint';
@@ -19,6 +19,7 @@ import {
 export default function Assessment() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const { id, checkpointId } = useParams();
 
   const { checkpoints, activeCheckpoint, loading, activeAssessment, assessmentsList, assessments_loading } = useSelector((state) => state.checkpoints);
@@ -35,7 +36,7 @@ export default function Assessment() {
         setAssessmentLoaded(true);
         if (checkpointId) {
           dispatch(updateActiveCheckpointIndex(parseInt(checkpointId)));
-        } else {
+        } else if (location.pathname.endsWith('/metadata') || location.pathname.endsWith('/report')) {
           dispatch(updateActiveCheckpointIndex(0));
         }
       }).catch((error) => {
