@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import CheckpointOptions from './CheckpointOptions';
 import CheckpointActions from './CheckpointActions';
 import CheckpointExtra from './CheckpointExtra';
+import CheckpointInfo from './CheckpointInfo';
 
 import CheckpointCTAs from './CheckpointCTAs';
 
@@ -17,11 +18,10 @@ export default function Checkpoint() {
     <div className="checkpoint-question" >
       <div className="checkpoint-top">
         <div className="checkpoint-category">{activeCheckpoint.category}</div>
-        <div className="checkpoint-number"><span>Checkpoint {activeCheckpointIndex }</span> <span> of {totalCheckpoints}</span></div>
+        <div className="checkpoint-number"><span><label className="label">Checkpoint&nbsp;</label>{activeCheckpointIndex }</span> <span> of {totalCheckpoints}</span></div>
       </div>
       <div className="question">
         <h1 className="question-title">{activeCheckpoint.title}</h1>
-        <div className="question-text te"><p>{activeCheckpoint.text}</p></div>
 
         {activeCheckpoint.extra_text.length ? <CheckpointExtra checkpoint={activeCheckpoint}/> : ""}
 
@@ -30,6 +30,8 @@ export default function Checkpoint() {
       </div>
 
       <CheckpointOptions  />
+
+      <CheckpointInfo  />
 
       <CheckpointActions />
 

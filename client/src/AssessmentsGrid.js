@@ -55,7 +55,7 @@ export default function AssessmentsGrid(props) {
             <div className="slot-info"><a href={`/assessment/${id}`}>Date Created: {dateCreated} </a></div>
             <div className="slot-info"><a href={`/assessment/${id}`}>Date Modified: {dateModified} </a></div>
             <div className="slot-info"><a href={`/assessment/${id}`}>Owner: {owner}</a></div>
-            <div class="percentage"><a href={`/assessment/${id}`}><span>{percentComplete}%</span><span>Complete</span></a></div>
+            <div className="percentage"><a href={`/assessment/${id}`}><span>{percentComplete}%</span><span>Complete</span></a></div>
           </div>
         </div>
       );

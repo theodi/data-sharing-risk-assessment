@@ -4,9 +4,21 @@ import { useSelector } from 'react-redux'
 
 
 export default function ReportModal(props) {
-  const {data} = props;
+  const { data } = props;
   const { activeAssessment, checkpoints } = useSelector((state) => state.checkpoints);
   let form_data = activeAssessment.data_capture || {};
+
+  // Mapping for sharing_reason options
+  const sharingReasonOptions = {
+    1: "Encourage Innovation",
+    2: "Optimise supply chains",
+    3: "Address common challenges across a sector",
+    4: "Improve market reach",
+    5: "Benchmarking and insights",
+    6: "To comply with regulation or legislation (e.g. freedom of information)",
+    7: "Demonstrate trustworthiness",
+    8: "Other"
+  };
 
   return (
     <div className="modal-content report">
@@ -14,23 +26,15 @@ export default function ReportModal(props) {
       <div className="modal-text te" dangerouslySetInnerHTML={{ __html: data.content.text }}></div>
 
       <div className="assessment-data">
-      {(typeof(form_data.dataset_name) !== "undefined") ?  <DataListItem value={form_data.dataset_name.value} label="Name of Data Set" /> : ""}
-      {(typeof(form_data.dataset_id) !== "undefined") ?  <DataListItem value={form_data.dataset_name.value} label="Unique Data ID" /> : ""}
-      {(typeof(form_data.purpose) !== "undefined") ?  <DataListItem value={form_data.purpose.value} label="Original Purpose" /> : ""}
-      {(typeof(form_data.dataset_location) !== "undefined") ?  <DataListItem value={form_data.dataset_location.value} label="Location of Data" /> : ""}
-      {(typeof(form_data.person_name) !== "undefined") ?  <DataListItem value={form_data.person_name.value} label="Completed by" /> : ""}
-      {(typeof(form_data.person_role) !== "undefined") ?  <DataListItem value={form_data.person_role.value} label="Role" /> : ""}
-      {(typeof(form_data.date) !== "undefined") ?  <DataListItem value={form_data.date.value} label="Date" /> : ""}
-
+        {(typeof form_data.dataset_name !== "undefined") ? <DataListItem value={form_data.dataset_name.value} label="Name of Data Set" /> : ""}
+        {(typeof form_data.dataset_description !== "undefined") ? <DataListItem value={form_data.dataset_description.value} label="Description" /> : ""}
+        {(typeof form_data.sharing_reason !== "undefined") ? <DataListItem value={sharingReasonOptions[form_data.sharing_reason.value]} label="Reason for Sharing" /> : ""}
+        {(typeof form_data.sharing_reason_details !== "undefined" && form_data.sharing_reason.value === "8") ? <DataListItem value={form_data.sharing_reason_details.value} label="More Details" /> : ""}
       </div>
 
-      {
-        (activeAssessment.answers.length ? <AnswersList answers={activeAssessment.answers}/> : "")
-      }
-
+      {activeAssessment.answers.length ? <AnswersList answers={activeAssessment.answers} /> : ""}
     </div>
   );
-
 
   function AnswersList(props){
     const answers = [];

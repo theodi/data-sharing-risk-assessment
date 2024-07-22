@@ -57,7 +57,11 @@ function App() {
               element={user ? <Assessments /> : <Navigate to="/login" />}
             />
             <Route
-              path="assessment/:id"
+              path="assessment/:id/checkpoint/:checkpointId"
+              element={user ? <Assessment /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="assessment/:id/*"
               element={user ? <Assessment /> : <Navigate to="/login" />}
             />
             <Route path="login" element={<Login />} />

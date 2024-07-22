@@ -1,5 +1,9 @@
 .checkpoint-ctas {
   margin-left: auto;
+  @media (max-width: 768px) {
+    padding: 0 10%;
+    padding-top: 50px;
+  }
   @media (min-width: 768px){
     padding-top: 50px;
     padding-bottom: 80px;

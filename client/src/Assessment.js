@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Route, Routes } from 'react-router-dom';
 
 import AssessmentProgress from './AssessmentProgress';
 import Checkpoint from './Checkpoint';
@@ -12,12 +12,13 @@ import {
   getCheckpoints,
   getAssessmentsList,
   resumeAssessmentThunk,
+  updateActiveCheckpointIndex,
 } from "./checkpointsSlice";
 
 export default function Assessment() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { id, checkpointId } = useParams();
 
   const { checkpoints, activeCheckpoint, loading, activeAssessment, assessmentsList, assessments_loading } = useSelector((state) => state.checkpoints);
   const [assessmentLoaded, setAssessmentLoaded] = useState(false);
@@ -29,6 +30,11 @@ export default function Assessment() {
 
   useEffect(() => {
     if (id && assessmentsList.length > 0 && (!activeAssessment.id || activeAssessment.id !== id)) {
+      if (checkpointId) {
+        dispatch(updateActiveCheckpointIndex(parseInt(checkpointId)));
+      } else {
+        dispatch(updateActiveCheckpointIndex(0));
+      }
       dispatch(resumeAssessmentThunk(id)).unwrap().then(() => {
         setAssessmentLoaded(true);
       }).catch((error) => {
@@ -36,8 +42,7 @@ export default function Assessment() {
         navigate('/error', { state: { message: 'Assessment not found' } });
       });
     }
-  }, [id, activeAssessment.id, assessmentsList, dispatch, navigate]);
-
+  }, [id, checkpointId, activeAssessment.id, assessmentsList, dispatch, navigate]);
 
   if (loading || assessments_loading || !assessmentLoaded) {
     return <div className="loading"></div>;
@@ -55,23 +60,34 @@ export default function Assessment() {
         </div>
       </div>
     );
-  } else if (activeAssessment.status === "data") {
-    return (
-      <div className="template template-healthcheck">
-        <div className="template-inner">
-          <DataCapture />
-        </div>
-      </div>
-    );
-  } else {
-    return (
-      <div className="template template-healthcheck">
-        <div className="template-inner">
-          <AssessmentProgress />
-          <Checkpoint />
-          <CheckpointCTAs />
-        </div>
-      </div>
-    );
   }
+
+  return (
+    <div className="template template-healthcheck">
+      <div className="template-inner">
+        <Routes>
+          <Route path="metadata" element={
+            <>
+              <AssessmentProgress />
+              <DataCapture />
+            </>
+          } />
+          <Route path="checkpoint/:checkpointId" element={
+            <>
+              <AssessmentProgress />
+              <Checkpoint />
+              <CheckpointCTAs />
+            </>
+          } />
+          <Route path="*" element={
+            <>
+              <AssessmentProgress />
+              <Checkpoint />
+              <CheckpointCTAs />
+            </>
+          } />
+        </Routes>
+      </div>
+    </div>
+  );
 }

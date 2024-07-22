@@ -55,7 +55,7 @@ function Layout({ user, onLogout }) {
                 <li>
                   {user ? (
                     <>
-                      <span>{user.name} (<button class="logout" onClick={onLogout}>Logout</button>)</span>
+                      <span>{user.name} (<button className="logout" onClick={onLogout}>Logout</button>)</span>
                     </>
                   ) : (
                     <a href="http://localhost:3080/auth/django">Login</a>

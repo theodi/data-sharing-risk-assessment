@@ -195,6 +195,9 @@ h1 {
 
 .container {
   padding: vwm(30px);
+  @media (max-width: 768px){
+    padding: 0 vw(50px);
+  }
   @media (min-width: 768px){
     padding: 0 vw(100px);
   }
