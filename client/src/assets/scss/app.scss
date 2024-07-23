@@ -80,6 +80,16 @@ body {
 
 }
 
+.version {
+  position: absolute;
+  top: -10px;
+  right: 10px;
+}
+.version a {
+  color: white;
+  font-size: 1rem;
+}
+
 .template-home {
   overflow: hidden;
 }

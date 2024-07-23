@@ -5,15 +5,25 @@ import { useModal } from './context/modal-context';
 import privacyIcon from './assets/img/privacy.svg';
 import arrowIcon from './assets/img/arrow.svg';
 import dashboardIcon from './assets/img/dashboard.svg';
+import packageJson from '../package.json'; // Adjust the path if necessary
 
 function Layout({ user, onLogout }) {
   const { setModal } = useModal();
+
+  const software = {
+    version: packageJson.version,
+    homepage: packageJson.homepage,
+    versionLink: `${packageJson.homepage}/releases/tag/v${packageJson.version}`
+  };
 
   return (
     <>
       <header className="header">
         <div className="container">
           <div className="header-top">
+            <p className="version">
+              <a href={software.versionLink} target="_blank" rel="noopener noreferrer">v{software.version}</a>
+            </p>
             <Link to="/" className="logo"></Link>
             <nav className="main-nav" aria-label="Main Menu">
               <ul>
