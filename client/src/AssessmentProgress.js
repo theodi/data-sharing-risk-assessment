@@ -8,6 +8,7 @@ export default function AssessmentProgress() {
   const checkpoints = useSelector((state) => state.checkpoints.checkpoints);
   const activeCheckpointIndex = useSelector((state) => state.checkpoints.activeCheckpointIndex);
   const checkpointAnswers = useSelector((state) => state.checkpoints.checkpointAnswers);
+  const dataCapture = useSelector((state) => state.checkpoints.activeAssessment.data_capture || {});
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -38,6 +39,14 @@ export default function AssessmentProgress() {
     return activeCheckpointIndex === index;
   };
 
+  const isMetadataComplete = () => {
+    return (
+      dataCapture.dataset_name && dataCapture.dataset_name.value &&
+      dataCapture.sharing_reason && dataCapture.sharing_reason.value &&
+      (dataCapture.sharing_reason.value !== "8" || (dataCapture.sharing_reason_details && dataCapture.sharing_reason_details.value))
+    );
+  };
+
   return (
     <div className="checkpoint-progress">
       <div className="checkpoint-progress-title">Risk Assessment</div>
@@ -46,7 +55,7 @@ export default function AssessmentProgress() {
           className="checkpoint-progress-item"
           onClick={handleMetadataClick}
         >
-          <div className={`checkpoint metadata ${isActive('metadata') ? 'active' : ''}`}>
+          <div className={`checkpoint metadata ${isActive('metadata') ? 'active' : ''} ${isMetadataComplete() ? 'green' : ''}`}>
             Metadata
           </div>
         </div>
@@ -70,7 +79,6 @@ export default function AssessmentProgress() {
         );
       })}
       <div className="checkpoint-progress-item-wrapper">
-
         <div className="checkpoint-progress-item">
           <div className="progress-label commercial">Finalise</div>
           <div onClick={handleReportClick} className={`checkpoint report ${isActive('report') ? 'active' : ''}`}>
