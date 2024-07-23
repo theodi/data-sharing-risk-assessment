@@ -1,5 +1,6 @@
 const path = require('path');
 const fs = require('fs');
+const logger = require('morgan');
 
 // Load environment variables securely
 require("dotenv").config({ path: "./config.env" });
@@ -37,6 +38,7 @@ app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 
 // Use cookie-parser middleware
 app.use(cookieParser());
+app.use(logger('dev'));
 
 // Session configuration
 app.use(session({

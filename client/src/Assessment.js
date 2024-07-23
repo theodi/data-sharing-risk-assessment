@@ -22,7 +22,7 @@ export default function Assessment() {
   const location = useLocation();
   const { id, checkpointId } = useParams();
 
-  const { loading, activeAssessment, assessmentsList, assessments_loading } = useSelector((state) => state.checkpoints);
+  const { loading, error, activeAssessment, assessmentsList, assessments_loading } = useSelector((state) => state.checkpoints);
   const [assessmentLoaded, setAssessmentLoaded] = useState(false);
 
   useEffect(() => {
@@ -34,15 +34,17 @@ export default function Assessment() {
     if (id && assessmentsList.length > 0 && (!activeAssessment.id || activeAssessment.id !== id)) {
       dispatch(resumeAssessmentThunk(id)).unwrap().then(() => {
         setAssessmentLoaded(true);
-        if (checkpointId) {
-          dispatch(updateActiveCheckpointIndex(parseInt(checkpointId)));
-        } else if (location.pathname.endsWith('/metadata') || location.pathname.endsWith('/report')) {
-          dispatch(updateActiveCheckpointIndex(0));
-        }
       }).catch((error) => {
         console.error('Failed to load assessment:', error);
         navigate('/error', { state: { message: 'Assessment not found' } });
       });
+    }
+    if (checkpointId) {
+      dispatch(updateActiveCheckpointIndex(parseInt(checkpointId)));
+    } else if (location.pathname.endsWith('/metadata') || location.pathname.endsWith('/report')) {
+      dispatch(updateActiveCheckpointIndex(0));
+    } else {
+      dispatch(updateActiveCheckpointIndex(1));
     }
   }, [id, checkpointId, activeAssessment.id, assessmentsList, dispatch, navigate]);
 
@@ -67,6 +69,7 @@ export default function Assessment() {
   return (
     <div className="template template-healthcheck">
       <div className="template-inner">
+      {error && <div className="error">{error}</div>}
         <Routes>
           <Route path="metadata" element={
             <>

@@ -1,13 +1,36 @@
 const express = require('express');
 const router = express.Router();
 const Assessment = require('../models/Assessment');
+const User = require('../models/User');
 const ensureAuthenticated = require('../middleware/ensureAuthenticated'); // Assuming you move the ensureAuthenticated middleware to a separate file
 
 // Get all assessments
 router.get('/', ensureAuthenticated, async (req, res) => {
   try {
-    const assessments = await Assessment.find();
-    res.json(assessments);
+    const userId = req.session.passport.user.id;
+    const user = await User.findById(userId);
+
+    const assessments = await Assessment.find({
+      $or: [
+        { owner: userId },
+        { 'sharedWith.user': user.email }
+      ]
+    });
+
+    const assessmentsWithOwnerEmail = await Promise.all(assessments.map(async assessment => {
+      const owner = await User.findById(assessment.owner);
+      const ownerEmail = owner.email;
+      const assessmentObj = assessment.toObject();
+      assessmentObj.ownerEmail = ownerEmail;
+
+      if (assessment.owner.toString() !== userId) {
+        delete assessmentObj.sharedWith;
+      }
+
+      return assessmentObj;
+    }));
+
+    res.json(assessmentsWithOwnerEmail);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -16,9 +39,26 @@ router.get('/', ensureAuthenticated, async (req, res) => {
 // Get a single assessment by ID
 router.get('/:id', ensureAuthenticated, async (req, res) => {
   try {
+    const userId = req.session.passport.user.id;
+    const user = await User.findById(userId);
     const assessment = await Assessment.findById(req.params.id);
+
     if (!assessment) return res.status(404).json({ message: 'Assessment not found' });
-    res.json(assessment);
+
+    const owner = await User.findById(assessment.owner);
+    const ownerEmail = owner.email;
+    const assessmentObj = assessment.toObject();
+    assessmentObj.ownerEmail = ownerEmail;
+
+    if (assessment.owner.toString() !== userId && !assessment.sharedWith.some(sharedUser => sharedUser.user === user.email)) {
+      return res.status(403).json({ message: 'Access denied' });
+    }
+
+    if (assessment.owner.toString() !== userId) {
+      delete assessmentObj.sharedWith;
+    }
+
+    res.json(assessmentObj);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -26,7 +66,12 @@ router.get('/:id', ensureAuthenticated, async (req, res) => {
 
 // Create a new assessment
 router.post('/', ensureAuthenticated, async (req, res) => {
-  const assessment = new Assessment(req.body);
+  const userId = req.session.passport.user.id;
+  const assessment = new Assessment({
+    ...req.body,
+    owner: userId
+  });
+
   try {
     const newAssessment = await assessment.save();
     res.status(201).json(newAssessment);
@@ -38,8 +83,15 @@ router.post('/', ensureAuthenticated, async (req, res) => {
 // Update an assessment by ID
 router.put('/:id', ensureAuthenticated, async (req, res) => {
   try {
+    const userId = req.session.passport.user.id;
+    const user = await User.findById(userId);
     const assessment = await Assessment.findById(req.params.id);
+
     if (!assessment) return res.status(404).json({ message: 'Assessment not found' });
+
+    if (assessment.owner.toString() !== userId && !assessment.sharedWith.some(sharedUser => sharedUser.user === user.email)) {
+      return res.status(403).json({ message: 'Access denied' });
+    }
 
     Object.assign(assessment, req.body, { date_modified: new Date() });
     const updatedAssessment = await assessment.save();
@@ -52,10 +104,16 @@ router.put('/:id', ensureAuthenticated, async (req, res) => {
 // Delete an assessment by ID
 router.delete('/:id', ensureAuthenticated, async (req, res) => {
   try {
-    const id = req.params.id;
-    const assessment = await Assessment.findById(id);
+    const userId = req.session.passport.user.id;
+    const assessment = await Assessment.findById(req.params.id);
+
     if (!assessment) return res.status(404).json({ message: 'Assessment not found' });
-    const deletedAssessment = await Assessment.findByIdAndDelete(id);
+
+    if (assessment.owner.toString() !== userId) {
+      return res.status(403).json({ message: 'Only the owner can delete this assessment' });
+    }
+
+    await Assessment.findByIdAndDelete(req.params.id);
     res.json({ message: 'Assessment deleted' });
   } catch (err) {
     res.status(500).json({ message: err.message });

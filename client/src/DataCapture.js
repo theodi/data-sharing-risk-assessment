@@ -31,6 +31,9 @@ export default function DataCapture() {
     }
   };
 
+  const [formData, setFormData] = useState(form_data);
+  const [formErrors, setFormErrors] = useState({});
+
   const saved_form_data = activeAssessment.data_capture || {};
 
   for (const key in form_data) {
@@ -38,9 +41,6 @@ export default function DataCapture() {
       form_data[key].value = saved_form_data[key].value;
     }
   }
-
-  const [formData, setFormData] = useState(form_data);
-  const [formErrors, setFormErrors] = useState({});
 
   const handleChange = (event) => {
     const target = event.target;
@@ -68,9 +68,8 @@ export default function DataCapture() {
       }
     }
     setFormErrors(errors);
-
     if (Object.keys(errors).length === 0) {
-      dispatch(updateAssessmentData(formData));
+      dispatch(updateAssessmentData(formData))
       navigate(`/assessment/${id}/checkpoint/1`);
     }
   };

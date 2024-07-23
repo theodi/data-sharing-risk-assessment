@@ -31,7 +31,6 @@ export const createAssessment = createAsyncThunk(
 );
 
 // Thunk to start an assessment
-// Thunk to start an assessment
 export const startAssessmentThunk = createAsyncThunk(
   'assessments/startAssessmentThunk',
   async ({ id, navigate }, { dispatch, getState }) => {
@@ -80,6 +79,19 @@ export const resumeAssessmentThunk = createAsyncThunk(
   }
 );
 
+// Thunk to delete an assessment
+export const deleteAssessment = createAsyncThunk(
+  'checkpoints/deleteAssessment',
+  async (id, thunkAPI) => {
+    try {
+      await axios.delete(`http://localhost:3080/api/assessments/${id}`, { withCredentials: true });
+      return id;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 const initialState = {
   checkpoints: [],
   totalCheckpoints: 0,
@@ -88,6 +100,7 @@ const initialState = {
   activeCheckpointAnswer: [],
   activeCheckpointIndex: 1,
   loading: false,
+  error: null,
   assessmentsList: [],
   activeAssessment: {
     id: null,
@@ -122,7 +135,6 @@ export const checkpointsSlice = createSlice({
       state.activeCheckpointAnswer = state.checkpointAnswers.find(a => a.id === action.payload);
     },
     updateCheckpointAnswers: (state, action) => {
-      console.log('in here');
       const answer = action.payload;
       const index = state.checkpointAnswers.findIndex(x => x.id === answer.id);
 
@@ -137,9 +149,13 @@ export const checkpointsSlice = createSlice({
       const assessmentIndex = state.assessmentsList.findIndex(assessment => assessment._id === state.activeAssessment.id);
       if (assessmentIndex !== -1) {
         state.assessmentsList[assessmentIndex] = state.activeAssessment;
-
-        // Update assessment on the server
+      }
+      try {
+        // Update assessment data on the server
         axios.put(`http://localhost:3080/api/assessments/${state.activeAssessment.id}`, state.activeAssessment, { withCredentials: true });
+        state.error = null;
+      } catch (err) {
+        state.error = err.message;
       }
     },
     startAssessment: (state, action) => {
@@ -181,26 +197,19 @@ export const checkpointsSlice = createSlice({
       }
       state.activeAssessment.date_modified = date;
     },
-    deleteAssessment: (state, action) => {
-      let id = action.payload;
-
-      const index = state.assessmentsList.findIndex(assessment => assessment._id === id);
-      if (index !== -1) {
-        state.assessmentsList.splice(index, 1);
-
-        // Delete assessment from the server
-        axios.delete(`http://localhost:3080/api/assessments/${id}`, { withCredentials: true });
-      }
-    },
     updateAssessmentStatus: (state, action) => {
       state.activeAssessment.status = action.payload;
 
       const assessmentIndex = state.assessmentsList.findIndex(assessment => assessment._id === state.activeAssessment.id);
       if (assessmentIndex !== -1) {
         state.assessmentsList[assessmentIndex] = state.activeAssessment;
-
-        // Update assessment status on the server
+      }
+      try {
+        // Update assessment data on the server
         axios.put(`http://localhost:3080/api/assessments/${state.activeAssessment.id}`, state.activeAssessment, { withCredentials: true });
+        state.error = null;
+      } catch (err) {
+        state.error = err.message;
       }
     },
     updateAssessmentData: (state, action) => {
@@ -209,11 +218,15 @@ export const checkpointsSlice = createSlice({
       const assessmentIndex = state.assessmentsList.findIndex(assessment => assessment._id === state.activeAssessment.id);
       if (assessmentIndex !== -1) {
         state.assessmentsList[assessmentIndex] = state.activeAssessment;
-
+      }
+      try {
         // Update assessment data on the server
         axios.put(`http://localhost:3080/api/assessments/${state.activeAssessment.id}`, state.activeAssessment, { withCredentials: true });
+        state.error = null;
+      } catch (err) {
+        state.error = err.message;
       }
-    },
+    }
   },
   extraReducers: {
     [getCheckpoints.pending]: (state) => {
@@ -250,10 +263,26 @@ export const checkpointsSlice = createSlice({
     },
     [createAssessment.rejected]: (state) => {
       state.assessments_loading = false;
+    },
+    [deleteAssessment.pending]: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    [deleteAssessment.fulfilled]: (state, action) => {
+      state.loading = false;
+      const id = action.payload;
+      const index = state.assessmentsList.findIndex(assessment => assessment._id === id);
+      if (index !== -1) {
+        state.assessmentsList.splice(index, 1);
+      }
+    },
+    [deleteAssessment.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
     }
   },
 });
 
-export const { getActiveCheckpoint, updateActiveCheckpointIndex, updateActiveCheckpoint, updateCheckpointAnswers, startAssessment, deleteAssessment, updateAssessmentStatus, updateAssessmentData, updateExtraInfoState } = checkpointsSlice.actions;
+export const { getActiveCheckpoint, updateActiveCheckpointIndex, updateActiveCheckpoint, updateCheckpointAnswers, startAssessment, updateAssessmentStatus, updateAssessmentData, updateExtraInfoState } = checkpointsSlice.actions;
 
 export default checkpointsSlice.reducer;

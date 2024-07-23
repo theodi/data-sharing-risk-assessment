@@ -72,7 +72,7 @@ export default function AssessmentProgress() {
       <div className="checkpoint-progress-item-wrapper">
 
         <div className="checkpoint-progress-item">
-          <div class="progress-label commercial">Finalise</div>
+          <div className="progress-label commercial">Finalise</div>
           <div onClick={handleReportClick} className={`checkpoint report ${isActive('report') ? 'active' : ''}`}>
             Report
           </div>

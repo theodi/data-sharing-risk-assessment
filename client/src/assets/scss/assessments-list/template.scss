@@ -1,6 +1,8 @@
 .template-assessments-list {
 
-
+  .delete {
+    cursor: pointer;
+  }
   .template-columns {
     width: 100%;
     @media (min-width: 768px){
