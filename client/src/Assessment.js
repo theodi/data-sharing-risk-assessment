@@ -22,7 +22,7 @@ export default function Assessment() {
   const location = useLocation();
   const { id, checkpointId } = useParams();
 
-  const { checkpoints, activeCheckpoint, loading, activeAssessment, assessmentsList, assessments_loading } = useSelector((state) => state.checkpoints);
+  const { loading, activeAssessment, assessmentsList, assessments_loading } = useSelector((state) => state.checkpoints);
   const [assessmentLoaded, setAssessmentLoaded] = useState(false);
 
   useEffect(() => {

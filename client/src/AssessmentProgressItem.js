@@ -1,12 +1,11 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import {
     updateActiveCheckpointIndex,
 } from "./checkpointsSlice";
 
 export default function AssessmentProgressItem(props) {
-  const activeCheckpoint = useSelector((state) => state.checkpoints.activeCheckpoint);
   const categoryClass = props.category.replace(/[^A-Z0-9]+/ig, "-").toLowerCase();
   const categoryLabel = props.includeCategory ? "" : <div className={"progress-label " + (categoryClass)}>{props.category}</div>;
   const hasAnswer = typeof(props.answer) != "undefined" ;
@@ -21,7 +20,6 @@ export default function AssessmentProgressItem(props) {
         onClick={() => {
           // if (hasAnswer){
             dispatch(updateActiveCheckpointIndex(props.id))}
-          // }
 
         }
       >

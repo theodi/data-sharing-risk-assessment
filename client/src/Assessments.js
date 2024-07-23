@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Outlet, Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
@@ -17,8 +17,7 @@ import {
 
 export default function Assessments() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { totalCheckpoints, loading, assessmentsList, assessments_loading } = useSelector((state) => state.checkpoints)
+  const { loading, assessments_loading } = useSelector((state) => state.checkpoints)
 
   const initial_filters =
     {

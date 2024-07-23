@@ -1,16 +1,8 @@
 import React from 'react';
-import axios from 'axios';
-
 import Cta from "./components/Cta";
-import { useModal } from './context/modal-context'
-
 import Data from './json/complete.json';
 
 export default function AssessmentComplete() {
-
-  const { setModal } = useModal()
-
-
 
   return (
 

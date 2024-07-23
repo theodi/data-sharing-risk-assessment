@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import SaveAndContinue from './SaveAndContinue';
 import SaveAndContinueDisabled from './SaveAndContinueDisabled';
 
@@ -8,7 +8,6 @@ import OpenMitigateRisk from './OpenMitigateRisk';
 
 
 export default function CheckpointActions() {
-  const activeCheckpoint = useSelector((state) => state.checkpoints.activeCheckpoint);
   const activeCheckpointAnswer = useSelector((state) => state.checkpoints.activeCheckpointAnswer);
 
   if ( !activeCheckpointAnswer || activeCheckpointAnswer.length === 0) return <div className="loading"></div>;;
