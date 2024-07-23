@@ -5,7 +5,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const OAuth2Strategy = require('passport-oauth2').Strategy;
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-const { retrieveUserByEmail } = require('./controllers/user');
+const { retrieveUserByEmail } = require('./controllers/user.js');
 
 // Passport setup for Google authentication
 passport.use('google', new GoogleStrategy({

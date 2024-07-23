@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import axiosInstance from './axiosInstance';
 
 // Thunk to get checkpoints
 export const getCheckpoints = createAsyncThunk(
@@ -16,7 +16,7 @@ export const getCheckpoints = createAsyncThunk(
 export const getAssessmentsList = createAsyncThunk(
   'users/getAssessmentsList',
   async (thunkAPI) => {
-    const res = await axios.get('http://localhost:3080/api/assessments', { withCredentials: true });
+    const res = await axiosInstance.get('/assessments', { withCredentials: true });
     return res.data;
   }
 );
@@ -25,7 +25,7 @@ export const getAssessmentsList = createAsyncThunk(
 export const createAssessment = createAsyncThunk(
   'assessments/createAssessment',
   async (assessment, thunkAPI) => {
-    const response = await axios.post('http://localhost:3080/api/assessments', assessment, { withCredentials: true });
+    const response = await axiosInstance.post('/assessments', assessment, { withCredentials: true });
     return response.data;
   }
 );
@@ -84,7 +84,7 @@ export const deleteAssessment = createAsyncThunk(
   'checkpoints/deleteAssessment',
   async (id, thunkAPI) => {
     try {
-      await axios.delete(`http://localhost:3080/api/assessments/${id}`, { withCredentials: true });
+      await axiosInstance.delete(`/assessments/${id}`, { withCredentials: true });
       return id;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -152,7 +152,7 @@ export const checkpointsSlice = createSlice({
       }
       try {
         // Update assessment data on the server
-        axios.put(`http://localhost:3080/api/assessments/${state.activeAssessment.id}`, state.activeAssessment, { withCredentials: true });
+        axiosInstance.put(`/assessments/${state.activeAssessment.id}`, state.activeAssessment, { withCredentials: true });
         state.error = null;
       } catch (err) {
         state.error = err.message;
@@ -206,7 +206,7 @@ export const checkpointsSlice = createSlice({
       }
       try {
         // Update assessment data on the server
-        axios.put(`http://localhost:3080/api/assessments/${state.activeAssessment.id}`, state.activeAssessment, { withCredentials: true });
+        axiosInstance.put(`/assessments/${state.activeAssessment.id}`, state.activeAssessment, { withCredentials: true });
         state.error = null;
       } catch (err) {
         state.error = err.message;
@@ -221,7 +221,7 @@ export const checkpointsSlice = createSlice({
       }
       try {
         // Update assessment data on the server
-        axios.put(`http://localhost:3080/api/assessments/${state.activeAssessment.id}`, state.activeAssessment, { withCredentials: true });
+        axiosInstance.put(`/assessments/${state.activeAssessment.id}`, state.activeAssessment, { withCredentials: true });
         state.error = null;
       } catch (err) {
         state.error = err.message;

@@ -1,3 +1,4 @@
+// src/Layout.js
 import React from 'react';
 import { Outlet, Link } from "react-router-dom";
 import axios from 'axios';
@@ -9,6 +10,7 @@ import packageJson from '../package.json'; // Adjust the path if necessary
 
 function Layout({ user, onLogout }) {
   const { setModal } = useModal();
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   const software = {
     version: packageJson.version,
@@ -68,7 +70,7 @@ function Layout({ user, onLogout }) {
                       <span>{user.name} (<button className="logout" onClick={onLogout}>Logout</button>)</span>
                     </>
                   ) : (
-                    <a href="http://localhost:3080/auth/django">Login</a>
+                    <a href={`${apiUrl}/auth/django`}>Login</a>
                   )}
                 </li>
               </ul>
@@ -76,7 +78,7 @@ function Layout({ user, onLogout }) {
           </div>
         </div>
       </header>
-
+      <div className="error"></div>
       <div className="outer-container">
         <Outlet />
       </div>

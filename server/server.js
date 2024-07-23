@@ -34,7 +34,7 @@ const app = express();
 const port = process.env.PORT || 3080;
 
 const cors = require('cors');
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.use(cors({ origin: process.env.APP_HOST, credentials: true }));
 
 // Use cookie-parser middleware
 app.use(cookieParser());
@@ -58,7 +58,7 @@ app.use(express.json());
 app.use('/auth', authRoutes);
 
 // Use assessments routes
-app.use('/api/assessments', assessmentRoutes);
+app.use('/assessments', assessmentRoutes);
 
 // Start server
 app.listen(port, () => console.log('App listening on port ' + port));

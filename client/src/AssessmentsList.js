@@ -8,6 +8,13 @@ export default function AssessmentsList(props) {
 
   const { filterData, checkAssessmentDate } = props;
 
+  const formatId = (id) => {
+    if (id.length > 8) {
+      return `${id.substring(0, 4)}....${id.substring(id.length - 4)}`;
+    }
+    return id;
+  };
+
   useEffect(() => {
     if (error) {
       alert(`Failed to delete assessment: ${error}`);
@@ -18,8 +25,8 @@ export default function AssessmentsList(props) {
     <table>
       <tbody>
         <tr>
-          <th>ID</th>
-          <th>Name</th>
+          <th>Dataset Name</th>
+          <th>Assessment ID</th>
           <th>Created</th>
           <th>Modified</th>
           <th>Owner</th>
@@ -45,8 +52,8 @@ export default function AssessmentsList(props) {
           if (date_created_show && date_modified_show) {
             return (
               <tr key={i} className="assessment">
-                <td><a href={`/assessment/${id}`}>{id}</a></td>
                 <td><a href={`/assessment/${id}`}>{name}</a></td>
+                <td><a href={`/assessment/${id}`}>{formatId(id)}</a></td>
                 <td><a href={`/assessment/${id}`} className="">{dateCreated} </a></td>
                 <td><a href={`/assessment/${id}`} className="">{dateModified} </a></td>
                 <td><a href={`/assessment/${id}`} className="">{owner}</a></td>

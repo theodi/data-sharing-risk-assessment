@@ -5,7 +5,6 @@ import {
     deleteAssessment
       } from "./checkpointsSlice";
 
-
 export default function AssessmentsGrid(props) {
   const dispatch = useDispatch();
   const { totalCheckpoints, assessmentsList } = useSelector((state) => state.checkpoints)
@@ -13,6 +12,12 @@ export default function AssessmentsGrid(props) {
 
   const { filterData, checkAssessmentDate } = props;
 
+  const formatId = (id) => {
+    if (id.length > 8) {
+      return `${id.substring(0, 4)}....${id.substring(id.length - 4)}`;
+    }
+    return id;
+  };
 
   return (
 
@@ -42,7 +47,7 @@ export default function AssessmentsGrid(props) {
               </svg>
             </button>
             <div className="slot-title"><a href={`/assessment/${id}`}>{name}</a></div>
-            <div className="slot-info"><a href={`/assessment/${id}`}>Dataset ID: {id}</a></div>
+            <div className="slot-info"><a href={`/assessment/${id}`}>Assessment ID: {formatId(id)}</a></div>
             <div className="slot-info"><a href={`/assessment/${id}`}>Date Created: {dateCreated} </a></div>
             <div className="slot-info"><a href={`/assessment/${id}`}>Date Modified: {dateModified} </a></div>
             <div className="slot-info"><a href={`/assessment/${id}`}>Owner: {owner}</a></div>

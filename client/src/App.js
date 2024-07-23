@@ -7,11 +7,8 @@ import Assessment from './Assessment';
 import Login from './Login';
 import Privacy from './Privacy';
 import HowTo from './HowTo';
-import axios from 'axios';
+import axiosInstance from './axiosInstance';
 import { jwtDecode } from "jwt-decode";
-
-// Set axios defaults
-axios.defaults.withCredentials = true;
 
 function App() {
   const [user, setUser] = useState(null);
@@ -23,7 +20,7 @@ function App() {
       const decoded = jwtDecode(token.split('=')[1]);
       setUser(decoded);
     }
-    axios.get('http://localhost:3080/auth/check')
+    axiosInstance.get('/auth/check')
       .then(response => {
         if (response.data) {
           setUser(response.data);
@@ -37,7 +34,7 @@ function App() {
   }, []);
 
   const handleLogout = () => {
-    axios.get('http://localhost:3080/auth/logout')
+    axiosInstance.get('/auth/logout')
       .then(() => {
         setUser(null);
       })
