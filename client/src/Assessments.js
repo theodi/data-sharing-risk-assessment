@@ -108,7 +108,7 @@ export default function Assessments() {
 
   const handleClick = (e) => {
     e.preventDefault();
-    dispatch(startAssessmentThunk({ id: null, navigate: (id) => window.location.href = `/assessment/${id}` }));
+    dispatch(startAssessmentThunk({ id: null, navigate: (id) => window.location.href = `/assessment/${id}/metadata` }));
   };
 
   if (assessments_loading && loading) return <div className="loading"></div>;

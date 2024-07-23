@@ -17,9 +17,23 @@ const Button = (props) => {
     navigate(`/assessments/`);
   };
 
+  const handleNewAssessmentClick = (e) => {
+    e.preventDefault();
+    dispatch(startAssessmentThunk({ id: null, navigate: (id) => window.location.href = `/assessment/${id}/metadata` }));
+  };
 
   function ExternalLink(props) {
     return <a className={"button button-white " + (props.link_icon) } href={props.link_url} target="_blank" rel="noreferrer">{props.link_title}</a>;
+  }
+
+  function NewAssmentLink(props) {
+    return <a
+      href={props.link_url}
+      className={"button button-white " + (props.link_icon)}
+      onClick={handleNewAssessmentClick}
+    >
+      {props.link_title}
+    </a>
   }
 
   function InternalLink(props) {
@@ -70,9 +84,10 @@ const Button = (props) => {
     return <ModalLink  link_title={props.link_title} link_url={props.link_url} link_type={props.link_type} link_icon={props.link_icon} theme={props.theme}/>;
   } else if(props.link_type === "report"){
     return <ReportLink  link_title={props.link_title} link_url={props.link_url} link_type={props.link_type} link_icon={props.link_icon} theme={props.theme}/>;
+  } else if(props.link_type === "newAssessment"){
+    return <NewAssmentLink  link_title={props.link_title} link_url={props.link_url} link_type={props.link_type} link_icon={props.link_icon} theme={props.theme}/>;
   } else {
     return <InternalLink link_title={props.link_title} link_url={props.link_url} link_type={props.link_type} link_icon={props.link_icon} theme={props.theme}/>;
-
   }
 };
 

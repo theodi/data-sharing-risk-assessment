@@ -33,7 +33,7 @@
       "title": "Get Started",
       "text": "Ready to dive in?",
       "link_title": "Start a new Data Sharing Risk Assessment",
-      "link_type": "internal",
+      "link_type": "newAssessment",
       "link_icon": "arrow",
       "theme": "start_assessment",
       "link_url": "assessment"
