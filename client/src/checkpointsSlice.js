@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
 // Thunk to get checkpoints
 export const getCheckpoints = createAsyncThunk(
@@ -126,7 +125,6 @@ export const checkpointsSlice = createSlice({
       console.log('in here');
       const answer = action.payload;
       const index = state.checkpointAnswers.findIndex(x => x.id === answer.id);
-      const checkpointAnswers = state.checkpointAnswers;
 
       if (index === -1) {
         state.checkpointAnswers.push(answer);

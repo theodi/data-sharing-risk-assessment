@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 export default function Report() {
-  const { assessmentId } = useParams();
+  useParams();
   const { activeAssessment, checkpoints } = useSelector((state) => state.checkpoints);
   const form_data = activeAssessment.data_capture || {};
 
@@ -49,7 +49,7 @@ export default function Report() {
   }
 
   function AnswerListItem(props) {
-    const { id, risk_level, explain_risk, mitigating_actions, option, title } = props;
+    const { id, risk_level, mitigating_actions, option, title } = props;
     return (
       <div className="checkpoint-answer">
         <div className="checkpoint-answer-inner">

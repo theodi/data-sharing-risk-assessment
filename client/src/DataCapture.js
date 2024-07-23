@@ -3,8 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import {
-    updateAssessmentStatus,
-    updateAssessmentData,
+    updateAssessmentData
 } from "./checkpointsSlice";
 
 export default function DataCapture() {

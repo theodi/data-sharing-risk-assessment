@@ -1,12 +1,8 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux'
 import { useModal } from './context/modal-context'
 import axios from 'axios';
 
-import Cta from "./components/Cta";
-
 export default function CheckpointCTAs() {
-  const activeCheckpoint = useSelector((state) => state.checkpoints.activeCheckpoint);
   const { setModal } = useModal()
 
   // if ( !activeCheckpoint || activeCheckpoint.length === 0) return <p></p>;

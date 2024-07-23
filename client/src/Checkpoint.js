@@ -1,12 +1,9 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import CheckpointOptions from './CheckpointOptions';
 import CheckpointActions from './CheckpointActions';
 import CheckpointExtra from './CheckpointExtra';
 import CheckpointInfo from './CheckpointInfo';
-
-import CheckpointCTAs from './CheckpointCTAs';
-
 
 export default function Checkpoint() {
   const {activeCheckpoint, activeCheckpointIndex, totalCheckpoints} = useSelector((state) => state.checkpoints);

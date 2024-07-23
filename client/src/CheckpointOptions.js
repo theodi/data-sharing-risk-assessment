@@ -8,7 +8,6 @@ export default function CheckpointOptions() {
 
   const activeCheckpoint = useSelector((state) => state.checkpoints.activeCheckpoint);
   const activeCheckpointAnswer = useSelector((state) => state.checkpoints.activeCheckpointAnswer);
-  const totalCheckpoints = useSelector((state) => state.checkpoints.totalCheckpoints);
   const dispatch = useDispatch()
   const checkpointID = activeCheckpoint.id;
   let isActive = false;

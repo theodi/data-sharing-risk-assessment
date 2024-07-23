@@ -2,7 +2,7 @@ import React from 'react';
 
 
 export default function DefaultModal(props) {
-  const {content, type} = props.data;
+  const {content} = props.data;
 
   return (
     <div className="modal-content">

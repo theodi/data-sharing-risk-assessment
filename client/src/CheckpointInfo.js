@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useModal } from './context/modal-context'
 
 export default function CheckpointInfo() {

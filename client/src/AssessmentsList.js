@@ -1,23 +1,16 @@
-import React, { useState } from 'react';
-import { useEffect } from "react";
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Outlet, Link } from "react-router-dom";
 
 import {
-    getCheckpoints,
-    getAssessmentsList,
-    startAssessment,
     deleteAssessment
       } from "./checkpointsSlice";
 
 
 export default function AssessmentsList(props) {
   const dispatch = useDispatch();
-  const { totalCheckpoints, loading, assessmentsList, assessments_loading } = useSelector((state) => state.checkpoints)
-
+  const { totalCheckpoints, assessmentsList } = useSelector((state) => state.checkpoints)
 
   const { filterData, checkAssessmentDate } = props;
-
 
   return (
 
@@ -45,7 +38,6 @@ export default function AssessmentsList(props) {
 
         const date_created_show = filterData.date_created.touched ? checkAssessmentDate(dc, filterData.date_created.startDate, filterData.date_created.endDate) : true;
         const date_modified_show = filterData.date_modified.touched ? checkAssessmentDate(dm, filterData.date_modified.startDate, filterData.date_modified.endDate) : true;
-        const completion_show = true;
         if (date_created_show && date_modified_show){
           return (
             <tr

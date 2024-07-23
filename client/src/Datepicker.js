@@ -1,5 +1,4 @@
 import React from 'react';
-import { addDays } from 'date-fns';
 import { useState } from 'react';
 
 import 'react-date-range/dist/styles.css'; // main style file
