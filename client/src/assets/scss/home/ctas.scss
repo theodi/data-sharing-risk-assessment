@@ -190,6 +190,15 @@
 }
 
 
+.template-singlePage {
+  .content {
+    width: 60%;
+    line-height: 1.5em;
+  }
+  .content a {
+    color: white;
+  }
+}
 .template-home.template-complete {
   .template-left {
     @media (min-width: 768px){

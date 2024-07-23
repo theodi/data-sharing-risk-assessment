@@ -5,6 +5,8 @@ import Home from './Home';
 import Assessments from './Assessments';
 import Assessment from './Assessment';
 import Login from './Login';
+import Privacy from './Privacy';
+import HowTo from './HowTo';
 import axios from 'axios';
 import { jwtDecode } from "jwt-decode";
 
@@ -63,6 +65,14 @@ function App() {
             <Route
               path="assessment/:id/*"
               element={user ? <Assessment /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="privacy"
+              element={<Privacy />}
+            />
+            <Route
+              path="howto"
+              element={<HowTo />}
             />
             <Route path="login" element={<Login />} />
           </Route>
