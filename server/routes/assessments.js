@@ -3,6 +3,7 @@ const router = express.Router();
 const Assessment = require('../models/Assessment');
 const User = require('../models/User');
 const ensureAuthenticated = require('../middleware/ensureAuthenticated');
+const { Parser } = require('json2csv');
 
 // Get all assessments
 router.get('/', ensureAuthenticated, async (req, res) => {
@@ -57,6 +58,61 @@ router.get('/:id', ensureAuthenticated, async (req, res) => {
     res.json(assessmentObj);
   } catch (err) {
     res.status(500).json({ message: err.message });
+  }
+});
+
+// Utility function to map answers with checkpoints
+function mapAnswersWithCheckpoints(assessment, checkpoints) {
+  return assessment.answers.map(answer => {
+    const checkpoint = checkpoints.find(cp => cp.id === answer.id);
+    const mitigatingActions = answer.option.explain_risk && answer.form_data ? answer.form_data.mitigating_actions : "";
+    return {
+      question: checkpoint.title,
+      category: checkpoint.category,
+      answer: answer.option.option,
+      risk_level: answer.option.risk_level,
+      mitigating_actions: mitigatingActions
+    };
+  });
+}
+
+
+// Route to get report in JSON or CSV format using content negotiation
+router.get('/:id/report', ensureAuthenticated, async (req, res) => {
+  try {
+    const assessment = await Assessment.findById(req.params.id);
+    if (!assessment) {
+      return res.status(404).json({ message: 'Assessment not found' });
+    }
+
+    const checkpoints = require('../data/checkpoints.json');
+    const mappedAnswers = mapAnswersWithCheckpoints(assessment, checkpoints);
+
+    const report = {
+      dataset_name: assessment.data_capture.dataset_name.value,
+      dataset_description: assessment.data_capture.dataset_description.value,
+      sharing_reason: assessment.data_capture.sharing_reason.value,
+      answers: mappedAnswers
+    };
+
+    const accept = req.headers.accept;
+
+    if (accept.includes('text/csv')) {
+      const fields = ['question', 'category', 'answer', 'risk_level', 'mitigating_actions'];
+      const opts = { fields };
+      const parser = new Parser(opts);
+      const csv = parser.parse(mappedAnswers);
+      res.header('Content-Type', 'text/csv');
+      res.attachment(`assessment_report_${req.params.id}.csv`);
+      return res.send(csv);
+    } else if (accept.includes('application/json')) {
+      res.header('Content-Type', 'application/json');
+      return res.json(report);
+    } else {
+      res.status(406).send('Not Acceptable');
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 });
 

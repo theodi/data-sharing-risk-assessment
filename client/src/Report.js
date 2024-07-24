@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import DownloadReportButton from './DownloadReportButton';
 
 export default function Report() {
   useParams();
@@ -20,6 +21,7 @@ export default function Report() {
   };
 
   return (
+    <>
     <div className="template template-data-capture">
       <div className="container">
         <div className="report">
@@ -34,6 +36,8 @@ export default function Report() {
         </div>
       </div>
     </div>
+    <DownloadReportButton assessmentId={activeAssessment.id} />
+    </>
   );
 
   function AnswersList(props) {

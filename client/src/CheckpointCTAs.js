@@ -1,46 +1,31 @@
 import React from 'react';
-import { useModal } from './context/modal-context'
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function CheckpointCTAs() {
-  const { setModal } = useModal()
+  const navigate = useNavigate();
+  const assessmentId = useSelector((state) => state.checkpoints.activeAssessment.id); // Get assessmentId from Redux state
 
-  // if ( !activeCheckpoint || activeCheckpoint.length === 0) return <p></p>;
+  const handleViewReport = () => {
+    navigate(`/assessment/${assessmentId}/report`);
+  };
 
   return (
-    <>
-    <div className="checkpoint-ctas" >
-      <button className="view-report-cta" onClick={() => {
-          axios.get('/json/report.json').then(res => {
-            const modalData = {
-              type: "report",
-              content: res.data[0]
-            };
-            setModal(modalData);
-          });
-        }}
-      >
-      <div className="cta-inner">
-        <div className="cta-title">View your report</div>
-        <div className="cta-content">
-
-          <div className="cta-text">You can review your report at anytime. However, the more checkpoints you tackle, the more useful the report will be.</div>
-
-        </div>
-
-        <div className="button button-white">
-          Read the report
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <line x1="10.1424" y1="0.431885" x2="10.1425" y2="19.5679" stroke="#2254F4" strokeWidth="2.2849"/>
-          <line x1="0.429688" y1="9.85706" x2="19.5657" y2="9.85706" stroke="#2254F4" strokeWidth="2.2849"/>
-          </svg>
-
-        </div>
+    <div className="viewReport">
+      <button className="view-report-cta" onClick={handleViewReport}>
+        <div className="cta-inner">
+          <div className="cta-title">View your report</div>
+          <div className="cta-content">
+            <div className="cta-image"></div>
+            <div className="cta-text">
+              <div className="text">View your report in many formats so you can easily reuse it.</div>
+              <div className="buttons-container">
+                <button className="button button-white">View Report</button>
+              </div>
+            </div>
+          </div>
         </div>
       </button>
     </div>
-
-
-    </>
   );
-};
+}

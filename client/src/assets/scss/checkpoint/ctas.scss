@@ -88,9 +88,11 @@
   border: none;
   width: calc(100% + 7vw);
   margin-top: 50px;
-  @media (min-width: 1440px){
+
+  @media (min-width: 1440px) {
     width: calc(100% + 100px);
   }
+
   &:before {
     content: "";
     display: block;
@@ -101,7 +103,6 @@
     left: 0;
     background: #2254F4;
     box-shadow: -10px 10px 0px #178CFF;
-
     transform: rotate(-2deg);
   }
 
@@ -109,7 +110,6 @@
     position: relative;
     z-index: 2;
     padding: 30px 20px;
-    justify-content: flex-start;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -126,61 +126,89 @@
     color: #fff;
     background: $light-blue;
     padding: 0.3em 0.5em;
-    @media (min-width: 768px){
+
+    @media (min-width: 768px) {
       font-size: vh(18px);
     }
-    @media (min-width: 768px) and (min-height: 900px){
+
+    @media (min-width: 768px) and (min-height: 900px) {
       font-size: vw(18px);
     }
-    @media (min-width: 1440px) and (min-height: 900px){
+
+    @media (min-width: 1440px) and (min-height: 900px) {
       font-size: 18px;
     }
   }
 
   .cta-content {
     display: flex;
-
+    align-items: center;
     padding-right: 60px;
+
+    .cta-image {
+      width: 75px;
+      height: 98px;
+      background-image: url('../../img/report-a.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      flex-shrink: 0;
+      margin-right: 15px;
+
+      @media (min-width: 768px) {
+        width: vw(75px);
+        height: vw(98px);
+      }
+
+      @media (min-width: 1440px) {
+        width: 75px;
+        height: 98px;
+      }
+    }
 
     .cta-text {
       text-align: left;
       color: #fff;
       display: flex;
+      flex-direction: column;
       font-size: 1.6rem;
-      @media (min-width: 768px){
+
+      @media (min-width: 768px) {
         font-size: 1.4rem;
       }
-      @media (min-width: 1024px){
+
+      @media (min-width: 1024px) {
         font-size: 1.5rem;
       }
-      @media (min-width: 1440px) and (min-height: 900px){
+
+      @media (min-width: 1440px) and (min-height: 900px) {
         font-size: 1.6rem;
       }
-      &:before {
-        content: "";
-        display: inline-block;
-        width: 75px;
-        height: 98px;
-        background-image: url('../../img/report-a.svg');
-        background-size: contain;
-        background-repeat: no-repeat;
-        flex-shrink: 0;
-        margin-right: 15px;
-        @media (min-width: 768px){
-          width: vw(75px);
-          height: vw(98px);
-        }
-        @media (min-width: 1440px) {
-          width: 75px;
-          height: 98px;
+
+      .text {
+        margin-bottom: 10px;
+      }
+
+      .buttons-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        .button {
+          position: relative;
+          display: inline-block;
+          padding: 10px 20px;
+          background: #fff;
+          color: #2254F4;
+          border: 2px solid #2254F4;
+          border-radius: 5px;
+          text-align: center;
+          cursor: pointer;
+
+          svg {
+            margin-left: 5px;
+          }
         }
       }
     }
-  }
-
-  .button {
-    position: absolute;
-    left: 20px;
-    bottom: -20px;
   }
 }
