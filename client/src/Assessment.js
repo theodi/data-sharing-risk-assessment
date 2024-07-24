@@ -22,7 +22,7 @@ export default function Assessment() {
   const location = useLocation();
   const { id, checkpointId } = useParams();
 
-  const { loading, error, activeAssessment, assessmentsList, assessments_loading } = useSelector((state) => state.checkpoints);
+  const { loading, activeAssessment, assessmentsList, assessments_loading } = useSelector((state) => state.checkpoints);
   const [assessmentLoaded, setAssessmentLoaded] = useState(false);
 
   useEffect(() => {
@@ -69,7 +69,6 @@ export default function Assessment() {
   return (
     <div className="template template-healthcheck">
       <div className="template-inner">
-      {error && <div className="error">{error}</div>}
         <Routes>
           <Route path="metadata" element={
             <>

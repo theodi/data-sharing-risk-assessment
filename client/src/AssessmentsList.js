@@ -15,12 +15,6 @@ export default function AssessmentsList(props) {
     return id;
   };
 
-  useEffect(() => {
-    if (error) {
-      alert(`Failed to delete assessment: ${error}`);
-    }
-  }, [error]);
-
   return (
     <table>
       <tbody>

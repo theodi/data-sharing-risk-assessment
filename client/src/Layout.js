@@ -1,5 +1,6 @@
 // src/Layout.js
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Outlet, Link } from "react-router-dom";
 import axios from 'axios';
 import { useModal } from './context/modal-context';
@@ -7,6 +8,7 @@ import privacyIcon from './assets/img/privacy.svg';
 import arrowIcon from './assets/img/arrow.svg';
 import dashboardIcon from './assets/img/dashboard.svg';
 import packageJson from '../package.json'; // Adjust the path if necessary
+import { clearError } from './checkpointsSlice'; // Import the clearError action
 
 function Layout({ user, onLogout }) {
   const { setModal } = useModal();
@@ -17,6 +19,22 @@ function Layout({ user, onLogout }) {
     homepage: packageJson.homepage,
     versionLink: `${packageJson.homepage}/releases/tag/v${packageJson.version}`
   };
+
+  const { error } = useSelector((state) => state.checkpoints);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (error) {
+      const currentError = error;
+      const timer = setTimeout(() => {
+        if (currentError === error) {
+          dispatch(clearError());
+        }
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [error, dispatch]);
 
   return (
     <>
@@ -78,7 +96,7 @@ function Layout({ user, onLogout }) {
           </div>
         </div>
       </header>
-      <div className="error"></div>
+      {error && <div className="error">{error}</div>}
       <div className="outer-container">
         <Outlet />
       </div>

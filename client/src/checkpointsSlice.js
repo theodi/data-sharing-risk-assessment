@@ -87,7 +87,8 @@ export const deleteAssessment = createAsyncThunk(
       await axiosInstance.delete(`/assessments/${id}`, { withCredentials: true });
       return id;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      console.log(error);
+      return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -119,6 +120,9 @@ export const checkpointsSlice = createSlice({
   name: "checkpoints",
   initialState,
   reducers: {
+    clearError: (state) => {
+      state.error = null;
+    },
     getActiveCheckpoint: (state, action) => {
       state.activeCheckpoint = action.payload[state.activeCheckpointIndex - 1];
     },
@@ -278,11 +282,11 @@ export const checkpointsSlice = createSlice({
     },
     [deleteAssessment.rejected]: (state, action) => {
       state.loading = false;
-      state.error = action.payload;
+      state.error = "Failed to delete assessment.\n" + action.payload;
     }
   },
 });
 
-export const { getActiveCheckpoint, updateActiveCheckpointIndex, updateActiveCheckpoint, updateCheckpointAnswers, startAssessment, updateAssessmentStatus, updateAssessmentData, updateExtraInfoState } = checkpointsSlice.actions;
+export const { clearError, getActiveCheckpoint, updateActiveCheckpointIndex, updateActiveCheckpoint, updateCheckpointAnswers, startAssessment, updateAssessmentStatus, updateAssessmentData, updateExtraInfoState } = checkpointsSlice.actions;
 
 export default checkpointsSlice.reducer;
