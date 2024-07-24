@@ -20,7 +20,7 @@ function Layout({ user, onLogout }) {
     versionLink: `${packageJson.homepage}/releases/tag/v${packageJson.version}`
   };
 
-  const { error } = useSelector((state) => state.checkpoints);
+  const { error, loading } = useSelector((state) => state.checkpoints);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -96,7 +96,8 @@ function Layout({ user, onLogout }) {
           </div>
         </div>
       </header>
-      {error && <div className="error">{error}</div>}
+      {loading && <div className="error loading-message">Please wait...</div>}
+      {error && <div className="error error-message">{error}</div>}
       <div className="outer-container">
         <Outlet />
       </div>

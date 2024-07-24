@@ -15,6 +15,12 @@
     }
 
   }
+  .shareButton {
+    float: right;
+    z-index: 100;
+    bottom: 4em;
+    position: relative;
+  }
 
   .slot {
     padding: 25px;

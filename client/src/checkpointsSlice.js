@@ -93,6 +93,32 @@ export const deleteAssessment = createAsyncThunk(
   }
 );
 
+// Add shared user
+export const addSharedUser = createAsyncThunk(
+  'checkpoints/addSharedUser',
+  async ({ assessmentId, email }, { rejectWithValue }) => {
+    try {
+      await axiosInstance.post(`/assessments/${assessmentId}/sharedUsers`, { email });
+      return { assessmentId, email };
+    } catch (err) {
+      return rejectWithValue(err.response.data.message);
+    }
+  }
+);
+
+// Remove shared user
+export const removeSharedUser = createAsyncThunk(
+  'checkpoints/removeSharedUser',
+  async ({ assessmentId, email }, { rejectWithValue }) => {
+    try {
+      await axiosInstance.delete(`/assessments/${assessmentId}/sharedUsers/${email}`);
+      return { assessmentId, email };
+    } catch (err) {
+      return rejectWithValue(err.response.data.message);
+    }
+  }
+);
+
 const initialState = {
   checkpoints: [],
   totalCheckpoints: 0,
@@ -109,11 +135,11 @@ const initialState = {
     date_modified: "",
     answers: [],
     data_capture: {},
-    status: ""
+    status: "",
+    sharedWidth: []
   },
   assessmentStatus: "",
   extraInfoState: false,
-  assessments_loading: false
 };
 
 export const checkpointsSlice = createSlice({
@@ -247,26 +273,29 @@ export const checkpointsSlice = createSlice({
     },
 
     [getAssessmentsList.pending]: (state) => {
-      state.assessments_loading = true;
+      state.loading = true;
     },
     [getAssessmentsList.fulfilled]: (state, { payload }) => {
-      state.assessments_loading = false;
-      state.assessmentsList = payload;
+      state.loading = false;
+      state.assessmentsList = payload.map(assessment => ({
+        ...assessment,
+        id: assessment._id // Add this line to set id to _id
+      }));
     },
     [getAssessmentsList.rejected]: (state) => {
-      state.assessments_loading = false;
+      state.loading = false;
     },
 
     [createAssessment.pending]: (state) => {
-      state.assessments_loading = true;
+      state.loading = true;
     },
     [createAssessment.fulfilled]: (state, { payload }) => {
-      state.assessments_loading = false;
+      state.loading = false;
       state.assessmentsList.push(payload);
       state.activeAssessment.id = payload._id;
     },
     [createAssessment.rejected]: (state) => {
-      state.assessments_loading = false;
+      state.loading = false;
     },
     [deleteAssessment.pending]: (state) => {
       state.loading = true;
@@ -283,6 +312,38 @@ export const checkpointsSlice = createSlice({
     [deleteAssessment.rejected]: (state, action) => {
       state.loading = false;
       state.error = "Failed to delete assessment.\n" + action.payload;
+    },
+    [addSharedUser.fulfilled]: (state, action) => {
+      state.loading = false;
+      const { assessmentId, email } = action.meta.arg;
+      const assessment = state.assessmentsList.find(assessment => assessment._id === assessmentId);
+      if (assessment) {
+        assessment.sharedWith.push({ user: email });
+      }
+    },
+    [removeSharedUser.fulfilled]: (state, action) => {
+      state.loading = false;
+      const { assessmentId, email } = action.meta.arg;
+      const assessment = state.assessmentsList.find(assessment => assessment._id === assessmentId);
+      if (assessment) {
+        assessment.sharedWith = assessment.sharedWith.filter(user => user.user !== email);
+      }
+    },
+    [addSharedUser.pending]: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    [removeSharedUser.pending]: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    [addSharedUser.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = "Failed to share with user.\n" + action.payload;
+    },
+    [removeSharedUser.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = "Failed to remove share with user.\n" + action.payload;
     }
   },
 });

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
+import ShareOverlay from './shareOverlay';
 
 import {
     deleteAssessment
@@ -8,6 +9,7 @@ import {
 export default function AssessmentsGrid(props) {
   const dispatch = useDispatch();
   const { totalCheckpoints, assessmentsList } = useSelector((state) => state.checkpoints)
+  const [selectedAssessment, setSelectedAssessment] = useState(null);
 
 
   const { filterData, checkAssessmentDate } = props;
@@ -20,7 +22,7 @@ export default function AssessmentsGrid(props) {
   };
 
   return (
-
+  <>
     <div className="grid">
     {assessmentsList.map((d, i) => {
       const percentComplete = Math.round((d.answers.length / totalCheckpoints) * 100);
@@ -29,8 +31,8 @@ export default function AssessmentsGrid(props) {
       const dateCreated = dc.getDate()  + " / " + (dc.getMonth()+1) + " / " + dc.getFullYear();
       const dateModified = dm.getDate()  + " / " + (dm.getMonth()+1) + " / " + dm.getFullYear();
       const name = (d.data_capture && d.data_capture.dataset_name) ? d.data_capture.dataset_name.value : "not set";
-      const id = d._id;
-      const owner = (d.data_capture && d.data_capture.person_name) ? d.data_capture.person_name.value : "not set";
+      const id = d.id || d._id;
+      const owner = d.ownerEmail;
 
       const date_created_show = filterData.date_created.touched ? checkAssessmentDate(dc, filterData.date_created.startDate, filterData.date_created.endDate) : true;
       const date_modified_show = filterData.date_modified.touched ? checkAssessmentDate(dm, filterData.date_modified.startDate, filterData.date_modified.endDate) : true;
@@ -52,16 +54,20 @@ export default function AssessmentsGrid(props) {
             <div className="slot-info"><a href={`/assessment/${id}`}>Date Modified: {dateModified} </a></div>
             <div className="slot-info"><a href={`/assessment/${id}`}>Owner: {owner}</a></div>
             <div className="percentage"><a href={`/assessment/${id}`}><span>{percentComplete}%</span><span>Complete</span></a></div>
+            <button onClick={() => setSelectedAssessment(id)} className="shareButton button button-white">Share</button>
           </div>
         </div>
       );
         }
     })}
     </div>
-
-
-
-
+    {selectedAssessment && (
+        <ShareOverlay
+          assessmentId={selectedAssessment}
+          onClose={() => setSelectedAssessment(null)}
+        />
+      )}
+    </>
   )
 
 }

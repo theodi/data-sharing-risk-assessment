@@ -23,10 +23,6 @@ router.get('/', ensureAuthenticated, async (req, res) => {
       const assessmentObj = assessment.toObject();
       assessmentObj.ownerEmail = ownerEmail;
 
-      if (assessment.owner.toString() !== userId) {
-        delete assessmentObj.sharedWith;
-      }
-
       return assessmentObj;
     }));
 
@@ -117,6 +113,83 @@ router.delete('/:id', ensureAuthenticated, async (req, res) => {
     res.json({ message: 'Assessment deleted' });
   } catch (err) {
     res.status(500).json({ message: err.message });
+  }
+});
+
+// GET route to retrieve shared users of an assessment
+router.get('/:id/sharedUsers', ensureAuthenticated, async (req, res) => {
+  try {
+    const assessment = await Assessment.findById(req.params.id);
+
+    if (!assessment) {
+      return res.status(404).json({ message: "Assessment not found" });
+    }
+
+    if (assessment.owner.toString() !== userId && !assessment.sharedWith.some(sharedUser => sharedUser.user === user.email)) {
+      return res.status(403).json({ message: 'Access denied' });
+    }
+
+    const sharedUsers = assessment.sharedWith.map(user => user.user);
+
+    res.json({ sharedUsers });
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+// POST route to add a new shared user to an assessment
+router.post('/:id/sharedUsers', ensureAuthenticated, async (req, res) => {
+  const userId = req.session.passport.user.id;
+  const { email } = req.body; // Assuming the email is sent in the request body
+
+  try {
+    const assessment = await Assessment.findById(req.params.id);
+
+    if (!assessment) {
+      return res.status(404).json({ message: "Assessment not found" });
+    }
+
+    if (assessment.owner.toString() !== userId && !assessment.sharedWith.some(sharedUser => sharedUser.user === user.email)) {
+      return res.status(403).json({ message: 'Access denied' });
+    }
+
+    assessment.sharedWith.push({ user: email });
+
+    await assessment.save();
+
+    res.json({ message: "User added to the assessment successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+// DELETE route to remove a shared user from an assessment
+router.delete('/:id/sharedUsers/:email', ensureAuthenticated, async (req, res) => {
+  const userId = req.session.passport.user.id;
+  const email = req.params.email;
+
+  try {
+    const assessment = await Assessment.findById(req.params.id);
+
+    if (!assessment) {
+      return res.status(404).json({ message: "Assessment not found" });
+    }
+
+    if (assessment.owner.toString() !== userId && !assessment.sharedWith.some(sharedUser => sharedUser.user === user.email)) {
+      return res.status(403).json({ message: 'Access denied' });
+    }
+
+    const index = assessment.sharedWith.findIndex(user => user.user === email);
+
+    if (index !== -1) {
+      assessment.sharedWith.splice(index, 1);
+      await assessment.save();
+      res.json({ message: "Shared user removed from the assessment successfully" });
+    } else {
+      res.status(404).json({ message: "Shared user not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error" });
   }
 });
 
