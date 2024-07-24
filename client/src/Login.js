@@ -16,7 +16,7 @@ const Login = () => {
           <div className="template-left">
             <p>Please login to create and view your assessments</p>
             <br/>
-            <button onClick={handleLogin}>Login</button>
+            <button className="button button-white" onClick={handleLogin}>Login</button>
           </div>
         </div>
       </div>

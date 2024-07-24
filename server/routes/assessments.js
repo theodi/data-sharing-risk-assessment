@@ -2,12 +2,12 @@ const express = require('express');
 const router = express.Router();
 const Assessment = require('../models/Assessment');
 const User = require('../models/User');
-const ensureAuthenticated = require('../middleware/ensureAuthenticated'); // Assuming you move the ensureAuthenticated middleware to a separate file
+const ensureAuthenticated = require('../middleware/ensureAuthenticated');
 
 // Get all assessments
 router.get('/', ensureAuthenticated, async (req, res) => {
   try {
-    const userId = req.session.passport.user.id;
+    const userId = req.user._id; // Fetch the user ID from req.user
     const user = await User.findById(userId);
 
     const assessments = await Assessment.find({
@@ -35,7 +35,7 @@ router.get('/', ensureAuthenticated, async (req, res) => {
 // Get a single assessment by ID
 router.get('/:id', ensureAuthenticated, async (req, res) => {
   try {
-    const userId = req.session.passport.user.id;
+    const userId = req.user._id; // Fetch the user ID from req.user
     const user = await User.findById(userId);
     const assessment = await Assessment.findById(req.params.id);
 
@@ -62,7 +62,7 @@ router.get('/:id', ensureAuthenticated, async (req, res) => {
 
 // Create a new assessment
 router.post('/', ensureAuthenticated, async (req, res) => {
-  const userId = req.session.passport.user.id;
+  const userId = req.user._id; // Fetch the user ID from req.user
   const assessment = new Assessment({
     ...req.body,
     owner: userId
@@ -79,7 +79,7 @@ router.post('/', ensureAuthenticated, async (req, res) => {
 // Update an assessment by ID
 router.put('/:id', ensureAuthenticated, async (req, res) => {
   try {
-    const userId = req.session.passport.user.id;
+    const userId = req.user._id; // Fetch the user ID from req.user
     const user = await User.findById(userId);
     const assessment = await Assessment.findById(req.params.id);
 
@@ -100,7 +100,7 @@ router.put('/:id', ensureAuthenticated, async (req, res) => {
 // Delete an assessment by ID
 router.delete('/:id', ensureAuthenticated, async (req, res) => {
   try {
-    const userId = req.session.passport.user.id;
+    const userId = req.user._id; // Fetch the user ID from req.user
     const assessment = await Assessment.findById(req.params.id);
 
     if (!assessment) return res.status(404).json({ message: 'Assessment not found' });
@@ -119,13 +119,14 @@ router.delete('/:id', ensureAuthenticated, async (req, res) => {
 // GET route to retrieve shared users of an assessment
 router.get('/:id/sharedUsers', ensureAuthenticated, async (req, res) => {
   try {
+    const userId = req.user._id; // Fetch the user ID from req.user
     const assessment = await Assessment.findById(req.params.id);
 
     if (!assessment) {
       return res.status(404).json({ message: "Assessment not found" });
     }
 
-    if (assessment.owner.toString() !== userId && !assessment.sharedWith.some(sharedUser => sharedUser.user === user.email)) {
+    if (assessment.owner.toString() !== userId && !assessment.sharedWith.some(sharedUser => sharedUser.user === req.user.email)) {
       return res.status(403).json({ message: 'Access denied' });
     }
 
@@ -139,7 +140,7 @@ router.get('/:id/sharedUsers', ensureAuthenticated, async (req, res) => {
 
 // POST route to add a new shared user to an assessment
 router.post('/:id/sharedUsers', ensureAuthenticated, async (req, res) => {
-  const userId = req.session.passport.user.id;
+  const userId = req.user._id; // Fetch the user ID from req.user
   const { email } = req.body; // Assuming the email is sent in the request body
 
   try {
@@ -149,7 +150,7 @@ router.post('/:id/sharedUsers', ensureAuthenticated, async (req, res) => {
       return res.status(404).json({ message: "Assessment not found" });
     }
 
-    if (assessment.owner.toString() !== userId && !assessment.sharedWith.some(sharedUser => sharedUser.user === user.email)) {
+    if (assessment.owner.toString() !== userId && !assessment.sharedWith.some(sharedUser => sharedUser.user === req.user.email)) {
       return res.status(403).json({ message: 'Access denied' });
     }
 
@@ -165,7 +166,7 @@ router.post('/:id/sharedUsers', ensureAuthenticated, async (req, res) => {
 
 // DELETE route to remove a shared user from an assessment
 router.delete('/:id/sharedUsers/:email', ensureAuthenticated, async (req, res) => {
-  const userId = req.session.passport.user.id;
+  const userId = req.user._id; // Fetch the user ID from req.user
   const email = req.params.email;
 
   try {
@@ -175,7 +176,7 @@ router.delete('/:id/sharedUsers/:email', ensureAuthenticated, async (req, res) =
       return res.status(404).json({ message: "Assessment not found" });
     }
 
-    if (assessment.owner.toString() !== userId && !assessment.sharedWith.some(sharedUser => sharedUser.user === user.email)) {
+    if (assessment.owner.toString() !== userId && !assessment.sharedWith.some(sharedUser => sharedUser.user === req.user.email)) {
       return res.status(403).json({ message: 'Access denied' });
     }
 

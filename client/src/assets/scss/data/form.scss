@@ -68,7 +68,6 @@ fieldset {
   }
 }
 
-
 .form-element-text {
   display: inline-block;
   width: 100%;
@@ -103,6 +102,17 @@ fieldset {
     &:focus {
       border-radius: 0;
     }
+  }
+}
+
+.share-section {
+  text-align: center;
+  input {
+    margin: 1em;
+    width: 90%;
+  }
+  th {
+    text-align: center !important;
   }
 }
 

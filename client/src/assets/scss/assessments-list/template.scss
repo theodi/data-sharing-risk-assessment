@@ -2,34 +2,35 @@
 
   .delete {
     cursor: pointer;
+    padding-left: 20px;
   }
   .template-columns {
     width: 100%;
-    @media (min-width: 768px){
+    @media (min-width: 1200px){
       display: flex;
     }
-    @media (min-width: 1440px){
+    @media (min-width: 1680px){
 
     }
 
 
     .template-column {
       &-30 {
-        @media (min-width: 768px){
+        margin-top: 3em;
+        @media (min-width: 1200px){
           width: 35%;
           position: relative;
           right: vw(-100px);
         }
-        @media (min-width: 1440px){
+        @media (min-width: 1680px){
           right: -100px;
         }
       }
       &-70 {
-        @media (min-width: 768px){
+        @media (min-width: 1200px){
           width: 70%;
-
         }
-        @media (min-width: 1440px){
+        @media (min-width: 1680px){
 
         }
       }

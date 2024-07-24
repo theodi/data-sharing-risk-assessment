@@ -32,7 +32,7 @@ export default function ShareOverlay({ assessmentId, onClose }) {
 
         <div className="share-section">
           <h2>New share</h2>
-          <form onSubmit={handleAddShare}>
+          <form className="form-element-text" onSubmit={handleAddShare}>
             <label htmlFor="email">Please enter the email you wish to share this assessment with</label>
             <input
               type="email"
@@ -43,7 +43,7 @@ export default function ShareOverlay({ assessmentId, onClose }) {
               className="input inputText"
               required
             />
-            <button type="submit">Share</button>
+            <button className="button button-white" type="submit">Share</button>
           </form>
         </div>
         <div className="share-section">
