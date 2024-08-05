@@ -25,7 +25,7 @@ Before you begin, ensure you have the following installed on your local machine:
 
     ```bash
     git clone https://github.com/theodi/data-sharing-risk-assessment.git
-    cd client
+    cd data-sharing-risk-assessment/client
     ```
 
 2. **Install dependencies**:
@@ -111,10 +111,10 @@ my-react-app/
 
 In the project directory, you can run:
 
-- `npm start` or `yarn start`: Runs the app in development mode.
-- `npm build` or `yarn build`: Builds the app for production to the `build` folder.
-- `npm test` or `yarn test`: Launches the test runner in interactive watch mode.
-- `npm eject`: Ejects the app configuration. **Note: This is a one-way operation. Once you `eject`, you can’t go back!**
+- `npm run start` or `yarn start`: Runs the app in development mode.
+- `npm run build` or `yarn build`: Builds the app for production to the `build` folder.
+- `npm run test` or `yarn test`: Launches the test runner in interactive watch mode.
+- `npm run eject`: Ejects the app configuration. **Note: This is a one-way operation. Once you `eject`, you can’t go back!**
 
 ## Learn More
 

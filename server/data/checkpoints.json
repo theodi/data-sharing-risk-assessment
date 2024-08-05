@@ -1,0 +1,777 @@
+[
+  {
+    "id": 1,
+    "title": "Does the data contain any personal data?",
+    "text": "Put simply, personal data can be defined as specific information about ‘an identifiable person’, such as name or location. There are lots of different types of data about people. Some types of personal data are more sensitive than others.",
+    "extra_text": "",
+    "category": "Legal & Regulatory",
+    "options": [
+      {
+        "option": "Yes",
+        "explain_risk": true,
+        "risk_level": "red",
+        "explain_text": ""
+      },
+      {
+        "option": "No",
+        "explain_risk": false,
+        "risk_level": "green"
+      },
+      {
+        "option": "Uncertain",
+        "explain_risk": true,
+        "risk_level": "amber"
+      }
+    ],
+    "background_info": [
+      {
+        "title": "Background Information",
+        "text": "Most countries will have different definitions and categories of personal data but generally speaking any data or information directly relating to an identifiable individual is personal. This includes images of a person, or group of people.<p>Data protection regulations across the world are designed to minimise the risk of harmful impacts, while enabling personal data to be processed, that is, to be collected, accessed, used and shared. These regulations typically outline three key things:</p><ul><li>The lawful basis for using and sharing personal data.</li><li>The rights of the data subject (the person the data is about).</li><li>Liabilities and penalties for breaching the regulations.</li></ul><p>Some types of personal data are more sensitive than others. Best-practice data-protection legislation defines sensitive personal information as ‘special category’ data and includes attributes such as race, ethnic origin, religious or philosophical beliefs, biometric data (where this is used for identification purposes) and health data.</p><h4>Examples of personal and sensitive personal data:</h4><p>Personal data: name, address, telephone number, IP address, location data, online identifiers (cookies)</p><p>Special category (sensitive) personal data: age, gender, race, religion or belief, political affiliation, biometrics, disability, criminal record, health, sexual orientation, relationship status</p><a href='https://docs.google.com/document/d/104YwZLrIyvP451RVW5nQw3jC4DAD3HY7rzWP8MqUJkA/view#heading=h.417j3zmpsbhx' target='_blank' rel='external'><h4>Read the full guidance online</h4></a>"
+      }
+    ],
+    "examples": [
+      {
+        "title": "Examples of personal data",
+        "text": "<img src=' ../img/ODI-Types-of-Data-About-Us-graphic-20190916.png'>"
+      }
+    ],
+    "mitigating_actions": [
+      {
+        "title": "Mitigating Actions",
+        "text": "If the data asset does contain personal data, there is a risk of identifying individuals and this could cause them harm and breach legal, regulatory or contractual obligations. <p>To help manage this, and share data as widely as possible, there are several common mitigation options available to minimise the risks of re-identification:<h4>Anonymisation</h4> <a href='https://theodi.org/article/anonymisation-report/' target='_blank' rel='external'>Anonymisation</a> means processing data into a modified form that can be shared or published while significantly reducing the possibility of re-identifying individuals. Techniques include suppression of parts of the data, generalisation, randomisation and pseudonymisation.<h4>Use synthetic data</h4>In some situations (for example research) it might be appropriate to share data that contains many of the statistical patterns of an original dataset, but eliminates identifying personal information. This is known as synthetic data, and it involves an automated process to make up (synthesise) data in a way that enables the same conclusions to be drawn from the data.  This tutorial shows <a href='https://github.com/theodi/synthetic-data-tutorial/' target='_blank' rel='external'>how to create a synthetic dataset.</a><h4>Share the data under contract</h4> A contract with detailed, binding rules ensures all parties are clear on their legal obligations. Data sharing agreements can be useful when organisations of any kind are collecting, using or sharing data that is of a personal or sensitive nature."
+      }
+    ],
+    "explain": [
+      {
+        "title": "Mitigating actions you can take:",
+        "text": "<ul><li>Anonymise the data</li><li>Use synthetic data</li><li>Share the data under contract</li><li>Other?</li></ul>",
+        "form": [
+          {
+            "type": "textarea",
+            "name": "mitigating_actions",
+            "label": "Use this space to add details of actions and decisions to your report:"
+          }
+
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Does the data contain third party data?",
+    "text": "When an individual or an organisation puts intellectual effort into creating something, such as taking a photograph or collecting data, the law grants them specific rights of ownership over that work. Different countries will have specific laws and definitions but generally speaking, by default, the data creator holds exclusive rights to use the data, so that others must seek or be given the permission to use the data themselves.",
+    "extra_text": "",
+    "category": "Legal & Regulatory",
+    "options": [
+      {
+        "option": "Yes",
+        "explain_risk": true,
+        "risk_level": "red"
+      },
+      {
+        "option": "No",
+        "explain_risk": false,
+        "risk_level": "green"
+      },
+      {
+        "option": "Uncertain",
+        "explain_risk": true,
+        "risk_level": "amber"
+      }
+    ],
+    "background_info": [
+      {
+        "title": "Background Information",
+        "text": "When an individual or an organisation puts intellectual effort into creating something, such as taking a photograph or collecting data, the law grants them specific rights of ownership over that work.<p>Different countries will have specific laws and definitions but generally speaking, by default, the data creator holds exclusive rights to use the data, so that others must seek or be given the permission to use the data themselves.</p><p>Therefore it is important to review the terms under which you are using and sharing the data, to ensure you have the relevant permissions. These permissions are usually found in a <a href='https://theodi.org/article/publishers-guide-to-open-data-licensing/' target='_blank' rel='external'>licence</a> accompanying the data, or in the contract (for example a data sharing agreement) setting out the terms under which data was provided.</p>"
+      }
+    ],
+    "examples": [
+      {
+        "title": "Examples of data typically sourced from third parties:",
+        "text": "<ul><li>Earth observation (for example from satellites)</li><li>climate or weather</li><li>populations</li><li>political or administrative boundaries</li><li>transport networks or timetables</li><li> research</li><li>telecoms activity</li><li>social media behaviour</li></ul>"
+      }
+    ],
+    "mitigating_actions": [
+      {
+        "title": "Mitigating Actions",
+        "text": "If the data asset you want to share does contain third-party data or you are not sure if you have the legal permissions to share data, you can manage this risk by:<h4>Engaging the third party data steward</h4> Convening a conversation with the third-party data steward that provides the data can help to explore, understand and overcome any possible intellectual property (IP) issues and establish that onward use and sharing is permitted. If the data is not under an open licence and the steward places some restrictions on how the data can be used or shared, it may be possible to agree to share the data under a contract or licence that complies with the relevant permissions. Having these conversations can help to ensure legal risks around sharing data are minimised."
+      }
+    ],
+    "explain": [
+      {
+        "title": "Mitigating actions you can take",
+        "text": "<ul><li>Review the terms under which you are using and sharing the data</li><li>Speak to any third party data stewards</li><li>Other?</li></ul>",
+        "form": [
+          {
+            "type": "textarea",
+            "name": "mitigating_actions",
+            "label": "Use this space to add details of actions and decisions to your report:"
+          }
+
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Do you have the legal permissions to share the data?",
+    "text": "It is important to review the terms under which you are using and sharing the data, to ensure you have the relevant permissions. These permissions are usually found in a licence accompanying the data, or in the contract (for example a data sharing agreement) setting out the terms under which data was provided.",
+    "extra_text": "",
+    "category": "Legal & Regulatory",
+    "options": [
+      {
+        "option": "Yes",
+        "explain_risk": false,
+        "risk_level": "green"
+      },
+      {
+        "option": "No",
+        "explain_risk": true,
+        "risk_level": "red"
+      },
+      {
+        "option": "Uncertain",
+        "explain_risk": true,
+        "risk_level": "amber"
+      }
+    ],
+    "background_info": [
+      {
+        "title": "Background Information",
+        "text": "It is important to review the terms under which you are using and sharing the data, to ensure you have the relevant permissions. These permissions are usually found in a licence accompanying the data, or in the contract (for example a data sharing agreement) setting out the terms under which data was provided.<p>The data you want to share might:</p><ul><li>be created and owned by you/ your organisation</li><li>be completely licensed from someone else</li><li>include an extract of content or data licensed from someone else</li><li>be derived from the content or data licensed from someone else.</li></ul>"
+      }
+    ],
+    "examples": [
+      {
+        "title": "Examples of data licences and data sharing agreements: ",
+        "text": "<a href='https://creativecommons.org/about/cclicenses/' target='_blank' rel='external'><h4>Creative Commons</h4></a><p>Creative Commons include a range of licences with standard terms and different restrictions on use.</p><A href='https://www.datasharingtoolkit.org/wp-content/uploads/2021/03/CABI-Mod5-6-01-Checklist.pdf' target='_blank' rel='external'><h4>Data-sharing agreements</h4></a><p>These tend to be bespoke documents, outlining what data is being shared, for how long, and any restrictions on its use.</p><a href='https://library.unimelb.edu.au/Digital-Scholarship/restrictive-licence-template' target='_blank' rel='eternal'><h4>Restrictive Licence Template</h4></a><p>Developed as a part of the AusGOAL (Australian Government Open Access Licensing framework) for material that may contain personal or other confidential information. It may be used for other reasons, including material to be licensed under some form of limiting or restrictive condition (for example permission or ethics required, a time limit on use, or contractual arrangements).</p>"
+      }
+    ],
+    "mitigating_actions": [
+      {
+        "title": "Mitigating Actions",
+        "text": "If the data asset you want to share does contain third-party data or you are not sure if you have the legal permissions to share data, you can manage this risk by:<p><h4>Engaging the third party data steward</h4> Convening a conversation with the third-party data steward that provides the data can help to explore, understand and overcome any possible intellectual property (IP) issues and establish that onward use and sharing is permitted. If the data is not under an open licence and the steward places some restrictions on how the data can be used or shared, it may be possible to agree to share the data under a contract or licence that complies with the relevant permissions. Having these conversations can help to ensure legal risks around sharing data are minimised."
+      }
+    ],
+    "explain": [
+      {
+        "title": "Mitigating actions you can take",
+        "text": "<ul><li>Review the terms under which you are using and sharing the data</li><li>Speak to any third party data stewards</li><li>Other?</li></ul>",
+        "form": [
+          {
+            "type": "textarea",
+            "name": "mitigating_actions",
+            "label": "Use this space to add details of actions and decisions to your report:"
+          }
+
+        ]
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Are there any other legal or regulatory considerations relevant to this data?",
+    "text": "There may be other legal or regulatory considerations from non-data-related legislation, or specific to your sector (for example the Equality Act 2010 and freedom of information requests) that will need consideration when sharing data.",
+    "extra_text": "",
+    "category": "Legal & Regulatory",
+    "options": [
+      {
+        "option": "Yes",
+        "explain_risk": true,
+        "risk_level": "red"
+      },
+      {
+        "option": "No",
+        "explain_risk": false,
+        "risk_level": "green"
+      },
+      {
+        "option": "Uncertain",
+        "explain_risk": true,
+        "risk_level": "amber"
+      }
+    ],
+    "background_info": [
+      {
+        "title": "Background Information",
+        "text": "There may be other legal or regulatory considerations from non-data-related legislation, or specific to your sector (for example the Equality Act 2010 and freedom of information requests) that will need consideration when sharing data.<p>This might include sector-specific legislation (for example financial institutions have particular duties and biometric data has particular limits). It might also include data licensing or intellectual property laws; or insights into data rights, for example, individual rights to data, rights for data creators, rights for governments and rights for citizens.</p><p>If you’re not familiar with the requirements you may need to seek advice from specialists for your sector, area or on the type of data you want to share, to understand any obligations.</p><p>In addition, use of tools, like <a href='https://doteveryone.org.uk/project/consequence-scanning/' target='_blank' rel='external'>Consequence Scanning</a> and the <a href='https://theodi.org/article/the-data-ethics-canvas-2021/' target='_blank' rel='external'>Data Ethics Canvas</a>, can help to consider the intended and unintended consequences of data collection and surface wider legal, regulatory or ethical considerations. Consequence scanning provides an opportunity to reflect on risks that might not be immediately obvious.</p>"
+      }
+    ],
+    "examples": [
+      {
+        "title": "Examples of other legal or regulatory considerations: ",
+        "text": "<h4>Legal:</h4><p>Local laws on competition, intellectual property, digital economy, human rights, equalities act.</p><h4>Sector-specific legislation:</h4><p>Financial sector climate-related disclosures, oil and gas sector requirements around geophysical/seismic data, requests for environmental information.</p><h4>Policy:</h4><p>National data sharing and access policies or frameworks, requirements from international organisations that promote a specific type of data access, and sector or country codes of practice.</p>"
+      }
+    ],
+    "mitigating_actions": [
+      {
+        "title": "Mitigating actions",
+        "text": "If there are other relevant legal or regulatory requirements you may still be able to share the data. To manage any risks, you could carry out the below processes:<h4>Share the data under contract</h4> Data-sharing agreements can be useful when organisations of any kind are sharing data of a sensitive nature. A contract with detailed, binding rules ensures all parties are clear on their legal obligations.<h4>Anonymise the data</h4> <a href='https://theodi.org/article/anonymisation-report/' target='_blank' rel='external'>Anonymisation</a> includes suppression of parts of the data, generalisation, randomisation and pseudonymisation. Redacting or changing the data using these techniques could help to minimise risk from certain aspects of the data being shared.<h4>Use synthetic data</h4> In some situations (for example research) it might be appropriate to share data that contains many of the statistical patterns of an original dataset. This is known as synthetic data, and it involves an automated process to make up (synthesise) data in a way that enables the same conclusions to be drawn from the data.   This tutorial shows <a href='https://github.com/theodi/synthetic-data-tutorial/' target='_blank' rel='external'> how to create a synthetic dataset.</a></p>"
+      }
+    ],
+    "explain": [
+      {
+        "title": "Mitigating actions you can take",
+        "text": "<ul><li>Seek advice from specialists in your area</li><li>Use Consequence Scanning tools or the Data Ethics Canvas</li><li>Share the data under contract</li><li>Anonymise the data</li><li>Use synthetic data</li><li>Other?</li></ul>",
+        "form": [
+          {
+            "type": "textarea",
+            "name": "mitigating_actions",
+            "label": "Use this space to add details of actions and decisions to your report:"
+          }
+
+        ]
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Are there any cultural considerations relevant to this data?",
+    "text": "",
+    "extra_text": "",
+    "category": "Ethical Risks",
+    "options": [
+      {
+        "option": "Yes",
+        "explain_risk": true,
+        "risk_level": "red"
+      },
+      {
+        "option": "No",
+        "explain_risk": false,
+        "risk_level": "green"
+      },
+      {
+        "option": "Uncertain",
+        "explain_risk": true,
+        "risk_level": "amber"
+      },
+      {
+        "option": "N/A",
+        "explain_risk": false,
+        "risk_level": "green"
+      }
+    ],
+    "background_info": [
+      {
+        "title": "Background Information",
+        "text": "The increased use of data in recent decades prompts questions around issues of fairness, responsibility and accountability in relation to the use of data. It also triggers debate around whether existing legislation is fit to safeguard against harm to an individual’s or group’s privacy, welfare or safety, or to safeguard the environment.<p>Ethical risks are the perceived or actual risk of enabling unethical collection or uses of data, or directly impacting people, communities and the environment.</p><p>Increasingly, those collecting, sharing and working with data are exploring the ethical implications of their practices and, in some cases, being forced to confront those implications in the face of public criticism. Indeed, there is increasing pressure on organisations to report performance in relation to environmental sustainability and social responsibilities.</p><p>Thinking about the ethical use of data is particularly relevant when insights drawn or decisions informed by data have the potential to directly or indirectly impact people and communities. When considering broader harmful impacts, think about the people the data is about, people impacted by its use, and the organisations using the data. For example, could use of this data result in decisions that discriminate against any groups or individuals, or impact their safety?</p><p>Bias can be conscious or unconscious and can result in under-representation of specific communities, which could impact them by giving an unfair advantage to others, or unfairly restricting access (for example, exclusive arrangements), therefore it is important to consider how data collection or use might be impacted by social or personal influences, and the potential consequential effects of this when that data is shared.</p><p>There are methodologies available that provide tangible and replicable ways to help answer these questions. Two examples are:</p><a href='https://www.tech-transformed.com/product-development/' target='_blank' rel='external'><h4>Consequence Scanning</h4></a> This helps consider the intended and unintended consequences of data collection or related technologies. Consequence scanning provides an opportunity to reflect on risks that might not be immediately obvious, is part of responsible product development and can help provide structure to that thought process.<a href='https://theodi.org/article/the-data-ethics-canvas-2021/' target='_blank' rel='external'><h4>The Data Ethics Canvas</h4></a>This can help to identify and manage ethical considerations in projects involving data. It asks the user to consider 15 areas around data ethics – from bias in data sources to mitigating negative effects on people – to prompt critical thinking around how to collect, use and share data ethically. When sharing data it can be helpful to work through the canvas as a project team to promote understanding and debate around the foundation, intention and potential impact, as well as help identify the steps to ensure data is handled fairly."
+      }
+    ],
+    "examples": [
+      {
+        "title": "Examples of data that could have wider impacts",
+        "text": "<h4>People and communities</h4><ul><li>data flowing out of low- and middle-income countries (LMICs) to high-income countries via multinational corporations (also known as data colonialism, data nationalism, data repatriation)</li><li>data about people in vulnerable circumstances</li><li>data dealing specifically with indigenous data governance and sovereignty</li></ul><h4>Environment</h4><ul><li>data that reveals the location of endangered species</li><li>data about natural resources.</li></ul>"
+      }
+    ],
+    "mitigating_actions": [
+      {
+        "title": "Mitigating actions",
+        "text": "If you think that sharing the data may directly impact – positively or negatively – on people, communities or the environment, then engagement and communication with those communities can really help to manage this. This could include the below actions:<h4>Engaging the community</h4> Engaging those the data is about, or who might be impacted by it being shared, can help to validate or quash assumptions about the impacts, and identify actions (for example ensuring representation in the dataset or suppressing certain aspects) to reduce harm.<h4>Properly describing the data</h4> Best practice data sharing includes publishing well-structured, high-quality documentation and metadata to accompany data releases. Documentation can help users to understand important context – such as gaps or biases in the data (for example. gender representation. Data documentation that is open and clear can help users to understand whether they might be able to use it. If you are sharing data, this guide on <a href='https://docs.google.com/document/d/1o6hiO2tcXG5Uy08-gCEaBNo9IqbE90fiy9a73HYSW20/' target='_blank' rel='external'>describing and documenting data well</a> should help you to do this. There are also data-quality frameworks available (for example, <a href='https://www.gov.uk/government/publications/the-government-data-quality-framework' target='_blank' rel='external'>UK government</a> and <a href='https://www.iso.org/standard/32576.html' target='_blank' rel='external'>ISO 19158</a>) to help understand and communicate quality of the data for certain purposes.<h4>Anonymisation</h4> Suppressing certain aspects of the data, through <A href='https://theodi.org/article/anonymisation-report/' target='_blank' rel='external'>anonymisation</a> techniques could help to minimise risk from certain aspects of the data being shared, for example removing location fields to prevent endangered species from being tracked."
+      }
+    ],
+    "explain": [
+      {
+        "title": "Mitigating actions you can take",
+        "text": "<ul><li>Use Consequence Scanning tools or the Data Ethics Canvas</li><li>Engage the community</li><li>Describe and document the data well</li><li>Anonymise the data</li><li>Other?</li></ul>",
+        "form": [
+          {
+            "type": "textarea",
+            "name": "mitigating_actions",
+            "label": "Use this space to add details of actions and decisions to your report:"
+          }
+
+        ]
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Is sharing the data likely to impact people or communities?",
+    "text": "",
+    "extra_text": "",
+    "category": "Ethical Risks",
+    "options": [
+      {
+        "option": "Yes",
+        "explain_risk": true,
+        "risk_level": "red"
+      },
+      {
+        "option": "No",
+        "explain_risk": false,
+        "risk_level": "green"
+      },
+      {
+        "option": "Uncertain",
+        "explain_risk": true,
+        "risk_level": "amber"
+      },
+      {
+        "option": "N/A",
+        "explain_risk": false,
+        "risk_level": "green"
+      }
+    ],
+    "background_info": [
+      {
+        "title": "Background Information",
+        "text": "The increased use of data in recent decades prompts questions around issues of fairness, responsibility and accountability in relation to the use of data. It also triggers debate around whether existing legislation is fit to safeguard against harm to an individual’s or group’s privacy, welfare or safety, or to safeguard the environment.<p>Ethical risks are the perceived or actual risk of enabling unethical collection or uses of data, or directly impacting people, communities and the environment.</p><p>Increasingly, those collecting, sharing and working with data are exploring the ethical implications of their practices and, in some cases, being forced to confront those implications in the face of public criticism. Indeed, there is increasing pressure on organisations to report performance in relation to environmental sustainability and social responsibilities.</p><p>Thinking about the ethical use of data is particularly relevant when insights drawn or decisions informed by data have the potential to directly or indirectly impact people and communities. When considering broader harmful impacts, think about the people the data is about, people impacted by its use, and the organisations using the data. For example, could use of this data result in decisions that discriminate against any groups or individuals, or impact their safety?</p><p>Bias can be conscious or unconscious and can result in under-representation of specific communities, which could impact them by giving an unfair advantage to others, or unfairly restricting access (for example, exclusive arrangements), therefore it is important to consider how data collection or use might be impacted by social or personal influences, and the potential consequential effects of this when that data is shared.</p><p>There are methodologies available that provide tangible and replicable ways to help answer these questions. Two examples are:</p><a href='https://www.tech-transformed.com/product-development/' target='_blank' rel='external'><h4>Consequence Scanning</h4></a> This helps consider the intended and unintended consequences of data collection or related technologies. Consequence scanning provides an opportunity to reflect on risks that might not be immediately obvious, is part of responsible product development and can help provide structure to that thought process.<a href='https://theodi.org/article/the-data-ethics-canvas-2021/' target='_blank' rel='external'><h4>The Data Ethics Canvas</h4></a>This can help to identify and manage ethical considerations in projects involving data. It asks the user to consider 15 areas around data ethics – from bias in data sources to mitigating negative effects on people – to prompt critical thinking around how to collect, use and share data ethically. When sharing data it can be helpful to work through the canvas as a project team to promote understanding and debate around the foundation, intention and potential impact, as well as help identify the steps to ensure data is handled fairly."
+      }
+    ],
+    "examples": [
+      {
+        "title": "Examples of data that could have wider impacts",
+        "text": "<h4>People and communities</h4><ul><li>data flowing out of low- and middle-income countries (LMICs) to high-income countries via multinational corporations (also known as data colonialism, data nationalism, data repatriation)</li><li>data about people in vulnerable circumstances</li><li>data dealing specifically with indigenous data governance and sovereignty</li></ul>"
+      }
+    ],
+    "mitigating_actions": [
+      {
+        "title": "Mitigating actions",
+        "text": "If you think that sharing the data may directly impact – positively or negatively – on people, communities or the environment, then engagement and communication with those communities can really help to manage this. This could include the below actions:<h4>Engaging the community</h4> Engaging those the data is about, or who might be impacted by it being shared, can help to validate or quash assumptions about the impacts, and identify actions (for example ensuring representation in the dataset or suppressing certain aspects) to reduce harm.<h4>Properly describing the data</h4> Best practice data sharing includes publishing well-structured, high-quality documentation and metadata to accompany data releases. Documentation can help users to understand important context – such as gaps or biases in the data (for example. gender representation. Data documentation that is open and clear can help users to understand whether they might be able to use it. If you are sharing data, this guide on <a href-'https://docs.google.com/document/d/1o6hiO2tcXG5Uy08-gCEaBNo9IqbE90fiy9a73HYSW20/' target='_blank' rel='external'>describing and documenting data well</a> should help you to do this. There are also data-quality frameworks available (for example, <a href='https://www.gov.uk/government/publications/the-government-data-quality-framework' target='_blank' rel='external'>UK government</a> and <a href='https://www.iso.org/standard/32576.html' target='_blank' rel='external'>ISO 19158</a>) to help understand and communicate quality of the data for certain purposes.<h4>Anonymisation</h4> Suppressing certain aspects of the data, through <A href='https://theodi.org/article/anonymisation-report/' target='_blank' rel='external'>anonymisation</a> techniques could help to minimise risk from certain aspects of the data being shared, for example removing location fields to prevent endangered species from being tracked."
+      }
+    ],
+    "explain": [
+      {
+        "title": "Mitigating actions you can take",
+        "text": "<ul><li>Use Consequence Scanning tools or the Data Ethics Canvas</li><li>Engage the community</li><li>Describe and document the data well</li><li>Anonymise the data</li><li>Other?</li></ul>",
+        "form": [
+          {
+            "type": "textarea",
+            "name": "mitigating_actions",
+            "label": "Use this space to add details of actions and decisions to your report:"
+          }
+
+        ]
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Will sharing the data impact the environment?",
+    "text": "",
+    "extra_text": "",
+    "category": "Ethical Risks",
+    "options": [
+      {
+        "option": "Yes",
+        "explain_risk": true,
+        "risk_level": "red"
+      },
+      {
+        "option": "No",
+        "explain_risk": false,
+        "risk_level": "green"
+      },
+      {
+        "option": "Uncertain",
+        "explain_risk": true,
+        "risk_level": "amber"
+      },
+      {
+        "option": "N/A",
+        "explain_risk": false,
+        "risk_level": "green"
+      }
+    ],
+    "background_info": [
+      {
+        "title": "Background Information",
+        "text": "The increased use of data in recent decades prompts questions around issues of fairness, responsibility and accountability in relation to the use of data. It also triggers debate around whether existing legislation is fit to safeguard against harm to an individual’s or group’s privacy, welfare or safety, or to safeguard the environment.<p>Ethical risks are the perceived or actual risk of enabling unethical collection or uses of data, or directly impacting people, communities and the environment.</p><p>Increasingly, those collecting, sharing and working with data are exploring the ethical implications of their practices and, in some cases, being forced to confront those implications in the face of public criticism. Indeed, there is increasing pressure on organisations to report performance in relation to environmental sustainability and social responsibilities.</p><p>Thinking about the ethical use of data is particularly relevant when insights drawn or decisions informed by data have the potential to directly or indirectly impact people and communities. When considering broader harmful impacts, think about the people the data is about, people impacted by its use, and the organisations using the data. For example, could use of this data result in decisions that discriminate against any groups or individuals, or impact their safety?</p><p>Bias can be conscious or unconscious and can result in under-representation of specific communities, which could impact them by giving an unfair advantage to others, or unfairly restricting access (for example, exclusive arrangements), therefore it is important to consider how data collection or use might be impacted by social or personal influences, and the potential consequential effects of this when that data is shared.</p><p>There are methodologies available that provide tangible and replicable ways to help answer these questions. Two examples are:</p><a href='https://www.tech-transformed.com/product-development/' target='_blank' rel='external'><h4>Consequence Scanning</h4></a> This helps consider the intended and unintended consequences of data collection or related technologies. Consequence scanning provides an opportunity to reflect on risks that might not be immediately obvious, is part of responsible product development and can help provide structure to that thought process.<a href='https://theodi.org/article/the-data-ethics-canvas-2021/' target='_blank' rel='external'><h4>The Data Ethics Canvas</h4></a>This can help to identify and manage ethical considerations in projects involving data. It asks the user to consider 15 areas around data ethics – from bias in data sources to mitigating negative effects on people – to prompt critical thinking around how to collect, use and share data ethically. When sharing data it can be helpful to work through the canvas as a project team to promote understanding and debate around the foundation, intention and potential impact, as well as help identify the steps to ensure data is handled fairly."
+      }
+    ],
+    "examples": [
+      {
+        "title": "Examples of data that could have wider impacts",
+        "text": "<h4>Environment</h4><ul><li>data that reveals the location of endangered species</li><li>data about natural resources.</li></ul>"
+      }
+    ],
+    "mitigating_actions": [
+      {
+        "title": "Mitigating actions",
+        "text": "If you think that sharing the data may directly impact – positively or negatively – on people, communities or the environment, then engagement and communication with those communities can really help to manage this. This could include the below actions:<h4>Engaging the community</h4> Engaging those the data is about, or who might be impacted by it being shared, can help to validate or quash assumptions about the impacts, and identify actions (for example ensuring representation in the dataset or suppressing certain aspects) to reduce harm.<h4>Properly describing the data</h4> Best practice data sharing includes publishing well-structured, high-quality documentation and metadata to accompany data releases. Documentation can help users to understand important context – such as gaps or biases in the data (for example. gender representation. Data documentation that is open and clear can help users to understand whether they might be able to use it. If you are sharing data, this guide on <a href-'https://docs.google.com/document/d/1o6hiO2tcXG5Uy08-gCEaBNo9IqbE90fiy9a73HYSW20/' target='_blank' rel='external'>describing and documenting data well</a> should help you to do this. There are also data-quality frameworks available (for example, <a href='https://www.gov.uk/government/publications/the-government-data-quality-framework' target='_blank' rel='external'>UK government</a> and <a href='https://www.iso.org/standard/32576.html' target='_blank' rel='external'>ISO 19158</a>) to help understand and communicate quality of the data for certain purposes.<h4>Anonymisation</h4> Suppressing certain aspects of the data, through <A href='https://theodi.org/article/anonymisation-report/' target='_blank' rel='external'>anonymisation</a> techniques could help to minimise risk from certain aspects of the data being shared, for example removing location fields to prevent endangered species from being tracked."
+      }
+    ],
+    "explain": [
+      {
+        "title": "Mitigating actions you can take",
+        "text": "<ul><li>Use Consequence Scanning tools or the Data Ethics Canvas</li><li>Engage the community</li><li>Describe and document the data well</li><li>Anonymise the data</li><li>Other?</li></ul>",
+        "form": [
+          {
+            "type": "textarea",
+            "name": "mitigating_actions",
+            "label": "Use this space to add details of actions and decisions to your report:"
+          }
+
+        ]
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Does the data contain anything that, if made available, could impact national security? ",
+    "text": "National security, is broadly defined as the safety of a nation against threats such as terrorism, war, natural disaster, and could be put at risk through the release of data. This includes any data that could be used to cause actual harm, deprivation or fear of the same.",
+    "extra_text": "",
+    "category": "Ethical Risks",
+    "options": [
+      {
+        "option": "Yes",
+        "explain_risk": true,
+        "risk_level": "red"
+      },
+      {
+        "option": "No",
+        "explain_risk": false,
+        "risk_level": "green"
+      },
+      {
+        "option": "Uncertain",
+        "explain_risk": true,
+        "risk_level": "amber"
+      },
+      {
+        "option": "N/A",
+        "explain_risk": false,
+        "risk_level": "green"
+      }
+    ],
+    "background_info": [
+      {
+        "title": "Background Information",
+        "text": "National security, is broadly defined as the safety of a nation against threats such as terrorism, war, natural disaster, and could be put at risk through the release of data. This includes any data that could be used to cause actual harm, deprivation or fear of the same."
+      }
+    ],
+    "examples": [
+      {
+        "title": "Examples of data that could impact national security: ",
+        "text": "<ul><li>Details of transport infrastructure</li><li>Food production sites</li><li>Nuclear sites</li><li>Drinking water sources</li>"
+      }
+    ],
+    "mitigating_actions": [
+      {
+        "title": "Mitigating actions",
+        "text": "If the data asset includes details that you think may impact national security, you may want to consider whether the data is already publicly available. It may be that the elements of the data you are concerned about are already shared by the government, or public or private sector organisations. For example, transport infrastructure is broadly available and used by many organisations for route finding. If this is the case, then sharing the same data within your dataset is unlikely to cause increased risk."
+      }
+    ],
+    "explain": [
+      {
+        "title": "Mitigating actions you can take",
+        "text": "<ul><li>Consider if the data is already shared by the government, or public or private sector organisations</li><li>Other?</li></ul>",
+        "form": [
+          {
+            "type": "textarea",
+            "name": "mitigating_actions",
+            "label": "Use this space to add details of actions and decisions to your report:"
+          }
+
+        ]
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Does the data contain anything that, if made available, could impact the security of the organisation, or it’s staff?",
+    "text": "As well as the physical security of an organisation (for example, protection from fire, flood, natural disasters, burglary), security includes protection against inadvertent loss of data through poor processes or system failures (often known as cyber security), revealing the location of sensitive physical assets or putting staff at risk.",
+    "extra_text": "",
+    "category": "Ethical Risks",
+    "options": [
+      {
+        "option": "Yes",
+        "explain_risk": true,
+        "risk_level": "red"
+      },
+      {
+        "option": "No",
+        "explain_risk": false,
+        "risk_level": "green"
+      },
+      {
+        "option": "Uncertain",
+        "explain_risk": true,
+        "risk_level": "amber"
+      },
+      {
+        "option": "N/A",
+        "explain_risk": false,
+        "risk_level": "green"
+      }
+    ],
+    "background_info": [
+      {
+        "title": "Background Information",
+        "text": "As well as the physical security of an organisation (for example, protection from fire, flood, natural disasters, burglary), security includes protection against inadvertent loss of data through poor processes or system failures (often known as cyber security), revealing the location of sensitive physical assets or putting staff at risk."
+      }
+    ],
+    "examples": [
+      {
+        "title": "Examples ",
+        "text": "<ul><li>Location of buildings or infrastructure where sensitive research is carried out or sensitive records are held</li><li>employee shift patterns</li><li>footfall</li><li>building layouts</li><li>details of security software</li></ul>"
+      }
+    ],
+    "mitigating_actions": [
+      {
+        "title": "Mitigating actions",
+        "text": "To minimise risks to security of the organisation, or the nation, you may consider the following actions:<h4>Anonymisation</h4> <a href='https://theodi.org/article/anonymisation-report/' target='_blank' rel='external'>Anonymisation</a> includes suppression of parts of the data, generalisation, randomisation and pseudonymisation – redacting or changing the data using these techniques could help to minimise risk from certain aspects of the data being shared.<h4>Use synthetic data</h4> Synthetic data is an automated process to make up (synthesise) data that contains many of the statistical patterns of an original dataset. This should enable the same conclusions to be drawn from the data, but eliminate details that might impact security.  This tutorial shows <a href='https://github.com/theodi/synthetic-data-tutorial/' target='_blank' rel='external'> how to create a synthetic dataset.</a><h4>Share the data under contract</h4> A contract with detailed, binding rules ensures all parties are clear on their obligations. Contracts, such as data-sharing agreements, can be useful when organisations of any kind are sharing data that includes information of a sensitive nature."
+      }
+    ],
+    "explain": [
+      {
+        "title": "Mitigating actions you can take",
+        "text": "<ul><li>Anomymise the data</li><li>Use synthetic data</li><li>Share the data under contract</li><li>Other?</li><ul>",
+        "form": [
+          {
+            "type": "textarea",
+            "name": "mitigating_actions",
+            "label": "Use this space to add details of actions and decisions to your report:"
+          }
+
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Will anyone be surprised by you holding, sharing or using this data?",
+    "text": "If the answer is Yes, it doesn’t mean you can’t share the data for reputational reasons. You can build or maintain a trustworthy reputation through clear and open communications about data practices in general, and about the data your organisation collects, uses and shares.",
+    "extra_text": "",
+    "category": "Reputational",
+    "options": [
+      {
+        "option": "Yes",
+        "explain_risk": true,
+        "risk_level": "red"
+      },
+      {
+        "option": "No",
+        "explain_risk": false,
+        "risk_level": "green"
+      },
+      {
+        "option": "Uncertain",
+        "explain_risk": true,
+        "risk_level": "amber"
+      },
+      {
+        "option": "N/A",
+        "explain_risk": false,
+        "risk_level": "green"
+      }
+    ],
+    "background_info": [
+      {
+        "title": "Background Information",
+        "text": "Reputational risks include the perceived or actual risk of suffering reputational damage from sharing or using data that breach others’ trust, or in revealing limitations in processes or analyses.<p>The weight given to reputational risk when deciding whether to share data will depend on how important it is to your organisation to demonstrate trustworthiness with data and data practices. Reputational considerations might include the below:<h4>Managing expectations around data use</h4> The importance of considering and informing people’s expectations about data use was emphasised during the Covid-19 pandemic. The eighth <a href='https://www.gov.uk/government/publications/the-caldicott-principles' target='_blank' rel='external'>Caldicott Principle</a> reminds those using and sharing data of the idea of ‘no surprises’: the importance of considering and informing people’s expectations to promote understanding and agreement about its uses. By sharing data you are being more open about the kind of information your organisation accesses, uses and shares. However, if this is a surprise to people, this could affect your reputation, and the trust they have in your organisation, so this will need to be managed.<h4>Data quality</h4>Quality of data can be a big concern for organisations, especially when it comes to sharing data. The level of quality required for each data set will vary depending on the purpose for which the data was collected, and will often consider <a href='https://www.gov.uk/government/publications/the-government-data-quality-framework/the-government-data-quality-framework#Data-quality-dimensions' target='_blank' rel='external'>several dimensions</a>. For example, some decisions require up-to-date, complete and accurate data, whereas others are reliably informed by historic, aggregated data. Sharing data can help to improve its quality as people feedback on issues as they use it. Overall, being open and welcoming input and feedback is essential to help build a healthy, trusted ecosystem around the data, and can help to maintain reputation.<h4>Free-text fields</h4> By definition free-text fields are not restricted in value, they are input fields that can contain long notes, so could easily contain information not fit for wider consumption (for example descriptions, notes of conversations, opinions, actions, feedback – which can be of a personal or sensitive nature). Free-text or comment fields can also make it difficult to aggregate data in a way that it can be reused, due to a lack of standardisation or validation.</p>"
+      }
+    ],
+    "examples": [
+      {
+        "title": "Examples",
+        "text": ""
+      }
+    ],
+    "mitigating_actions": [
+      {
+        "title": "Mitigating actions",
+        "text": "You can build or maintain a trustworthy reputation by undertaking the processes as follows:<h4>Engaging the community.</h4><p>Clear and open communication can go a long way to help manage people's expectations. This might be about data practices – for example by publishing commitments, policies and approaches – being open about the types of data your organisation collects, uses and shares, and why <a href='https://theodi.org/article/openness-principles-for-organisations-handling-personal-data/' target='_blank' rel='external'>(particularly for personal data)</a> or direct engagement and events with key stakeholders.</p><h4>Properly describing and documenting the data.</h4><p>Best-practice data sharing includes publishing well-structured, high-quality documentation and metadata to accompany data releases. Documentation can help users to understand important context – such as quality, when the data was collected, update schedules and limitations in collection or accuracy – to guide their use of the data. Data documentation that is open and clear can help users to understand whether they might be able to use it, can help to manage concerns around mis-use of data and help manage expectations around the data that may lead to reputational concerns. If you are sharing data, this guide on <a href='https://docs.google.com/document/d/1o6hiO2tcXG5Uy08-gCEaBNo9IqbE90fiy9a73HYSW20/' target='_blank' rel='external'>describing and documenting data well</a> should help you to do this. If you are sharing a computer model, this guide on <a href='https://theodi.org/article/sharing-models-for-covid-19-guidance-and-tools/' target='_blank' rel='external'>documenting and sharing models</a> should help. There are also data quality frameworks available (for example <a href='https://www.gov.uk/government/publications/the-government-data-quality-framework' target='_blank' rel='external'>UK government</a> and <a href='https://www.iso.org/standard/32576.html' target='_blank' rel='external'>ISO 19158</a>) to help understand and communicate quality of the data for certain purposes.</p><h4>Anonymisation.</h4><p>Suppressing or redacting certain aspects of the data – like free text fields – through <a href='https://theodi.org/article/anonymisation-report/' target='_blank- rel='external'>anonymisation</a> techniques could help to minimise risk that could come from these fields being shared.</p>"
+      }
+    ],
+    "explain": [
+      {
+        "title": "Mitigating actions you can take",
+        "text": "<ul><li>Engage the community and manage expectations around data use</li><li>Describe and document the data well</li><li>Anomymise the data</li><li>Other?</li></ul>",
+        "form": [
+          {
+            "type": "textarea",
+            "name": "mitigating_actions",
+            "label": "Use this space to add details of actions and decisions to your report:"
+          }
+
+        ]
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "title": "Is a data quality caveat required?",
+    "text": "If the answer is Yes, it doesn’t mean you can’t share the data for reputational reasons. You can build or maintain a trustworthy reputation through clear and open communications about data practices in general, and about the data your organisation collects, uses and shares.",
+    "extra_text": "",
+    "category": "Reputational",
+    "options": [
+      {
+        "option": "Yes",
+        "explain_risk": true,
+        "risk_level": "red"
+      },
+      {
+        "option": "No",
+        "explain_risk": false,
+        "risk_level": "green"
+      },
+      {
+        "option": "Uncertain",
+        "explain_risk": true,
+        "risk_level": "amber"
+      },
+      {
+        "option": "N/A",
+        "explain_risk": false,
+        "risk_level": "green"
+      }
+    ],
+    "background_info": [
+      {
+        "title": "Background Information",
+        "text": "Reputational risks include the perceived or actual risk of suffering reputational damage from sharing or using data that breach others’ trust, or in revealing limitations in processes or analyses.<p>The weight given to reputational risk when deciding whether to share data will depend on how important it is to your organisation to demonstrate trustworthiness with data and data practices. Reputational considerations might include the below:<h4>Managing expectations around data use</h4> The importance of considering and informing people’s expectations about data use was emphasised during the Covid-19 pandemic. The eighth <a href='https://www.gov.uk/government/publications/the-caldicott-principles' target='_blank' rel='external'>Caldicott Principle</a> reminds those using and sharing data of the idea of ‘no surprises’: the importance of considering and informing people’s expectations to promote understanding and agreement about its uses. By sharing data you are being more open about the kind of information your organisation accesses, uses and shares. However, if this is a surprise to people, this could affect your reputation, and the trust they have in your organisation, so this will need to be managed.<h4>Data quality</h4>Quality of data can be a big concern for organisations, especially when it comes to sharing data. The level of quality required for each data set will vary depending on the purpose for which the data was collected, and will often consider <a href='https://www.gov.uk/government/publications/the-government-data-quality-framework/the-government-data-quality-framework#Data-quality-dimensions' target='_blank' rel='external'>several dimensions</a>. For example, some decisions require up-to-date, complete and accurate data, whereas others are reliably informed by historic, aggregated data. Sharing data can help to improve its quality as people feedback on issues as they use it. Overall, being open and welcoming input and feedback is essential to help build a healthy, trusted ecosystem around the data, and can help to maintain reputation.<h4>Free-text fields</h4> By definition free-text fields are not restricted in value, they are input fields that can contain long notes, so could easily contain information not fit for wider consumption (for example descriptions, notes of conversations, opinions, actions, feedback – which can be of a personal or sensitive nature). Free-text or comment fields can also make it difficult to aggregate data in a way that it can be reused, due to a lack of standardisation or validation.</p>"
+      }
+    ],
+    "examples": [
+      {
+        "title": "Examples",
+        "text": ""
+      }
+    ],
+    "mitigating_actions": [
+      {
+        "title": "Mitigating actions",
+        "text": "You can build or maintain a trustworthy reputation by undertaking the processes as follows:<h4>Engaging the community.</h4><p>Clear and open communication can go a long way to help manage people's expectations. This might be about data practices – for example by publishing commitments, policies and approaches – being open about the types of data your organisation collects, uses and shares, and why <a href='https://theodi.org/article/openness-principles-for-organisations-handling-personal-data/' target='_blank' rel='external'>(particularly for personal data)</a> or direct engagement and events with key stakeholders.</p><h4>Properly describing and documenting the data.</h4><p>Best-practice data sharing includes publishing well-structured, high-quality documentation and metadata to accompany data releases. Documentation can help users to understand important context – such as quality, when the data was collected, update schedules and limitations in collection or accuracy – to guide their use of the data. Data documentation that is open and clear can help users to understand whether they might be able to use it, can help to manage concerns around mis-use of data and help manage expectations around the data that may lead to reputational concerns. If you are sharing data, this guide on <a href='https://docs.google.com/document/d/1o6hiO2tcXG5Uy08-gCEaBNo9IqbE90fiy9a73HYSW20/' target='_blank' rel='external'>describing and documenting data well</a> should help you to do this. If you are sharing a computer model, this guide on <a href='https://theodi.org/article/sharing-models-for-covid-19-guidance-and-tools/' target='_blank' rel='external'>documenting and sharing models</a> should help. There are also data quality frameworks available (for example <a href='https://www.gov.uk/government/publications/the-government-data-quality-framework' target='_blank' rel='external'>UK government</a> and <a href='https://www.iso.org/standard/32576.html' target='_blank' rel='external'>ISO 19158</a>) to help understand and communicate quality of the data for certain purposes.</p><h4>Anonymisation.</h4><p>Suppressing or redacting certain aspects of the data – like free text fields – through <a href='https://theodi.org/article/anonymisation-report/' target='_blank- rel='external'>anonymisation</a> techniques could help to minimise risk that could come from these fields being shared.</p>"
+      }
+    ],
+    "explain": [
+      {
+        "title": "Mitigating actions you can take",
+        "text": "ul><li>Engage the community and manage expectations around data use</li><li>Describe and document the data well</li><li>Anomymise the data</li><li>Other?</li></ul>",
+        "form": [
+          {
+            "type": "textarea",
+            "name": "mitigating_actions",
+            "label": "Use this space to add details of actions and decisions to your report:"
+          }
+
+        ]
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "title": "Are there any free-text or comment fields in the dataset?",
+    "text": "If the answer is Yes, it doesn’t mean you can’t share the data for reputational reasons. You can build or maintain a trustworthy reputation through clear and open communications about data practices in general, and about the data your organisation collects, uses and shares.",
+    "extra_text": "",
+    "category": "Reputational",
+    "options": [
+      {
+        "option": "Yes",
+        "explain_risk": true,
+        "risk_level": "red"
+      },
+      {
+        "option": "No",
+        "explain_risk": false,
+        "risk_level": "green"
+      },
+      {
+        "option": "Uncertain",
+        "explain_risk": true,
+        "risk_level": "amber"
+      },
+      {
+        "option": "N/A",
+        "explain_risk": false,
+        "risk_level": "green"
+      }
+    ],
+    "background_info": [
+      {
+        "title": "Background Information",
+        "text": "Reputational risks include the perceived or actual risk of suffering reputational damage from sharing or using data that breach others’ trust, or in revealing limitations in processes or analyses.<p>The weight given to reputational risk when deciding whether to share data will depend on how important it is to your organisation to demonstrate trustworthiness with data and data practices. Reputational considerations might include the below:<h4>Managing expectations around data use</h4> The importance of considering and informing people’s expectations about data use was emphasised during the Covid-19 pandemic. The eighth <a href='https://www.gov.uk/government/publications/the-caldicott-principles' target='_blank' rel='external'>Caldicott Principle</a> reminds those using and sharing data of the idea of ‘no surprises’: the importance of considering and informing people’s expectations to promote understanding and agreement about its uses. By sharing data you are being more open about the kind of information your organisation accesses, uses and shares. However, if this is a surprise to people, this could affect your reputation, and the trust they have in your organisation, so this will need to be managed.<h4>Data quality</h4>Quality of data can be a big concern for organisations, especially when it comes to sharing data. The level of quality required for each data set will vary depending on the purpose for which the data was collected, and will often consider <a href='https://www.gov.uk/government/publications/the-government-data-quality-framework/the-government-data-quality-framework#Data-quality-dimensions' target='_blank' rel='external'>several dimensions</a>. For example, some decisions require up-to-date, complete and accurate data, whereas others are reliably informed by historic, aggregated data. Sharing data can help to improve its quality as people feedback on issues as they use it. Overall, being open and welcoming input and feedback is essential to help build a healthy, trusted ecosystem around the data, and can help to maintain reputation.<h4>Free-text fields</h4> By definition free-text fields are not restricted in value, they are input fields that can contain long notes, so could easily contain information not fit for wider consumption (for example descriptions, notes of conversations, opinions, actions, feedback – which can be of a personal or sensitive nature). Free-text or comment fields can also make it difficult to aggregate data in a way that it can be reused, due to a lack of standardisation or validation.</p>"
+      }
+    ],
+    "examples": [
+      {
+        "title": "Examples",
+        "text": ""
+      }
+    ],
+    "mitigating_actions": [
+      {
+        "title": "Mitigating actions",
+        "text": "You can build or maintain a trustworthy reputation by undertaking the processes as follows:<h4>Engaging the community.</h4><p>Clear and open communication can go a long way to help manage people's expectations. This might be about data practices – for example by publishing commitments, policies and approaches – being open about the types of data your organisation collects, uses and shares, and why <a href='https://theodi.org/article/openness-principles-for-organisations-handling-personal-data/' target='_blank' rel='external'>(particularly for personal data)</a> or direct engagement and events with key stakeholders.</p><h4>Properly describing and documenting the data.</h4><p>Best-practice data sharing includes publishing well-structured, high-quality documentation and metadata to accompany data releases. Documentation can help users to understand important context – such as quality, when the data was collected, update schedules and limitations in collection or accuracy – to guide their use of the data. Data documentation that is open and clear can help users to understand whether they might be able to use it, can help to manage concerns around mis-use of data and help manage expectations around the data that may lead to reputational concerns. If you are sharing data, this guide on <a href='https://docs.google.com/document/d/1o6hiO2tcXG5Uy08-gCEaBNo9IqbE90fiy9a73HYSW20/' target='_blank' rel='external'>describing and documenting data well</a> should help you to do this. If you are sharing a computer model, this guide on <a href='https://theodi.org/article/sharing-models-for-covid-19-guidance-and-tools/' target='_blank' rel='external'>documenting and sharing models</a> should help. There are also data quality frameworks available (for example <a href='https://www.gov.uk/government/publications/the-government-data-quality-framework' target='_blank' rel='external'>UK government</a> and <a href='https://www.iso.org/standard/32576.html' target='_blank' rel='external'>ISO 19158</a>) to help understand and communicate quality of the data for certain purposes.</p><h4>Anonymisation.</h4><p>Suppressing or redacting certain aspects of the data – like free text fields – through <a href='https://theodi.org/article/anonymisation-report/' target='_blank- rel='external'>anonymisation</a> techniques could help to minimise risk that could come from these fields being shared.</p>"
+      }
+    ],
+    "explain": [
+      {
+        "title": "Mitigating actions you can take",
+        "text": "<ul><li>Engage the community and manage expectations around data use</li><li>Describe and document the data well</li><li>Anomymise the data</li><li>Other?</li></ul>",
+        "form": [
+          {
+            "type": "textarea",
+            "name": "mitigating_actions",
+            "label": "Use this space to add details of actions and decisions to your report:"
+          }
+
+        ]
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "title": "Does the data contain anything commercially sensitive?",
+    "text": "Commercially sensitive information is any information that requires more careful handling to reduce harmful impacts; it may require restricted access.",
+    "extra_text": "",
+    "category": "Commercial",
+    "options": [
+      {
+        "option": "Yes",
+        "explain_risk": true,
+        "risk_level": "red"
+      },
+      {
+        "option": "No",
+        "explain_risk": false,
+        "risk_level": "green"
+      },
+      {
+        "option": "Uncertain",
+        "explain_risk": true,
+        "risk_level": "amber"
+      },
+      {
+        "option": "N/A",
+        "explain_risk": false,
+        "risk_level": "green"
+      }
+    ],
+    "background_info": [
+      {
+        "title": "Background Information",
+        "text": "Commercially sensitive information is any information that requires more careful handling to reduce harmful impacts; it may require restricted access. This could include considerations around commercial confidentiality, intellectual property and competitors gaining an advantage. What is considered confidential is usually decided by the organisation who created or stewarded that information and will depend on the context."
+      }
+    ],
+    "examples": [
+      {
+        "title": "Examples of commercially sensitive data",
+        "text": "<h4>Related to competitive advantage:</h4><ul><li>Unpublished copyrights</li><li>commercial records (for example customer lists, price lists, suppliers)</li><li>research and development</li><li>unique processes (for example manufacturing techniques, mathematical formulae)</li><ul><h4>About the organisation</h4><ul><li>Financial information</li><li>locations of properties</li><li>location of valuable assets</li><li>pollution level</li><li>wage gaps by protected characteristics</li><li>service complaints</li><li>lawsuits</li><li>affiliated organisations</li><li>employee records</li></ul>"
+      }
+    ],
+    "mitigating_actions": [
+      {
+        "title": "Mitigating actions",
+        "text": "If the data you want to share includes commercially sensitive information there are ways you can mitigate risks, and still share the data as widely as possible:<h4>Anonymisation.</h4><a href='https://theodi.org/article/anonymisation-report/' target='_blank' rel='external'>Anonymisation</a> includes techniques such as suppression of parts of the data and generalisation to ensure the granularity of data is appropriate for the purpose, and to prevent sensitive details being revealed.<h4>Use synthetic data.</h4> An automated process to make up (synthesise) data that contains many of the statistical patterns of an original dataset. This should enable the same conclusions to be drawn from the data, but eliminate identifying commercially sensitive information.  This tutorial shows <a href='https://github.com/theodi/synthetic-data-tutorial/' target='_blank' rel='external'> how to create a synthetic dataset.</a><h4>Share the data under contract</h4> A contract, such as a data-sharing agreement, can be useful when organisations, of any kind, are sharing data with embedded intellectual property rights, or commercially confidential data. A contract with detailed, binding rules ensures all parties are clear on their obligations. There are a wide range of approaches for providing access to data with restricted permissions, including delegating data stewardship to a <a href='https://theodi.org/article/what-do-we-mean-by-data-institutions/' target='_blank' rel='external'>third party</a>."
+      }
+    ],
+    "explain": [
+      {
+        "title": "Mitigating actions you can take",
+        "text": "<ul><li>Anomymise the data</li><li>Use synthetic data</li><li>Share the data under contract</li><li>Other?</li></ul>",
+        "form": [
+          {
+            "type": "textarea",
+            "name": "mitigating_actions",
+            "label": "Use this space to add details of actions and decisions to your report:"
+          }
+
+        ]
+      }
+    ]
+  }
+
+]
