@@ -41,16 +41,25 @@
     }
   }
   .risk-item {
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    border-bottom: 1px solid white;
+
     p {
       margin: 0.3em 0;
+
       &.risk-classification {
         display: inline-block;
         margin-right: 1em;
       }
     }
-    border-bottom: 1px solid white;
-    margin-bottom: 1em;
+    &:last-child {
+      border-bottom: none;
+      margin-bottom: 0em;
+      padding-bottom: 0em;
+    }
   }
+
 
   .checkpoint-risk-level {
     color: #fff;

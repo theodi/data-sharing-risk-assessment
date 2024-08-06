@@ -27,7 +27,6 @@ export default function DownloadReportButton({ assessmentId }) {
   };
 
   return (
-    <div className="checkpoint-ctas">
       <button className="view-report-cta">
         <div className="cta-inner">
           <div className="cta-title">Download your report</div>
@@ -43,6 +42,5 @@ export default function DownloadReportButton({ assessmentId }) {
           </div>
         </div>
       </button>
-    </div>
   );
 }

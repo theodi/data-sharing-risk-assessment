@@ -24,12 +24,12 @@ export default function CheckpointCTAs() {
                 <div key={index} className="risk-item">
                   <p><strong>{risk.risk}</strong></p>
                   <p className="risk-classification">Likelihood:
-                    <div className={`checkpoint-risk-level button ${risk.likelihood === 'high' ? 'red' : risk.likelihood === 'medium' ? 'amber' : 'green'}`}>
+                    <div className={`checkpoint-risk-level button ${risk.likelihood === 'High' ? 'red' : risk.likelihood === 'Medium' ? 'amber' : 'green'}`}>
                       {risk.likelihood}
                     </div>
                   </p>
                   <p className="risk-classification">Impact:
-                    <div className={`checkpoint-risk-level button ${risk.impact === 'high' ? 'red' : risk.impact === 'medium' ? 'amber' : 'green'}`}>
+                    <div className={`checkpoint-risk-level button ${risk.impact === 'High' ? 'red' : risk.impact === 'Medium' ? 'amber' : 'green'}`}>
                       {risk.impact}
                     </div>
                   </p>

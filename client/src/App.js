@@ -4,6 +4,7 @@ import Layout from './Layout';
 import Home from './Home';
 import Assessments from './Assessments';
 import Assessment from './Assessment';
+import Report from './Report';
 import Login from './Login';
 import Privacy from './Privacy';
 import HowTo from './HowTo';

@@ -1,7 +1,7 @@
 .checkpoint-progress{
-  position: relative;
-  left: 0px;
-  transform: rotate(-2.13deg);
+  position: fixed;
+  left: -7px;
+  transform: rotate(-1.6deg);
   transform-origin: left;
   @media (min-width: 768px){
     width: 15%;
@@ -129,6 +129,12 @@
         width: 120px;
         &.active {
           width: 150px;
+        }
+      }
+      &.report {
+        width: 80px;
+        &.active {
+          width: 90px;
         }
       }
     }

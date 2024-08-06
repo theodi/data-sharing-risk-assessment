@@ -100,8 +100,7 @@ export default function DataCapture() {
   };
 
   return (
-    <div className="template template-data-capture">
-      <div className="container">
+      <div className="checkpoint-question">
         <div className="form-title">About the Data</div>
         <form className="form" onSubmit={handleSubmit}>
           {metadata.form.map((fieldset, index) => (
@@ -120,6 +119,5 @@ export default function DataCapture() {
           </button>
         </form>
       </div>
-    </div>
   );
 }

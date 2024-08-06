@@ -2,6 +2,8 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import DownloadReportButton from './DownloadReportButton';
+import TopRisksSidebar from './TopRisksSidebar';
+import RiskClassificationChart from './RiskClassificationChart';
 import { updateActiveCheckpointIndex, updateActiveCheckpoint } from './checkpointsSlice';
 import metadata from './json/metadata.json';
 
@@ -16,23 +18,27 @@ export default function Report() {
     return acc;
   }, {});
 
+  if (!activeAssessment || !checkpoints.length) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
-      <div className="template template-data-capture">
-        <div className="container">
-          <div className="report">
-            <div className="modal-title">Report</div>
-            <div className="assessment-data">
-              {form_data.dataset_name ? <DataListItem value={form_data.dataset_name.value} label="Name of Data Set" /> : ""}
-              {form_data.dataset_description ? <DataListItem value={form_data.dataset_description.value} label="Description" /> : ""}
-              {form_data.sharing_reason ? <DataListItem value={sharingReasonOptions[form_data.sharing_reason.value]} label="Reason for Sharing" /> : ""}
-              {form_data.sharing_reason_details && form_data.sharing_reason.value === "8" ? <DataListItem value={form_data.sharing_reason_details.value} label="More Details" /> : ""}
-            </div>
-            {activeAssessment.answers.length ? <AnswersList answers={activeAssessment.answers} /> : ""}
-          </div>
+      <div className="report checkpoint-question">
+        <div className="modal-title">Report</div>
+        <div className="assessment-data">
+          {form_data.dataset_name ? <DataListItem value={form_data.dataset_name.value} label="Name of Data Set" /> : ""}
+          {form_data.dataset_description ? <DataListItem value={form_data.dataset_description.value} label="Description" /> : ""}
+          {form_data.sharing_reason ? <DataListItem value={sharingReasonOptions[form_data.sharing_reason.value]} label="Reason for Sharing" /> : ""}
+          {form_data.sharing_reason_details && form_data.sharing_reason.value === "8" ? <DataListItem value={form_data.sharing_reason_details.value} label="More Details" /> : ""}
         </div>
+        {activeAssessment.answers.length ? <AnswersList answers={activeAssessment.answers} /> : ""}
       </div>
-      <DownloadReportButton assessmentId={activeAssessment.id} />
+      <div className="checkpoint-ctas">
+        <RiskClassificationChart />
+        <TopRisksSidebar />
+        <DownloadReportButton assessmentId={activeAssessment.id} />
+      </div>
     </>
   );
 
@@ -40,6 +46,10 @@ export default function Report() {
     const answers = [];
     props.answers.forEach((a) => {
       const checkpoint = checkpoints.find(c => (c.id === a.id));
+      if (!checkpoint) {
+        console.error(`Checkpoint with id ${a.id} not found`);
+        return;
+      }
       const risks = (a.option.explain_risk && a.form_data) ? a.form_data.risks : [];
       answers.push(<AnswerListItem key={a.id} id={a.id} risk_level={a.option.risk_level} explain_risk={a.option.explain_risk} risks={risks} option={a.option.option} title={checkpoint.title} />);
     });
@@ -77,13 +87,13 @@ export default function Report() {
                     <p><strong>Risk:</strong> {risk.risk}</p>
                     <p className="risk-classification">
                       <strong>Likelihood:</strong>
-                      <div className={`checkpoint-risk-level button ${risk.likelihood === 'high' ? 'red' : risk.likelihood === 'medium' ? 'amber' : 'green'}`}>
+                      <div className={`checkpoint-risk-level button ${risk.likelihood === 'High' ? 'red' : risk.likelihood === 'Medium' ? 'amber' : 'green'}`}>
                         {risk.likelihood}
                       </div>
                     </p>
                     <p className="risk-classification">
                       <strong>Impact:</strong>
-                      <div className={`checkpoint-risk-level button ${risk.impact === 'high' ? 'red' : risk.impact === 'medium' ? 'amber' : 'green'}`}>
+                      <div className={`checkpoint-risk-level button ${risk.impact === 'High' ? 'red' : risk.impact === 'Medium' ? 'amber' : 'green'}`}>
                         {risk.impact}
                       </div>
                     </p>
