@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { debounce } from 'lodash';
 import SaveAndContinue from './SaveAndContinue';
 import SaveAndContinueDisabled from './SaveAndContinueDisabled';
-
 import { updateCheckpointAnswers } from './checkpointsSlice';
 
 export default function MitigateForm(props) {
@@ -11,43 +10,39 @@ export default function MitigateForm(props) {
   const activeCheckpointAnswer = useSelector((state) => state.checkpoints.activeCheckpointAnswer);
   const { fields } = props;
 
-  const form_data = {};
+  const initialFormData = activeCheckpointAnswer.form_data?.risks || [{}];
 
-  fields.forEach((field, i) => {
-    const field_name = field.name;
-    let val = '';
-    if (typeof activeCheckpointAnswer.form_data !== 'undefined' && typeof activeCheckpointAnswer.form_data[field_name] !== 'undefined') {
-      val = activeCheckpointAnswer.form_data[field_name];
-    }
-    form_data[field_name] = val;
-  });
+  const [formData, setFormData] = useState(initialFormData);
 
-  const [formData, setFormData] = useState(form_data);
-
-  // Function to dispatch the updateCheckpointAnswers action
   const debouncedDispatch = useCallback(
     debounce((answer) => {
       dispatch(updateCheckpointAnswers(answer));
-    }, 1000), // Adjust the debounce delay as needed (1000ms = 1 second)
+    }, 1000),
     []
   );
 
-  const handleChange = (name, value) => {
-    const new_form_data = { ...formData };
-    new_form_data[name] = value;
+  const handleChange = (index, name, value) => {
+    const newFormData = [...formData];
+    newFormData[index] = { ...newFormData[index], [name]: value };
+    setFormData(newFormData);
 
-    const answer = { ...activeCheckpointAnswer };
-    answer.form_data = new_form_data;
+    const answer = { ...activeCheckpointAnswer, form_data: { ...activeCheckpointAnswer.form_data, risks: newFormData } };
+    debouncedDispatch(answer);
+  };
 
-    // Update local state immediately
-    setFormData(new_form_data);
+  const handleAddRisk = () => {
+    setFormData([...formData, {}]);
+  };
 
-    // Dispatch the debounced action
+  const handleRemoveRisk = (index) => {
+    const newFormData = formData.filter((_, i) => i !== index);
+    setFormData(newFormData);
+
+    const answer = { ...activeCheckpointAnswer, form_data: { ...activeCheckpointAnswer.form_data, risks: newFormData } };
     debouncedDispatch(answer);
   };
 
   useEffect(() => {
-    // Cleanup function to cancel any pending debounced actions when the component unmounts
     return () => {
       debouncedDispatch.cancel();
     };
@@ -55,23 +50,70 @@ export default function MitigateForm(props) {
 
   return (
     <div>
-      {fields.map((field, i) => (
-        <div key={i} className="form-element">
-          <label>{field.label}</label>
-          <textarea
-            name={field.name}
-            value={formData[field.name]}
-            onChange={(e) => handleChange(e.target.name, e.target.value)}
-          ></textarea>
+      <h1>Risks</h1>
+      {formData.map((risk, index) => (
+        <div key={index} className="risk-form">
+          {fields.map((field, i) => {
+            if (field.type === 'text') {
+              return (
+                <div key={i} className="form-element">
+                  <label>{field.label}</label>
+                  <input
+                    type="text"
+                    name={field.name}
+                    value={risk[field.name] || ''}
+                    onChange={(e) => handleChange(index, e.target.name, e.target.value)}
+                  />
+                </div>
+              );
+            } else if (field.type === 'select') {
+              return (
+                <div key={i} className="form-element inline">
+                  <label>{field.label}</label>
+                  <select
+                    name={field.name}
+                    value={risk[field.name] || ''}
+                    onChange={(e) => handleChange(index, e.target.name, e.target.value)}
+                  >
+                    <option value="" disabled>Select an option</option>
+                    {field.options.map((option, j) => (
+                      <option key={j} value={option.value}>{option.label}</option>
+                    ))}
+                  </select>
+                </div>
+              );
+            } else if (field.type === 'textarea') {
+              return (
+                <div key={i} className="form-element">
+                  <label>{field.label}</label>
+                  <textarea
+                    name={field.name}
+                    value={risk[field.name] || ''}
+                    onChange={(e) => handleChange(index, e.target.name, e.target.value)}
+                  ></textarea>
+                </div>
+              );
+            }
+            return null;
+          })}
+          <button type="button" className="button button-white button-risk-remove" onClick={() => handleRemoveRisk(index)}>
+            Remove Risk
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <line x1="0.429688" y1="9.85706" x2="19.5657" y2="9.85706" stroke="#2254F4" strokeWidth="2.2849"/>
+            </svg>
+          </button>
         </div>
       ))}
-      {(!activeCheckpointAnswer.option.explain_risk ||
-        (typeof activeCheckpointAnswer.form_data !== 'undefined' &&
-          activeCheckpointAnswer.form_data.mitigating_actions.length)) ? (
+      <button type="button" className="button button-white button-risk-add" onClick={handleAddRisk}>
+        Add Risk
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="10.1424" y1="0.431885" x2="10.1425" y2="19.5679" stroke="#2254F4" strokeWidth="2.2849"/>
+          <line x1="0.429688" y1="9.85706" x2="19.5657" y2="9.85706" stroke="#2254F4" strokeWidth="2.2849"/>
+        </svg>
+      </button>
+      <div className="save-actions">
         <SaveAndContinue />
-      ) : (
-        <SaveAndContinueDisabled />
-      )}
+      </div>
     </div>
   );
 }

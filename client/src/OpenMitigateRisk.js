@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux'
 import { useModal } from './context/modal-context'
 
-export default function OpenMitigateRisk(props) {
+export default function OpenMitigateRisk({title = "Identify risks and plan mitigations"}) {
   const { setModal } = useModal()
   const {activeCheckpointAnswer, activeCheckpoint, totalCheckpoints, activeCheckpointIndex} = useSelector((state) => state.checkpoints);
 
@@ -23,7 +23,7 @@ export default function OpenMitigateRisk(props) {
         setModal(modalData);
         }}
       >
-        Explain how you will mitigate the risk
+        {title}
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
           <line x1="10.1424" y1="0.431885" x2="10.1425" y2="19.5679" stroke="white" strokeWidth="2.2849"/>
           <line x1="0.429688" y1="9.85706" x2="19.5657" y2="9.85706" stroke="white" strokeWidth="2.2849"/>

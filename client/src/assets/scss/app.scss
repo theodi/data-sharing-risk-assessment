@@ -254,6 +254,17 @@ h1 {
     background: #fff;
     color: $dark-blue;
   }
+  &.button-blue {
+    background: $dark-blue;
+    color: #fff;
+  }
+
+  &.button-risk-add {
+    margin: 0em 0em 1em 1em;
+  }
+  &.button-risk-remove {
+    margin: 0em 0em 1em 1em;
+  }
 
   &.disabled {
     cursor: auto;

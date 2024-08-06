@@ -55,24 +55,30 @@
   .te {
     max-width: 768px;
   }
+  .save-actions {
+    text-align: right;
+  }
   &.explain {
     padding: 20px 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 
-    .modal-top {
+    .modal-question, .modal-risks, .modal-actions {
       width: 100%;
       margin-bottom: 30px;
       @media (min-width: 768px){
         margin-bottom: vh(60px);
       }
+      @media (min-width: 1024px) {
+        width: 33%;
+      }
       @media (min-width: 1440px) and (min-height: 900px){
         margin-bottom: 60px;
       }
-      .modal-top-inner {
+      .modal-question-inner {
         @media (min-width: 900px){
-          width: 45%;
+          width: 95%;
         }
       }
     }
@@ -83,11 +89,21 @@
         margin: 0;
       }
     }
+    .modal-riskRegister {
+      width: 100%;
+    }
 
     .modal-title {
       width: 100%;
     }
+    .risk-form {
+      border-bottom: 1px solid white;
+      margin-bottom: 1em;
+    }
     .form-element {
+      &.inline {
+        display: inline-block;
+      }
       label {
         display: inline-block;
         width: 100%;
@@ -106,6 +122,24 @@
         box-shadow: -10px 10px 0px #178CFF;
         margin-bottom: 30px;
       }
+
+      input {
+        resize: none;
+        display: inline-block;
+        width: 100%;
+        padding: 1em;
+        box-shadow: -10px 10px 0px #178CFF;
+        margin-bottom: 30px;
+      }
+
+      select {
+        resize: none;
+        display: inline-block;
+        padding: 1em;
+        box-shadow: -10px 10px 0px #178CFF;
+        margin-bottom: 30px;
+      }
+
     }
 
     .checkpoint-question {

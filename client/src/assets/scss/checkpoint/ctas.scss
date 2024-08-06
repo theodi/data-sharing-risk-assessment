@@ -40,6 +40,34 @@
 
     }
   }
+  .risk-item {
+    p {
+      margin: 0.3em 0;
+      &.risk-classification {
+        display: inline-block;
+        margin-right: 1em;
+      }
+    }
+    border-bottom: 1px solid white;
+    margin-bottom: 1em;
+  }
+
+  .checkpoint-risk-level {
+    color: #fff;
+    border-radius: 0;
+    margin-left: 1em;
+    cursor: auto;
+    &.red {
+      background: $red;
+    }
+    &.amber {
+      background: $amber;
+
+    }
+    &.green {
+      background: $green;
+    }
+  }
 
   .checkpoint-cta {
 
@@ -209,6 +237,23 @@
           }
         }
       }
+    }
+  }
+}
+
+.view-risks-cta {
+  .cta-content {
+    display: block;
+    width: 100%;
+  }
+  .button {
+    border-radius: 5px;
+  }
+  .button-explain {
+    background: white;
+    color: #2254F4;
+    svg line {
+      stroke: #2254F4;
     }
   }
 }

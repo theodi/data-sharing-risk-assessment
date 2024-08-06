@@ -16,6 +16,26 @@
 
       }
     }
+    .risk-classification {
+      display: inline-block;
+      margin-right: 1em;
+    }
+    .checkpoint-risk-level {
+      color: #fff;
+      border-radius: 0;
+      margin-left: 1em;
+      cursor: auto;
+      &.red {
+        background: $red;
+      }
+      &.amber {
+        background: $amber;
+
+      }
+      &.green {
+        background: $green;
+      }
+    }
     .checkpoint-answers {
       margin-top: 30px;
       max-width: 768px;
