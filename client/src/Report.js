@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import DownloadReportButton from './DownloadReportButton';
 import { updateActiveCheckpointIndex, updateActiveCheckpoint } from './checkpointsSlice';
+import metadata from './json/metadata.json';
 
 export default function Report() {
   useParams();
@@ -10,18 +11,10 @@ export default function Report() {
   const dispatch = useDispatch();
   const { activeAssessment, checkpoints } = useSelector((state) => state.checkpoints);
   const form_data = activeAssessment.data_capture || {};
-
-  // Mapping for sharing_reason options
-  const sharingReasonOptions = {
-    1: "Encourage Innovation",
-    2: "Optimise supply chains",
-    3: "Address common challenges across a sector",
-    4: "Improve market reach",
-    5: "Benchmarking and insights",
-    6: "To comply with regulation or legislation (e.g. freedom of information)",
-    7: "Demonstrate trustworthiness",
-    8: "Other"
-  };
+  const sharingReasonOptions = metadata.schema.sharing_reason.options.reduce((acc, option) => {
+    acc[option.value] = option.label;
+    return acc;
+  }, {});
 
   return (
     <>

@@ -75,15 +75,20 @@ fieldset {
   padding-bottom: 20px;
   position: relative;
   &.error {
-
+    width: 100%;
+    text-align: initial;
+    font-size: initial;
+    margin: initial;
     input, textarea {
       border-color: red;
     }
     .error {
       color: red;
-      position: absolute;
-      left: 0;
-      bottom: 0;
+      position: relative;
+      width: auto;
+      text-align: initial;
+      font-size: initial;
+      margin: initial;
     }
   }
 

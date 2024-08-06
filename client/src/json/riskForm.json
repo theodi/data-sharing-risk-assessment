@@ -1,0 +1,21 @@
+{
+    "form": [
+          { "type": "text", "name": "risk", "label": "Risk" },
+          { "type": "select", "name": "likelihood", "label": "Likelihood", "options": [
+            { "value": "Low", "label": "Low" },
+            { "value": "Medium", "label": "Medium" },
+            { "value": "High", "label": "High" }
+          ]},
+          { "type": "select", "name": "impact", "label": "Impact", "options": [
+            { "value": "Low", "label": "Low" },
+            { "value": "Medium", "label": "Medium" },
+            { "value": "High", "label": "High" }
+          ]},
+          { "type": "select", "name": "actionType", "label": "Action Type", "options": [
+            { "value": "Act", "label": "Act" },
+            { "value": "Influence", "label": "Influence" },
+            { "value": "Monitor", "label": "Monitor" }
+          ]},
+          { "type": "text", "name": "mitigatingActions", "label": "Mitigating Actions" }
+    ]
+}
