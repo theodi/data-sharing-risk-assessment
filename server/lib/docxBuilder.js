@@ -3,7 +3,77 @@
 const docx = require('docx');
 const fs = require('fs');
 const tmp = require('tmp-promise');
-const ChartJsImage = require('chartjs-to-image');
+const { ChartJSNodeCanvas } = require('chartjs-node-canvas');
+
+const width = 400; // Width of the chart
+const height = 300; // Height of the chart
+
+async function generateRiskChart(riskCounts) {
+  const chartCallback = (ChartJS) => {
+    ChartJS.register(require('chartjs-plugin-datalabels'));
+  };
+
+  const chartJSNodeCanvas = new ChartJSNodeCanvas({ width, height, chartCallback });
+
+  const configuration = {
+    type: 'bar',
+    data: {
+      labels: ['High', 'Medium', 'Low'],
+      datasets: [
+        {
+          label: 'Risk Count',
+          data: [riskCounts.high, riskCounts.medium, riskCounts.low],
+          backgroundColor: ['#d73058', '#f8bb26', '#0dbb37'],
+        },
+      ],
+    },
+    options: {
+      indexAxis: 'y',
+      plugins: {
+        legend: {
+          display: false,
+        },
+        tooltip: {
+          enabled: false,
+        },
+        datalabels: {
+          color: 'white',
+          anchor: 'end',
+          align: 'end',
+          clamp: 'true',
+          offset: -20,
+          font: {
+            size: 16
+          },
+          formatter: (value) => value,
+          display: function (context) {
+            return context.dataset.data[context.dataIndex] > 0;
+          },
+        },
+      },
+      scales: {
+        x: {
+          display: false,
+        },
+        y: {
+          ticks: {
+            color: '#2B93FF',
+            font: {
+                size: 16
+            }
+          },
+          grid: {
+            display: false,
+          },
+        },
+      },
+    },
+  };
+
+  const imageBuffer = await chartJSNodeCanvas.renderToBuffer(configuration);
+
+  return imageBuffer;
+}
 
 // Function to get the ordinal suffix for the day
 function getOrdinalSuffix(day) {
@@ -85,6 +155,7 @@ async function buildDocx(project,metrics,owner) {
         const { path: tempFilePath } = await tmp.file()
         const topRisks = Array.isArray(metrics.topRisks) ? metrics.topRisks : [];
         const sortedRisks = Array.isArray(metrics.sortedRisks) ? metrics.sortedRisks : [];
+        const imageBuffer = await generateRiskChart(metrics.riskCounts);
 
         const doc = await docx.patchDocument(fs.readFileSync("./data/template.docx"), {
             outputType: "nodebuffer",
@@ -157,6 +228,12 @@ async function buildDocx(project,metrics,owner) {
                     type: docx.PatchType.PARAGRAPH,
                     children: [
                         new docx.TextRun(project.sharing_reason_details)
+                    ]
+                },
+                chart: {
+                    type: docx.PatchType.PARAGRAPH,
+                    children: [
+                        new docx.ImageRun({ data: imageBuffer, transformation: { width: 400, height: 300 } })
                     ]
                 },
                 topRisks: {
