@@ -39,7 +39,7 @@ export default function DataCapture() {
 
     setFormData(prevFormData => {
       const newFormData = { ...prevFormData, [name]: { ...prevFormData[name], value } };
-      if (name === "sharing_reason" && value === "8") { // "Other" option is selected
+      if (name === "sharing_reason" && value === "Other") { // "Other" option is selected
         newFormData["sharing_reason_details"].required = true;
       } else if (name === "sharing_reason") {
         newFormData["sharing_reason_details"].required = false;
@@ -86,9 +86,9 @@ export default function DataCapture() {
           <div className={`radios ${formErrors[key] ? 'error' : ''}`} key={key}>
             <legend>{field.label}</legend>
             {field.options.map(option => (
-              <div className="form-element-checkbox" key={option.value}>
-                <input id={`opt${option.value}`} type="radio" name={key} value={option.value} checked={formData[key].value === option.value} onChange={handleChange} />
-                <label htmlFor={`opt${option.value}`}>{option.label}</label>
+              <div className="form-element-checkbox" key={option}>
+                <input id={`opt${option}`} type="radio" name={key} value={option} checked={formData[key].value === option} onChange={handleChange} />
+                <label htmlFor={`opt${option}`}>{option}</label>
               </div>
             ))}
             <div className="error">{formErrors[key] ? "This field is required" : ""}</div>
@@ -100,24 +100,24 @@ export default function DataCapture() {
   };
 
   return (
-      <div className="checkpoint-question">
-        <div className="form-title">About the Data</div>
-        <form className="form" onSubmit={handleSubmit}>
-          {metadata.form.map((fieldset, index) => (
-            <fieldset key={index} className="form-column">
-              {fieldset.items.map(field => renderField(field, metadata.schema[field]))}
-            </fieldset>
-          ))}
-          <button
-            type="submit"
-            className="button button-white"
-          >
-            Next
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8.30469 1.51733L16.9944 9.79311L8.71865 18.4828" stroke="#2254F4" strokeWidth="3" />
-            </svg>
-          </button>
-        </form>
-      </div>
+    <div className="checkpoint-question">
+      <div className="form-title">About the Data</div>
+      <form className="form" onSubmit={handleSubmit}>
+        {metadata.form.map((fieldset, index) => (
+          <fieldset key={index} className="form-column">
+            {fieldset.items.map(field => renderField(field, metadata.schema[field]))}
+          </fieldset>
+        ))}
+        <button
+          type="submit"
+          className="button button-white"
+        >
+          Next
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8.30469 1.51733L16.9944 9.79311L8.71865 18.4828" stroke="#2254F4" strokeWidth="3" />
+          </svg>
+        </button>
+      </form>
+    </div>
   );
 }

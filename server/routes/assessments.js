@@ -4,6 +4,9 @@ const Assessment = require('../models/Assessment');
 const User = require('../models/User');
 const ensureAuthenticated = require('../middleware/ensureAuthenticated');
 const { Parser } = require('json2csv');
+const fs = require('fs');
+const path = require('path');
+const { buildDocx } = require('../lib/docxBuilder'); // Import the buildDocx function
 
 // Get all assessments
 router.get('/', ensureAuthenticated, async (req, res) => {
@@ -65,13 +68,14 @@ router.get('/:id', ensureAuthenticated, async (req, res) => {
 function mapAnswersWithCheckpoints(assessment, checkpoints) {
   return assessment.answers.map(answer => {
     const checkpoint = checkpoints.find(cp => cp.id === answer.id);
-    const mitigatingActions = answer.option.explain_risk && answer.form_data ? answer.form_data.mitigating_actions : "";
+    const risks = answer.option.explain_risk && answer.form_data ? answer.form_data.risks : "";
     return {
+      checkpoint: checkpoint.id,
       question: checkpoint.title,
       category: checkpoint.category,
       answer: answer.option.option,
       risk_level: answer.option.risk_level,
-      mitigating_actions: mitigatingActions
+      risks: risks
     };
   });
 }
@@ -92,22 +96,80 @@ router.get('/:id/report', ensureAuthenticated, async (req, res) => {
       dataset_name: assessment.data_capture.dataset_name.value,
       dataset_description: assessment.data_capture.dataset_description.value,
       sharing_reason: assessment.data_capture.sharing_reason.value,
+      sharing_reason_details: assessment.data_capture.sharing_reason_details.value || "",
       answers: mappedAnswers
     };
 
     const accept = req.headers.accept;
 
     if (accept.includes('text/csv')) {
-      const fields = ['question', 'category', 'answer', 'risk_level', 'mitigating_actions'];
+      // Flatten mappedAnswers to handle the array of risks
+      const flattenedAnswers = [];
+      mappedAnswers.forEach(answer => {
+        if (answer.risks.length > 0) {
+          answer.risks.forEach(risk => {
+            flattenedAnswers.push({
+              question: answer.question,
+              category: answer.category,
+              answer: answer.answer,
+              risk_level: answer.risk_level,
+              risk: risk.risk,
+              likelihood: risk.likelihood,
+              impact: risk.impact,
+              actionType: risk.actionType,
+              mitigatingActions: risk.mitigatingActions
+            });
+          });
+        } else {
+          // If no risks, push a single entry with empty risk fields
+          flattenedAnswers.push({
+            question: answer.question,
+            category: answer.category,
+            answer: answer.answer,
+            risk_level: answer.risk_level,
+            risk: '',
+            likelihood: '',
+            impact: '',
+            actionType: '',
+            mitigatingActions: ''
+          });
+        }
+      });
+
+      const fields = ['question', 'category', 'answer', 'risk_level', 'risk', 'likelihood', 'impact', 'actionType', 'mitigatingActions'];
       const opts = { fields };
       const parser = new Parser(opts);
-      const csv = parser.parse(mappedAnswers);
+      const csv = parser.parse(flattenedAnswers);
       res.header('Content-Type', 'text/csv');
       res.attachment(`assessment_report_${req.params.id}.csv`);
       return res.send(csv);
     } else if (accept.includes('application/json')) {
       res.header('Content-Type', 'application/json');
-      return res.json(report);
+      return res.send(JSON.stringify(report, null, 2));
+    } else if (accept.includes('application/vnd.openxmlformats-officedocument.wordprocessingml.document')) {
+      const userId = req.user._id; // Fetch the user ID from req.user
+      const user = await User.findById(userId);
+      const owner = {};
+      owner.name = user.name;
+      owner.email = user.email;
+      let metrics = await getAssessmentMetrics(report);
+      const tempFilePath = await buildDocx(report,metrics, owner);
+      const fileName = `${report.dataset_name.replace(/\s+/g, '_').trim()}.docx`;
+      //const buffer = await docx.Packer.toBuffer(doc);
+      res.set('Content-Disposition', `attachment; filename="${fileName}"`);
+      res.set('Content-Type', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+      res.sendFile(path.resolve(tempFilePath), async (err) => {
+          if (err) {
+              console.error("Error sending file:", err);
+          } else {
+              // Cleanup temporary file after sending
+              try {
+                  await fs.promises.unlink(tempFilePath);
+              } catch (error) {
+                  console.error("Error deleting temporary file:", error);
+              }
+          }
+      });
     } else {
       res.status(406).send('Not Acceptable');
     }
@@ -115,6 +177,65 @@ router.get('/:id/report', ensureAuthenticated, async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
+async function getAssessmentMetrics(report) {
+  // Extract all risks from the report
+  const allRisks = [];
+  report.answers.forEach(answer => {
+    if (answer.risks) {
+      answer.risks.forEach(risk => {
+        allRisks.push({ ...risk, checkpoint: answer.category });
+      });
+    }
+  });
+
+  // Sort risks by likelihood and impact
+  const sortedRisks = allRisks.sort((a, b) => {
+    const likelihoodOrder = { High: 3, Medium: 2, Low: 1 };
+    const impactOrder = { High: 3, Medium: 2, Low: 1 };
+
+    const aScore = likelihoodOrder[a.likelihood] + impactOrder[a.impact];
+    const bScore = likelihoodOrder[b.likelihood] + impactOrder[b.impact];
+
+    return bScore - aScore;
+  });
+
+  // Get top 5 risks
+  const topRisks = sortedRisks.slice(0, 5);
+
+  // Classify risks
+  const riskCounts = { high: 0, medium: 0, low: 0 };
+  const classifyRisk = (likelihood, impact) => {
+    const score = {
+      High: 3,
+      Medium: 2,
+      Low: 1
+    }[likelihood] + {
+      High: 3,
+      Medium: 2,
+      Low: 1
+    }[impact];
+
+    if (score >= 5) return 'high';
+    if (score >= 3) return 'medium';
+    return 'low';
+  };
+
+  allRisks.forEach(risk => {
+    const category = classifyRisk(risk.likelihood, risk.impact);
+    riskCounts[category]++;
+  });
+
+  // Create metrics object
+  const metrics = {
+    topRisks,
+    riskCounts,
+    sortedRisks
+  };
+
+  return metrics;
+}
+
 
 // Create a new assessment
 router.post('/', ensureAuthenticated, async (req, res) => {

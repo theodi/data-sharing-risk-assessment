@@ -6,9 +6,21 @@ import axiosInstance from './axiosInstance';
 export default function DownloadReportButton({ assessmentId }) {
   const handleDownloadReport = async (format) => {
     try {
+      const contentType = format === 'docx'
+        ? 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+        : format === 'csv'
+          ? 'text/csv'
+          : 'application/json';
+
+      if (format === 'docx') {
+        setTimeout(() => {
+          alert("DOCX will download soon after you close this message.\n\nOnce the document has downloaded, you will need to update the table of contents to correct page numbering and titles.");
+        }, 100); // Small delay to ensure the request is initiated before showing the alert
+      }
+
       const response = await axiosInstance.get(`/assessments/${assessmentId}/report`, {
         headers: {
-          Accept: format === 'csv' ? 'text/csv' : 'application/json'
+          Accept: contentType
         },
         responseType: 'blob' // Important for downloading files
       });
@@ -37,6 +49,7 @@ export default function DownloadReportButton({ assessmentId }) {
               <div className="buttons-container">
                 <button className="button button-white" onClick={() => handleDownloadReport('json')}>Download JSON</button>
                 <button className="button button-white" onClick={() => handleDownloadReport('csv')}>Download CSV</button>
+                <button className="button button-white" onClick={() => handleDownloadReport('docx')}>Download DOCX</button>
               </div>
             </div>
           </div>

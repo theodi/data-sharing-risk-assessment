@@ -5,7 +5,6 @@ import DownloadReportButton from './DownloadReportButton';
 import TopRisksSidebar from './TopRisksSidebar';
 import RiskClassificationChart from './RiskClassificationChart';
 import { updateActiveCheckpointIndex, updateActiveCheckpoint } from './checkpointsSlice';
-import metadata from './json/metadata.json';
 
 export default function Report() {
   useParams();
@@ -13,10 +12,6 @@ export default function Report() {
   const dispatch = useDispatch();
   const { activeAssessment, checkpoints } = useSelector((state) => state.checkpoints);
   const form_data = activeAssessment.data_capture || {};
-  const sharingReasonOptions = metadata.schema.sharing_reason.options.reduce((acc, option) => {
-    acc[option.value] = option.label;
-    return acc;
-  }, {});
 
   if (!activeAssessment || !checkpoints.length) {
     return <div>Loading...</div>;
@@ -29,8 +24,23 @@ export default function Report() {
         <div className="assessment-data">
           {form_data.dataset_name ? <DataListItem value={form_data.dataset_name.value} label="Name of Data Set" /> : ""}
           {form_data.dataset_description ? <DataListItem value={form_data.dataset_description.value} label="Description" /> : ""}
-          {form_data.sharing_reason ? <DataListItem value={sharingReasonOptions[form_data.sharing_reason.value]} label="Reason for Sharing" /> : ""}
-          {form_data.sharing_reason_details && form_data.sharing_reason.value === "8" ? <DataListItem value={form_data.sharing_reason_details.value} label="More Details" /> : ""}
+          {form_data.sharing_reason ? (
+            <>
+              <DataListItem
+                value={
+                  form_data.sharing_reason.value === "Other"
+                    ? form_data.sharing_reason_details.value
+                    : form_data.sharing_reason.value
+                }
+                label="Reason for Sharing"
+              />
+              {form_data.sharing_reason.value !== "Other" && form_data.sharing_reason_details && (
+                <DataListItem value={form_data.sharing_reason_details.value} label="More Details" />
+              )}
+            </>
+          ) : (
+            ""
+          )}
         </div>
         {activeAssessment.answers.length ? <AnswersList answers={activeAssessment.answers} /> : ""}
       </div>

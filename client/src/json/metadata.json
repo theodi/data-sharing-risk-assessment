@@ -1,50 +1,50 @@
 {
-    "schema": {
-      "dataset_name": {
-        "type": "text",
-        "label": "Name/Identifier of the dataset",
-        "required": true
-      },
-      "dataset_description": {
-        "type": "textarea",
-        "label": "What is the data about?",
-        "required": false
-      },
-      "sharing_reason": {
-        "type": "radio",
-        "label": "Why are you sharing the data",
-        "required": true,
-        "options": [
-          { "value": "1", "label": "Encourage Innovation" },
-          { "value": "2", "label": "Optimise supply chains" },
-          { "value": "3", "label": "Address common challenges across a sector" },
-          { "value": "4", "label": "Improve market reach" },
-          { "value": "5", "label": "Benchmarking and insights" },
-          { "value": "6", "label": "To comply with regulation or legislation (e.g. freedom of information)" },
-          { "value": "7", "label": "Demonstrate trustworthiness" },
-          { "value": "8", "label": "Other" }
-        ]
-      },
-      "sharing_reason_details": {
-        "type": "textarea",
-        "label": "Please provide more detail",
-        "required": false
-      }
+  "schema": {
+    "dataset_name": {
+      "type": "text",
+      "label": "Name/Identifier of the dataset",
+      "required": true
     },
-    "form": [
-        {
-          "type": "fieldset",
-          "items": [
-            "dataset_name",
-            "dataset_description"
-          ]
-        },
-        {
-            "type": "fieldset",
-            "items": [
-              "sharing_reason",
-              "sharing_reason_details"
-            ]
-        }
+    "dataset_description": {
+      "type": "textarea",
+      "label": "What is the data about?",
+      "required": false
+    },
+    "sharing_reason": {
+      "type": "radio",
+      "label": "Why are you sharing the data",
+      "required": true,
+      "options": [
+        "Encourage Innovation",
+        "Optimise supply chains",
+        "Address common challenges across a sector",
+        "Improve market reach",
+        "Benchmarking and insights",
+        "To comply with regulation or legislation (e.g. freedom of information)",
+        "Demonstrate trustworthiness",
+        "Other"
       ]
-  }
+    },
+    "sharing_reason_details": {
+      "type": "textarea",
+      "label": "Please provide more detail",
+      "required": false
+    }
+  },
+  "form": [
+    {
+      "type": "fieldset",
+      "items": [
+        "dataset_name",
+        "dataset_description"
+      ]
+    },
+    {
+      "type": "fieldset",
+      "items": [
+        "sharing_reason",
+        "sharing_reason_details"
+      ]
+    }
+  ]
+}

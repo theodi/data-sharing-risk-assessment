@@ -43,16 +43,14 @@
     ],
     "explain": [
       {
-        "title": "Mitigating actions you can take:",
-        "text": "<ul><li>Anonymise the data</li><li>Use synthetic data</li><li>Share the data under contract</li><li>Other?</li></ul>",
-        "form": [
-          {
-            "type": "textarea",
-            "name": "mitigating_actions",
-            "label": "Use this space to add details of actions and decisions to your report:"
-          }
-
-        ]
+        "exampleRisks": {
+          "title": "Potential risks:",
+          "text": "<ul><li>Unauthorized access to personal data leading to identity theft.</li><li>Data breaches causing financial loss and reputational damage.</li><li>Non-compliance with data protection regulations resulting in legal penalties.</li><li>Misuse of personal data for fraudulent activities.</li><li>Increased vulnerability to phishing attacks.</li><li>Unintended exposure of sensitive personal information.</li><li>Ethical concerns over data privacy and consent.</li></ul>"
+        },
+        "exampleActions": {
+          "title": "Mitigating actions:",
+          "text": "<ul><li>Anonymise the data</li><li>Use synthetic data</li><li>Share the data under contract</li><li>Other?</li></ul>"
+        }
       }
     ]
   },
@@ -97,18 +95,17 @@
         "text": "If the data asset you want to share does contain third-party data or you are not sure if you have the legal permissions to share data, you can manage this risk by:<h4>Engaging the third party data steward</h4> Convening a conversation with the third-party data steward that provides the data can help to explore, understand and overcome any possible intellectual property (IP) issues and establish that onward use and sharing is permitted. If the data is not under an open licence and the steward places some restrictions on how the data can be used or shared, it may be possible to agree to share the data under a contract or licence that complies with the relevant permissions. Having these conversations can help to ensure legal risks around sharing data are minimised."
       }
     ],
+    "requires_mitigation_form": true,
     "explain": [
       {
-        "title": "Mitigating actions you can take",
-        "text": "<ul><li>Review the terms under which you are using and sharing the data</li><li>Speak to any third party data stewards</li><li>Other?</li></ul>",
-        "form": [
-          {
-            "type": "textarea",
-            "name": "mitigating_actions",
-            "label": "Use this space to add details of actions and decisions to your report:"
-          }
-
-        ]
+        "exampleRisks": {
+            "title": "Potential risks:",
+            "text": "<ul><li>Unauthorized use of third-party data leading to legal disputes.</li><li>Breaching intellectual property rights resulting in financial penalties.</li><li>Loss of trust and reputational damage with third-party data providers.</li><li>Inadvertent sharing of restricted or proprietary information.</li><li>Potential injunctions or legal action to cease data usage.</li><li>Non-compliance with data sharing agreements.</li><li>Ethical concerns over using data without proper consent.</li></ul>"
+        },
+        "exampleActions": {
+            "title": "Mitigating actions:",
+            "text": "<ul><li>Engage the third-party data steward to confirm permissions.</li><li>Review and comply with data licensing agreements.</li><li>Secure necessary permissions or licenses for data usage.</li><li>Establish clear data sharing agreements with third parties.</li><li>Consult legal experts to ensure compliance with intellectual property laws.</li><li>Use data anonymization techniques where applicable.</li><li>Other?</li></ul>"
+        }
       }
     ]
   },
@@ -155,16 +152,14 @@
     ],
     "explain": [
       {
-        "title": "Mitigating actions you can take",
-        "text": "<ul><li>Review the terms under which you are using and sharing the data</li><li>Speak to any third party data stewards</li><li>Other?</li></ul>",
-        "form": [
-          {
-            "type": "textarea",
-            "name": "mitigating_actions",
-            "label": "Use this space to add details of actions and decisions to your report:"
-          }
-
-        ]
+        "exampleRisks": {
+            "title": "Potential risks:",
+            "text": "<ul><li>Sharing data without legal permissions leading to legal action.</li><li>Breach of data licensing agreements resulting in financial penalties.</li><li>Reputational damage due to non-compliance with data sharing laws.</li><li>Unintended disclosure of confidential or proprietary information.</li><li>Increased liability for data misuse.</li><li>Loss of trust from stakeholders and data providers.</li><li>Ethical and legal implications of unauthorized data sharing.</li></ul>"
+        },
+        "exampleActions": {
+            "title": "Mitigating actions:",
+            "text": "<ul><li>Review and adhere to data licensing agreements and contracts.</li><li>Ensure all necessary permissions for data sharing are secured.</li><li>Consult with legal experts to confirm compliance with data sharing regulations.</li><li>Establish clear data sharing policies within your organization.</li><li>Engage with third-party data stewards to verify permissions.</li><li>Use data anonymization techniques where applicable.</li><li>Other?</li></ul>"
+        }
       }
     ]
   },
@@ -211,16 +206,14 @@
     ],
     "explain": [
       {
-        "title": "Mitigating actions you can take",
-        "text": "<ul><li>Seek advice from specialists in your area</li><li>Use Consequence Scanning tools or the Data Ethics Canvas</li><li>Share the data under contract</li><li>Anonymise the data</li><li>Use synthetic data</li><li>Other?</li></ul>",
-        "form": [
-          {
-            "type": "textarea",
-            "name": "mitigating_actions",
-            "label": "Use this space to add details of actions and decisions to your report:"
-          }
-
-        ]
+        "exampleRisks": {
+            "title": "Potential risks:",
+            "text": "<ul><li>Non-compliance with sector-specific legislation leading to fines or legal action.</li><li>Violation of intellectual property rights resulting in lawsuits.</li><li>Failure to adhere to national or international data policies causing reputational damage.</li><li>Inadvertent breach of privacy laws and regulations.</li><li>Exposure to regulatory scrutiny and potential sanctions.</li><li>Negative impact on stakeholders due to ethical concerns.</li><li>Risk of unintended consequences affecting vulnerable populations.</li></ul>"
+        },
+        "exampleActions": {
+            "title": "Mitigating actions:",
+            "text": "<ul><li>Seek advice from specialists in your sector or legal experts.</li><li>Utilize tools like Consequence Scanning and the Data Ethics Canvas.</li><li>Ensure data sharing agreements are in place with clear legal obligations.</li><li>Implement data anonymization techniques to protect privacy.</li><li>Consider using synthetic data to avoid sharing sensitive information.</li><li>Stay informed about relevant legal and regulatory updates.</li><li>Other?</li></ul>"
+        }
       }
     ]
   },
@@ -272,16 +265,14 @@
     ],
     "explain": [
       {
-        "title": "Mitigating actions you can take",
-        "text": "<ul><li>Use Consequence Scanning tools or the Data Ethics Canvas</li><li>Engage the community</li><li>Describe and document the data well</li><li>Anonymise the data</li><li>Other?</li></ul>",
-        "form": [
-          {
-            "type": "textarea",
-            "name": "mitigating_actions",
-            "label": "Use this space to add details of actions and decisions to your report:"
-          }
-
-        ]
+        "exampleRisks": {
+            "title": "Potential risks:",
+            "text": "<ul><li>Misrepresentation of cultural data leading to stereotypes or biases.</li><li>Unauthorized use of culturally sensitive data causing community harm.</li><li>Data misuse resulting in the exploitation of vulnerable populations.</li><li>Violation of cultural norms and practices leading to social backlash.</li><li>Loss of trust from communities contributing data.</li><li>Ethical dilemmas arising from data colonialism or data nationalism.</li><li>Negative impacts on indigenous data governance and sovereignty.</li></ul>"
+        },
+        "exampleActions": {
+            "title": "Mitigating actions:",
+            "text": "<ul><li>Use Consequence Scanning tools or the Data Ethics Canvas to identify potential cultural impacts.</li><li>Engage with the communities involved to validate assumptions and understand impacts.</li><li>Describe and document the data comprehensively, including context and potential biases.</li><li>Apply anonymization techniques to protect sensitive information.</li><li>Ensure representation and inclusivity in data collection and sharing processes.</li><li>Adhere to ethical guidelines and frameworks for data governance.</li><li>Other?</li></ul>"
+        }
       }
     ]
   },
@@ -333,16 +324,14 @@
     ],
     "explain": [
       {
-        "title": "Mitigating actions you can take",
-        "text": "<ul><li>Use Consequence Scanning tools or the Data Ethics Canvas</li><li>Engage the community</li><li>Describe and document the data well</li><li>Anonymise the data</li><li>Other?</li></ul>",
-        "form": [
-          {
-            "type": "textarea",
-            "name": "mitigating_actions",
-            "label": "Use this space to add details of actions and decisions to your report:"
-          }
-
-        ]
+        "exampleRisks": {
+            "title": "Potential risks:",
+            "text": "<ul><li>Harmful impacts on vulnerable populations.</li><li>Discrimination against specific groups or individuals.</li><li>Invasion of privacy leading to safety concerns.</li><li>Unintended social, economic, or cultural consequences.</li><li>Loss of trust from affected communities.</li><li>Potential for data misuse by third parties.</li><li>Ethical dilemmas related to data sovereignty and governance.</li></ul>"
+        },
+        "exampleActions": {
+            "title": "Mitigating actions:",
+            "text": "<ul><li>Use Consequence Scanning tools or the Data Ethics Canvas to identify potential impacts.</li><li>Engage with the communities involved to understand and address their concerns.</li><li>Provide comprehensive documentation and metadata to ensure proper understanding of the data context.</li><li>Implement anonymization techniques to protect sensitive information.</li><li>Ensure inclusive and fair data collection and sharing practices.</li><li>Adhere to ethical guidelines and frameworks for data governance.</li><li>Other?</li></ul>"
+        }
       }
     ]
   },
@@ -394,16 +383,14 @@
     ],
     "explain": [
       {
-        "title": "Mitigating actions you can take",
-        "text": "<ul><li>Use Consequence Scanning tools or the Data Ethics Canvas</li><li>Engage the community</li><li>Describe and document the data well</li><li>Anonymise the data</li><li>Other?</li></ul>",
-        "form": [
-          {
-            "type": "textarea",
-            "name": "mitigating_actions",
-            "label": "Use this space to add details of actions and decisions to your report:"
-          }
-
-        ]
+        "exampleRisks": {
+            "title": "Potential risks:",
+            "text": "<ul><li>Unintended environmental degradation due to data misuse.</li><li>Exposure of sensitive ecological information leading to exploitation.</li><li>Negative impacts on conservation efforts and biodiversity.</li><li>Revealing the locations of endangered species, making them vulnerable to poaching.</li><li>Harm to natural habitats through unauthorized access and activities.</li><li>Violation of environmental protection laws and regulations.</li><li>Ethical concerns over the responsible use of environmental data.</li></ul>"
+        },
+        "exampleActions": {
+            "title": "Mitigating actions:",
+            "text": "<ul><li>Use Consequence Scanning tools or the Data Ethics Canvas to identify potential environmental impacts.</li><li>Engage with environmental experts and relevant communities to understand and mitigate risks.</li><li>Provide detailed documentation and metadata to ensure responsible data use.</li><li>Apply anonymization techniques to protect sensitive environmental information.</li><li>Ensure compliance with environmental protection laws and regulations.</li><li>Promote transparency and accountability in data sharing practices.</li><li>Other?</li></ul>"
+        }
       }
     ]
   },
@@ -455,16 +442,14 @@
     ],
     "explain": [
       {
-        "title": "Mitigating actions you can take",
-        "text": "<ul><li>Consider if the data is already shared by the government, or public or private sector organisations</li><li>Other?</li></ul>",
-        "form": [
-          {
-            "type": "textarea",
-            "name": "mitigating_actions",
-            "label": "Use this space to add details of actions and decisions to your report:"
-          }
-
-        ]
+        "exampleRisks": {
+            "title": "Potential risks:",
+            "text": "<ul><li>Data falling into the hands of malicious actors, leading to terrorist attacks.</li><li>Compromise of critical infrastructure security.</li><li>Exposure of sensitive locations, increasing vulnerability to sabotage.</li><li>Threats to public safety and national defense operations.</li><li>Use of data to plan and execute cyber-attacks on national systems.</li><li>Disruption of essential services, such as water and food supply.</li><li>Escalation of fear and panic among the public.</li></ul>"
+        },
+        "exampleActions": {
+            "title": "Mitigating actions:",
+            "text": "<ul><li>Review if the data is already publicly available through official channels.</li><li>Consult with national security experts to assess risks.</li><li>Implement strict access controls and data encryption.</li><li>Limit the dissemination of sensitive information to authorized personnel only.</li><li>Regularly audit and monitor data access and usage.</li><li>Provide clear guidelines for the ethical use and sharing of sensitive data.</li><li>Other?</li></ul>"
+        }
       }
     ]
   },
@@ -516,16 +501,14 @@
     ],
     "explain": [
       {
-        "title": "Mitigating actions you can take",
-        "text": "<ul><li>Anomymise the data</li><li>Use synthetic data</li><li>Share the data under contract</li><li>Other?</li><ul>",
-        "form": [
-          {
-            "type": "textarea",
-            "name": "mitigating_actions",
-            "label": "Use this space to add details of actions and decisions to your report:"
-          }
-
-        ]
+        "exampleRisks": {
+            "title": "Potential risks:",
+            "text": "<ul><li>Exposure of sensitive locations leading to targeted attacks.</li><li>Increased risk of cyber-attacks due to revealed security weaknesses.</li><li>Threats to the physical safety of staff and assets.</li><li>Loss of sensitive data resulting in financial and reputational damage.</li><li>Operational disruptions due to compromised infrastructure.</li><li>Unauthorized access to confidential information.</li><li>Inadvertent disclosure of employee personal information.</li></ul>"
+        },
+        "exampleActions": {
+            "title": "Mitigating actions:",
+            "text": "<ul><li>Anonymize the data to remove sensitive details.</li><li>Use synthetic data to protect real data while retaining utility.</li><li>Share the data under strict contractual agreements with clear obligations.</li><li>Implement robust cyber security measures to protect data integrity.</li><li>Regularly review and update security protocols.</li><li>Limit data access to authorized personnel only.</li><li>Provide training for staff on data security best practices.</li><li>Other?</li></ul>"
+        }
       }
     ]
   },
@@ -577,16 +560,14 @@
     ],
     "explain": [
       {
-        "title": "Mitigating actions you can take",
-        "text": "<ul><li>Engage the community and manage expectations around data use</li><li>Describe and document the data well</li><li>Anomymise the data</li><li>Other?</li></ul>",
-        "form": [
-          {
-            "type": "textarea",
-            "name": "mitigating_actions",
-            "label": "Use this space to add details of actions and decisions to your report:"
-          }
-
-        ]
+        "exampleRisks": {
+            "title": "Potential risks:",
+            "text": "<ul><li>Public backlash due to unexpected data sharing practices.</li><li>Loss of trust and credibility with stakeholders and the public.</li><li>Damage to the organization's reputation from perceived data misuse.</li><li>Negative media coverage and scrutiny.</li><li>Unintended exposure of sensitive or controversial information.</li><li>Misinterpretation of data leading to misinformation.</li><li>Reduced engagement and cooperation from the community.</li></ul>"
+        },
+        "exampleActions": {
+            "title": "Mitigating actions:",
+            "text": "<ul><li>Engage the community and manage expectations around data use through transparent communication.</li><li>Describe and document the data well to provide context and clarity.</li><li>Anonymize the data to protect sensitive information.</li><li>Publish clear commitments, policies, and approaches regarding data practices.</li><li>Organize events and direct engagements with key stakeholders.</li><li>Encourage feedback and input to improve data practices and build trust.</li><li>Other?</li></ul>"
+        }
       }
     ]
   },
@@ -638,16 +619,14 @@
     ],
     "explain": [
       {
-        "title": "Mitigating actions you can take",
-        "text": "ul><li>Engage the community and manage expectations around data use</li><li>Describe and document the data well</li><li>Anomymise the data</li><li>Other?</li></ul>",
-        "form": [
-          {
-            "type": "textarea",
-            "name": "mitigating_actions",
-            "label": "Use this space to add details of actions and decisions to your report:"
-          }
-
-        ]
+        "exampleRisks": {
+            "title": "Potential risks:",
+            "text": "<ul><li>Sharing low-quality data leading to misinformed decisions.</li><li>Reputational damage from perceived data unreliability.</li><li>Public backlash due to inaccuracies or errors in data.</li><li>Loss of trust from stakeholders and data users.</li><li>Negative impact on organizational credibility.</li><li>Challenges in data interpretation due to lack of standardization.</li><li>Inadvertent disclosure of sensitive information through free-text fields.</li></ul>"
+        },
+        "exampleActions": {
+            "title": "Mitigating actions:",
+            "text": "<ul><li>Engage the community and manage expectations around data use through transparent communication.</li><li>Provide comprehensive documentation and metadata to ensure data quality and context.</li><li>Anonymize sensitive data to protect privacy and confidentiality.</li><li>Implement data quality frameworks and standards.</li><li>Regularly review and update data quality practices.</li><li>Encourage feedback and input from data users to improve quality.</li><li>Other?</li></ul>"
+        }
       }
     ]
   },
@@ -699,16 +678,14 @@
     ],
     "explain": [
       {
-        "title": "Mitigating actions you can take",
-        "text": "<ul><li>Engage the community and manage expectations around data use</li><li>Describe and document the data well</li><li>Anomymise the data</li><li>Other?</li></ul>",
-        "form": [
-          {
-            "type": "textarea",
-            "name": "mitigating_actions",
-            "label": "Use this space to add details of actions and decisions to your report:"
-          }
-
-        ]
+        "exampleRisks": {
+            "title": "Potential risks:",
+            "text": "<ul><li>Unintended disclosure of sensitive or personal information.</li><li>Reputational damage due to inappropriate or unfit-for-consumption content.</li><li>Data breaches arising from poorly secured free-text fields.</li><li>Difficulty in aggregating and standardizing data for reuse.</li><li>Negative public perception from sharing unstructured or unvalidated data.</li><li>Misinterpretation of data due to lack of context or standardization.</li><li>Legal risks from sharing potentially defamatory or confidential information.</li></ul>"
+        },
+        "exampleActions": {
+            "title": "Mitigating actions:",
+            "text": "<ul><li>Engage the community and manage expectations around data use through transparent communication.</li><li>Provide comprehensive documentation and metadata to ensure data quality and context.</li><li>Anonymize sensitive data to protect privacy and confidentiality.</li><li>Implement data quality frameworks and standards to ensure consistency.</li><li>Regularly review and update data practices to mitigate risks.</li><li>Encourage feedback and input from data users to improve quality and trust.</li><li>Other?</li></ul>"
+        }
       }
     ]
   },
@@ -760,16 +737,14 @@
     ],
     "explain": [
       {
-        "title": "Mitigating actions you can take",
-        "text": "<ul><li>Anomymise the data</li><li>Use synthetic data</li><li>Share the data under contract</li><li>Other?</li></ul>",
-        "form": [
-          {
-            "type": "textarea",
-            "name": "mitigating_actions",
-            "label": "Use this space to add details of actions and decisions to your report:"
-          }
-
-        ]
+        "exampleRisks": {
+            "title": "Potential risks:",
+            "text": "<ul><li>Loss of competitive advantage if sensitive data is exposed.</li><li>Intellectual property theft resulting in financial losses.</li><li>Unauthorized access to proprietary business information.</li><li>Damage to business relationships and trust.</li><li>Legal repercussions from breaching confidentiality agreements.</li><li>Negative impact on market position and reputation.</li><li>Misuse of data by competitors or malicious actors.</li></ul>"
+        },
+        "exampleActions": {
+            "title": "Mitigating actions:",
+            "text": "<ul><li>Anonymize the data to protect sensitive information.</li><li>Use synthetic data to retain utility while safeguarding confidentiality.</li><li>Share the data under strict contractual agreements with clear obligations.</li><li>Implement robust access controls to limit data exposure.</li><li>Regularly review and update data security practices.</li><li>Consult legal experts to ensure compliance with confidentiality laws.</li><li>Other?</li></ul>"
+        }
       }
     ]
   }
