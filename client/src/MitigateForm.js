@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { debounce } from 'lodash';
-import SaveAndContinue from './SaveAndContinue';
-import SaveAndContinueDisabled from './SaveAndContinueDisabled';
+import SaveAndReturn from './SaveAndReturn';
 import { updateCheckpointAnswers } from './checkpointsSlice';
 
 export default function MitigateForm(props) {
@@ -112,7 +111,7 @@ export default function MitigateForm(props) {
         </svg>
       </button>
       <div className="save-actions">
-        <SaveAndContinue />
+        <SaveAndReturn />
       </div>
     </div>
   );
