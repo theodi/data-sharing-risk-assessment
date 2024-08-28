@@ -1,6 +1,6 @@
 {
   "name": "data-sharing-risk-assessment-server",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "Server for data sharing risk assessment",
   "main": "server.js",
   "scripts": {

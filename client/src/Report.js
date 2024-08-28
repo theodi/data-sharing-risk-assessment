@@ -61,7 +61,19 @@ export default function Report() {
         return;
       }
       const risks = (a.option.explain_risk && a.form_data) ? a.form_data.risks : [];
-      answers.push(<AnswerListItem key={a.id} id={a.id} risk_level={a.option.risk_level} explain_risk={a.option.explain_risk} risks={risks} option={a.option.option} title={checkpoint.title} />);
+      const considerations = a.considerations || []; // Get considerations from the answer
+      answers.push(
+        <AnswerListItem
+          key={a.id}
+          id={a.id}
+          risk_level={a.option.risk_level}
+          explain_risk={a.option.explain_risk}
+          risks={risks}
+          option={a.option.option}
+          title={checkpoint.title}
+          considerations={considerations} // Pass considerations as a prop
+        />
+      );
     });
     return (
       <div className="checkpoint-answers">{answers}</div>
@@ -69,13 +81,15 @@ export default function Report() {
   }
 
   function AnswerListItem(props) {
-    const { id, risk_level, risks, option, title } = props;
+    const { id, risk_level, risks, option, title, considerations } = props;
 
     const handleNavigation = () => {
       dispatch(updateActiveCheckpointIndex(id));
       dispatch(updateActiveCheckpoint(id));
       navigate(`/assessment/${activeAssessment.id}/checkpoint/${id}`);
     };
+
+    const checkpoint = checkpoints.find(c => c.id === id);
 
     return (
       <div className="checkpoint-answer">
@@ -88,39 +102,61 @@ export default function Report() {
             <div className="checkpoint-answer-option-label">Your Answer</div>
             <div className={`checkpoint-answer-option-value button button-white ${risk_level}`}>{option}</div>
           </div>
-          {risks.length ?
+
+          {/* Render considerations for the report */}
+          {checkpoint.considerations && considerations.length > 0 && (
+            <div className="checkpoint-considerations">
+              <div className="considerations-title">Considerations checklist</div>
+              <ul className="considerations-list">
+                {considerations.map((consideration, index) => (
+                  <li key={index} className="consideration-item">
+                    <input
+                      type="checkbox"
+                      disabled
+                      checked={consideration.answer} // Check the stored answer state (true/false)
+                    />
+                    <span className="checkmark"></span>
+                    <label>{consideration.text}</label>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {risks.length ? (
             <div>
               <div className="checkpoint-answer-mitigate-label">Identified Risks and Mitigations</div>
               <div className="checkpoint-answer-mitigate-value">
                 {risks.map((risk, index) => (
                   <div key={index} className="risk-item">
                     <p><strong>Risk:</strong> {risk.risk}</p>
-                    <p className="risk-classification">
+                    <div className="risk-classification">
                       <strong>Likelihood:</strong>
                       <div className={`checkpoint-risk-level button ${risk.likelihood === 'High' ? 'red' : risk.likelihood === 'Medium' ? 'amber' : 'green'}`}>
                         {risk.likelihood}
                       </div>
-                    </p>
-                    <p className="risk-classification">
+                    </div>
+                    <div className="risk-classification">
                       <strong>Impact:</strong>
                       <div className={`checkpoint-risk-level button ${risk.impact === 'High' ? 'red' : risk.impact === 'Medium' ? 'amber' : 'green'}`}>
                         {risk.impact}
                       </div>
-                    </p>
-                    <p className="risk-classification">
+                    </div>
+                    <div className="risk-classification">
                       <strong>Action Type:</strong>
                       <div className="checkpoint-risk-level button button-blue">{risk.actionType}</div>
-                    </p>
+                    </div>
                     <p><strong>Mitigating Actions:</strong> {risk.mitigatingActions}</p>
                   </div>
                 ))}
               </div>
             </div>
-            : ""}
+          ) : ""}
         </div>
       </div>
-    )
+    );
   }
+
 
   function DataListItem(props) {
     const { label, value } = props;

@@ -88,7 +88,6 @@ export default function RiskClassificationChart() {
         offset: -20,
         formatter: (value) => value,
         display: function(context) {
-            console.log(context);
             return context.dataset.data[context.dataIndex] > 0;
         }
 

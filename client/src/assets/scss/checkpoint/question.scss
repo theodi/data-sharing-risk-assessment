@@ -288,3 +288,105 @@
     }
   }
 }
+.considerations,
+.checkpoint-considerations {
+  .title {
+    font-family: $font-bold;
+    font-size: 1.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    @media (min-width: 768px){
+      font-size: 1.7rem;
+      margin-bottom: vh(25px);
+
+    }
+    @media (min-width: 768px) and (min-height: 900px){
+      font-size: 1.7rem;
+      margin-bottom: vw(25px);
+    }
+    @media (min-width: 1440px) and (min-height: 900px){
+      font-size: 18px;
+      margin-bottom: 25px;
+
+    }
+  }
+  ul {
+    list-style-type: none; /* Remove bullets */
+    padding-left: 0; /* Remove padding */
+    margin-left: 0; /* Remove margin */
+  }
+
+  li {
+    margin-left: 0; /* Ensure no margin on list items */
+    padding-left: 1em; /* Ensure no padding on list items */
+    padding-bottom: 1em;
+  }
+
+  /* Hide the default checkbox */
+  input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  /* Create a custom checkbox */
+  .checkmark {
+    position: relative;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-color: #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    vertical-align: middle;
+    transition: background-color 0.3s;
+    top: -2px;
+  }
+
+  /* On hover, add a hover effect */
+  :hover .checkmark {
+    background-color: #b3b3b3;
+  }
+
+  /* When the checkbox is checked, change the background */
+  input:checked + .checkmark {
+    background-color: #2254F4; /* Primary color for the checked state */
+    border-radius: 5px;
+    border: 1px solid white;
+  }
+
+  /* Create the checkmark/indicator (hidden by default) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 8px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+  }
+
+  /* Show the checkmark when checked */
+  input:checked + .checkmark:after {
+    display: block;
+  }
+
+  /* Increase size of the label text */
+  .checkmark {
+    cursor: pointer;
+  }
+}
+.checkpoint-considerations {
+  color: #2254F4;
+  margin-top: 2rem;
+  .considerations-title {
+    font-family: $font-bold;
+    font-size: 1.8rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 25px;
+  }
+}

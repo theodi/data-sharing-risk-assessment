@@ -25,24 +25,31 @@ export default function ExplainModal(props) {
       </div>
 
     </div>
+
     <div className="modal-risks">
-
-
       <div className="">
         <div className="modal-subtitle">{content.exampleRisks.title}</div>
-        <div className="te" dangerouslySetInnerHTML={{__html: content.exampleRisks.text}} />
+        <div className="te">
+          <ul>
+            {content.exampleRisks.items.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        </div>
       </div>
-
     </div>
 
     <div className="modal-actions">
-
-
       <div className="">
         <div className="modal-subtitle">{content.exampleActions.title}</div>
-        <div className="te" dangerouslySetInnerHTML={{__html: content.exampleActions.text}} />
+        <div className="te">
+          <ul>
+            {content.exampleActions.items.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        </div>
       </div>
-
     </div>
 
     <div className="modal-riskRegister">

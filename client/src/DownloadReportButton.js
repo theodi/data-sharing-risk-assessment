@@ -47,9 +47,9 @@ export default function DownloadReportButton({ assessmentId }) {
             <div className="cta-text">
               <div className="text">Download your report in many formats so you can easily reuse it.</div>
               <div className="buttons-container">
-                <button className="button button-white" onClick={() => handleDownloadReport('json')}>Download JSON</button>
-                <button className="button button-white" onClick={() => handleDownloadReport('csv')}>Download CSV</button>
-                <button className="button button-white" onClick={() => handleDownloadReport('docx')}>Download DOCX</button>
+                <div className="button button-white" onClick={() => handleDownloadReport('json')}>Download JSON</div>
+                <div className="button button-white" onClick={() => handleDownloadReport('csv')}>Download CSV</div>
+                <div className="button button-white" onClick={() => handleDownloadReport('docx')}>Download DOCX</div>
               </div>
             </div>
           </div>

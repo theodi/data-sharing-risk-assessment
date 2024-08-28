@@ -386,6 +386,7 @@ function generateAssessmentDetail(answers) {
     const categories = Object.keys(groupedByCategory).map(category => {
       const questions = groupedByCategory[category].map(answer => {
         const risks = answer.risks || [];
+        const considerations = answer.considerations;
         return [
           new docx.Paragraph({
             text: `Checkpoint ${answer.checkpoint}: ${answer.question}`,
@@ -408,6 +409,7 @@ function generateAssessmentDetail(answers) {
               }),
             ],
           }),
+          ...generateConsiderationsTable(considerations),
           ...risks.length > 0 ? [
             new docx.Paragraph({
               text: `Identified Risks`,
@@ -483,6 +485,72 @@ function generateAssessmentDetail(answers) {
     }).flat();
 
     return categories;
+}
+
+function generateConsiderationsTable(considerations) {
+    if (!considerations.length > 0) {
+        return [];
+    }
+
+    const rows = [
+        new docx.TableRow({
+            children: [
+                new docx.TableCell({
+                    children: [new docx.Paragraph({
+                        text: "Consideration",
+                        bold: true,
+                    })],
+                    shading: {
+                        fill: "5E95F8", // Light grey background for header
+                    },
+                }),
+                new docx.TableCell({
+                    children: [new docx.Paragraph({
+                        text: "Considered",
+                        bold: true,
+                    })],
+                    shading: {
+                        fill: "5E95F8", // Light grey background for header
+                    },
+                }),
+            ],
+        }),
+        ...considerations.map((consideration) =>
+            new docx.TableRow({
+                children: [
+                    new docx.TableCell({
+                        children: [new docx.Paragraph(consideration.text)],
+                    }),
+                    new docx.TableCell({
+                        children: [
+                            new docx.Paragraph({
+                                children: [
+                                    new docx.TextRun({
+                                        text: consideration.answer ? "✔" : "✘", // Tick for true, cross for false
+                                        bold: true,
+                                    }),
+                                ],
+                            }),
+                        ],
+                    }),
+                ],
+            })
+        ),
+    ];
+
+    return [
+        new docx.Paragraph({
+            text: "Considerations checklist",
+            heading: docx.HeadingLevel.HEADING_4,
+        }),
+        new docx.Table({
+            rows: rows,
+            width: {
+                size: 100,
+                type: docx.WidthType.PERCENTAGE,
+            },
+        }),
+    ];
 }
 
 

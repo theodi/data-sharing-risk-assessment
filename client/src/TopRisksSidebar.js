@@ -49,16 +49,16 @@ export default function TopRisksSidebar() {
               topRisks.map((risk, index) => (
                 <div key={index} className="risk-item" onClick={() => handleNavigateToCheckpoint(risk.checkpointId)} style={{ cursor: 'pointer' }}>
                   <p><strong>{risk.risk}</strong></p>
-                  <p className="risk-classification">Likelihood:
+                  <div className="risk-classification">Likelihood:
                     <div className={`checkpoint-risk-level button ${risk.likelihood === 'High' ? 'red' : risk.likelihood === 'Medium' ? 'amber' : 'green'}`}>
                       {risk.likelihood}
                     </div>
-                  </p>
-                  <p className="risk-classification">Impact:
+                  </div>
+                  <div className="risk-classification">Impact:
                     <div className={`checkpoint-risk-level button ${risk.impact === 'High' ? 'red' : risk.impact === 'Medium' ? 'amber' : 'green'}`}>
                       {risk.impact}
                     </div>
-                  </p>
+                  </div>
                   <p><strong>Checkpoint:</strong> {checkpoints.find(c => c.id === risk.checkpointId).title}</p>
                 </div>
               ))

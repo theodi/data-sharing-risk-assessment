@@ -6,6 +6,8 @@ export default function OpenMitigateRisk({title = "Identify risks and plan mitig
   const { setModal } = useModal()
   const {activeCheckpointAnswer, activeCheckpoint, totalCheckpoints, activeCheckpointIndex} = useSelector((state) => state.checkpoints);
 
+  if (!activeCheckpointAnswer.option) return null;
+
   if (activeCheckpointAnswer.option.risk_level === "amber" || activeCheckpointAnswer.option.risk_level === "red" ){
     return (
       <button

@@ -74,6 +74,7 @@ function mapAnswersWithCheckpoints(assessment, checkpoints) {
       question: checkpoint.title,
       category: checkpoint.category,
       answer: answer.option.option,
+      considerations: answer.considerations || {},
       risk_level: answer.option.risk_level,
       risks: risks
     };

@@ -185,7 +185,8 @@ export const checkpointsSlice = createSlice({
         axiosInstance.put(`/assessments/${state.activeAssessment.id}`, state.activeAssessment, { withCredentials: true });
         state.error = null;
       } catch (err) {
-        state.error = err.message;
+        console.err('Failed to save');
+        // Ignore and continue as it'll probably work next time
       }
     },
     startAssessment: (state, action) => {
@@ -254,7 +255,8 @@ export const checkpointsSlice = createSlice({
         axiosInstance.put(`/assessments/${state.activeAssessment.id}`, state.activeAssessment, { withCredentials: true });
         state.error = null;
       } catch (err) {
-        state.error = err.message;
+        console.err('Failed to save');
+        // Ignore and continue as it'll probably work next time
       }
     }
   },

@@ -23,16 +23,16 @@ export default function CheckpointCTAs() {
               risks.map((risk, index) => (
                 <div key={index} className="risk-item">
                   <p><strong>{risk.risk}</strong></p>
-                  <p className="risk-classification">Likelihood:
+                  <div className="risk-classification">Likelihood:
                     <div className={`checkpoint-risk-level button ${risk.likelihood === 'High' ? 'red' : risk.likelihood === 'Medium' ? 'amber' : 'green'}`}>
                       {risk.likelihood}
                     </div>
-                  </p>
-                  <p className="risk-classification">Impact:
+                  </div>
+                  <div className="risk-classification">Impact:
                     <div className={`checkpoint-risk-level button ${risk.impact === 'High' ? 'red' : risk.impact === 'Medium' ? 'amber' : 'green'}`}>
                       {risk.impact}
                     </div>
-                  </p>
+                  </div>
                 </div>
               ))
             ) : (
@@ -51,7 +51,7 @@ export default function CheckpointCTAs() {
               <div className="cta-text">
                 <div className="text">View your report in many formats so you can easily reuse it.</div>
                 <div className="buttons-container">
-                  <button className="button button-white">View Report</button>
+                  <div className="button button-white">View Report</div>
                 </div>
               </div>
             </div>

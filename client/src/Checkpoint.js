@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux'
 import CheckpointOptions from './CheckpointOptions';
+import CheckpointConsiderations from './CheckpointConsiderations';
 import CheckpointActions from './CheckpointActions';
 import CheckpointExtra from './CheckpointExtra';
 import CheckpointInfo from './CheckpointInfo';
@@ -26,6 +27,8 @@ export default function Checkpoint() {
       </div>
 
       <CheckpointOptions  />
+
+      <CheckpointConsiderations />
 
       <CheckpointInfo  />
 
