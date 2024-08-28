@@ -9,12 +9,24 @@ export default function CheckpointConsiderations() {
   const dispatch = useDispatch();
 
   // Initialize local state based on activeCheckpoint considerations or fallback to empty
-  const initialConsiderations = activeCheckpoint?.considerations?.items.map((item) => ({
-    text: item,
-    answer: false,
-  })) || [];
+  const getInitialConsiderations = () => {
+    return activeCheckpoint?.considerations?.items.map((item) => ({
+      text: item,
+      answer: false,
+    })) || [];
+  };
 
-  const [localConsiderations, setLocalConsiderations] = useState(activeCheckpointAnswer?.considerations || initialConsiderations);
+  const [localConsiderations, setLocalConsiderations] = useState(getInitialConsiderations());
+
+  useEffect(() => {
+    if (activeCheckpointAnswer && activeCheckpointAnswer.considerations) {
+      // If considerations already exist in the answer, use them
+      setLocalConsiderations(activeCheckpointAnswer.considerations);
+    } else {
+      // Otherwise, initialize with the current checkpoint's considerations
+      setLocalConsiderations(getInitialConsiderations());
+    }
+  }, [activeCheckpoint, activeCheckpointAnswer]);
 
   const debouncedDispatch = useCallback(
     debounce((updatedConsiderations) => {
@@ -27,13 +39,6 @@ export default function CheckpointConsiderations() {
     [dispatch, activeCheckpointAnswer]
   );
 
-  // Remove the effect that updates the local state when the activeCheckpointAnswer changes
-  // This ensures that the UI updates immediately without waiting for state sync
-  // If you still need to reset localConsiderations when a new checkpoint is loaded, consider a different approach to avoid the delay
-
-  if (!activeCheckpoint || !activeCheckpoint.considerations) return null;
-  if (!activeCheckpointAnswer || !activeCheckpointAnswer.option) return null;
-
   const handleCheckboxChange = (index) => {
     // Update local state immediately for UI update
     const updatedConsiderations = localConsiderations.map((consideration, i) => (
@@ -45,6 +50,9 @@ export default function CheckpointConsiderations() {
     // Dispatch the updated answer with debounced function
     debouncedDispatch(updatedConsiderations);
   };
+
+  if (!activeCheckpoint || !activeCheckpoint.considerations) return null;
+  if (!activeCheckpointAnswer || !activeCheckpointAnswer.option) return null;
 
   return (
     <div className="considerations">

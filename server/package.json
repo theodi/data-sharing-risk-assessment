@@ -1,10 +1,12 @@
 {
   "name": "data-sharing-risk-assessment-server",
-  "version": "1.6.0",
+  "version": "2.0.0",
   "description": "Server for data sharing risk assessment",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run": "node server.js",
+    "debug": "NODE_ENV=development node --inspect server.js"
   },
   "author": "David Tarrant",
   "license": "MIT",

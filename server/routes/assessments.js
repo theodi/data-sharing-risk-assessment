@@ -94,9 +94,9 @@ router.get('/:id/report', ensureAuthenticated, async (req, res) => {
     const mappedAnswers = mapAnswersWithCheckpoints(assessment, checkpoints);
 
     const report = {
-      dataset_name: assessment.data_capture.dataset_name.value,
-      dataset_description: assessment.data_capture.dataset_description.value,
-      sharing_reason: assessment.data_capture.sharing_reason.value,
+      dataset_name: assessment.data_capture.dataset_name.value || "unknown dataset name",
+      dataset_description: assessment.data_capture.dataset_description.value || "",
+      sharing_reason: assessment.data_capture.sharing_reason.value || "Unknown sharing reason",
       sharing_reason_details: assessment.data_capture.sharing_reason_details.value || "",
       answers: mappedAnswers
     };

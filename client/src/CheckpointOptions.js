@@ -13,14 +13,16 @@ export default function CheckpointOptions() {
 
   const handleOptionClick = (option) => {
     try {
-      // Initialize considerations if they are not already in the activeCheckpointAnswer
-      const initialConsiderations = activeCheckpoint.considerations?.items.map((item) => ({
+      // Initialize considerations specific to the current checkpoint
+      const initialConsiderations = activeCheckpoint?.considerations?.items.map((item) => ({
         text: item,
         answer: false,
       })) || [];
 
       // Preserve existing considerations or initialize them
-      const considerations = activeCheckpointAnswer?.considerations || initialConsiderations;
+      const considerations = activeCheckpointAnswer?.considerations?.length
+        ? activeCheckpointAnswer.considerations
+        : initialConsiderations;
 
       const answer = {
         id: checkpointID,
