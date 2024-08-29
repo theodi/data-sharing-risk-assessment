@@ -18,7 +18,7 @@ export default function CheckpointInfo() {
         onClick={() => {
           const modalContent = {
             type: "default",
-            content: activeCheckpoint.background_info[0]
+            content: activeCheckpoint.background_info
           };
           setModal(modalContent)
         }}><span>Background Info</span>
@@ -33,7 +33,7 @@ export default function CheckpointInfo() {
         onClick={() => {
           const modalContent = {
             type: "default",
-            content: activeCheckpoint.examples[0]
+            content: activeCheckpoint.examples
           };
           setModal(modalContent)
         }}><span>Examples</span>
@@ -52,7 +52,7 @@ export default function CheckpointInfo() {
         onClick={() => {
           const modalContent = {
             type: "default",
-            content: activeCheckpoint.mitigating_actions[0]
+            content: activeCheckpoint.mitigating_actions
           };
           setModal(modalContent)
         }}><span>Mitigating actions you can take</span>

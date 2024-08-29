@@ -16,7 +16,7 @@ export default function OpenMitigateRisk({title = "Identify risks and plan mitig
 
         const modalData = {
           type: "explain",
-          content: activeCheckpoint.explain[0],
+          content: activeCheckpoint.explain,
           checkpoint: activeCheckpoint,
           checkpointAnswer: activeCheckpointAnswer,
           totalCheckpoints: totalCheckpoints,
