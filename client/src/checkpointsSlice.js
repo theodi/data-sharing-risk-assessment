@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axiosInstance from './axiosInstance';
+import Login from './Login';
 
 // Thunk to get checkpoints
 export const getCheckpoints = createAsyncThunk(
@@ -49,15 +50,16 @@ export const startAssessmentThunk = createAsyncThunk(
     if (id) {
       assessment = state.assessmentsList.find(assessment => assessment._id === id);
       found = true;
-    }
-
-    if (id && found) {
       dispatch(startAssessment(id));
-      navigate(id);
     } else {
-      const response = await dispatch(createAssessment(assessment)).unwrap();
-      navigate(response._id);
+      try {
+        const response = await dispatch(createAssessment(assessment)).unwrap();
+        id = response._id;
+      } catch (err) {
+        navigate(Login);
+      }
     }
+    navigate(id);
   }
 );
 

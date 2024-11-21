@@ -9,8 +9,7 @@
             {
                 "option": "Yes",
                 "explain_risk": true,
-                "risk_level": "red",
-                "explain_text": ""
+                "risk_level": "red"
             },
             {
                 "option": "No",
